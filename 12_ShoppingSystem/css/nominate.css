@@ -1,0 +1,26 @@
+.showinfo {
+	background-attachment: fixed;
+	background-color: #FFFFFF;
+	background: url(../images/default_isnom.GIF);
+	background-repeat: repeat;
+	background-position: center center;
+	margin: 0px;
+	padding: 0px;
+	height: 21px;
+	width: 62px;
+	border: 1px solid #FFFFFF;
+	cursor: hand;
+}
+.buy {
+	background-attachment: fixed;
+	background-color: #FFFFFF;
+	background: url(../images/buy.GIF);
+	background-repeat: repeat;
+	background-position: center center;
+	margin: 0px;
+	padding: 0px;
+	height: 21px;
+	width: 62px;
+	border: 1px solid #FFFFFF;
+	cursor: hand;
+}

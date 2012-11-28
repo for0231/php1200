@@ -1,0 +1,39 @@
+<style type="text/css">
+    .bbs_pubtitle_main                                               {width:96%; border:1px solid #9DB3C5; background-color:#FAFDFF; clear:both;}
+    .bbs_pubtitle_main .title                                        {margin:1px; height:30px; line-height:30px; font-weight:bold; text-align:left; color:#FFFFFF; background:url(<?php echo $this->baseUrl('/img/bbs_title_bg1.gif')?>); clear:both; }
+    .bbs_pubtitle_main .formarea                                     {width:80%; text-align:left; clear:both;}
+    .bbs_pubtitle_main .errorMsg                                     {width:80%; text-align:left; line-height:20px; font-size:14px; color:#067F06; border:1px solid #FF6600; background-color:#FDF5EF; clear:both; }
+
+    .zend_form                                                       {margin:0px; padding:0px; clear:both;} 
+    .required                                                        {font-size:13px; float:left; color:#006600;}
+    dt                                                               {width:100%; height:30px; line-height:30px; color:#666666; clear:both;} 
+    dd                                                               {width:100%; clear:both;}                 
+    .errors                                                          {color:#FF0000;}
+</style>
+<div class="cell_h"></div>
+<div class="bbs_pubtitle_main">
+    <div class="title">　　发表问题</div>
+    <div class="cell_h"></div>
+    <?php if(trim($this->errorMsg)!=''):?>
+    <div class="errorMsg">
+        <?php echo $this->errorMsg?>
+    </div>
+    <?php endif;?>
+    <div class="formarea">
+        <?php echo $this->pubtitleForm?>
+    </div>
+    <div class="cell_h"></div>
+</div>
+
+<script language="javascript">
+    function submitFun()
+    {
+        lzhEditor.Submit();
+        $("#form_pubtitle").submit();
+    }
+
+    function changeValidateCode(){
+        $("#vcodeImg").attr("src", "<?php echo $this->baseUrl('/common/vcode/rand/"+Math.random()+"')?>");
+    }
+</script>
+

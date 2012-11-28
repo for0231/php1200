@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$title}</title>
+<link rel="stylesheet" href="css/nominate.css" />
+<script language="javascript" src="js/createxmlhttp.js"></script>
+<script language="javascript" src="js/showcommo.js"></script>
+</head>
+<body>
+<table width="636" border="0" align="center" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="39" align="left" valign="middle" background="images/default_14.gif">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="132" align="left" valign="middle">
+   {section name=id loop=$allnom}
+   
+    <table width="636" height="134" border="0" cellspacing="0" cellpadding="0">
+    	<tr>
+        	<td width="145" rowspan="5" align="center" valign="middle"><img src="{$allnom[id].pics}" width="90" height="100" alt="{$allnom[id].name}" style="border: 1px solid #f0f0f0;" /></td>
+            <td height="35">商品名称：{$allnom[id].name}</td>
+            <td width="156" height="35">商品类别：{$allnom[id].class}</td>
+    	    <td width="157">商品型号：{$allnom[id].model}</td>
+    	</tr>
+    	<tr>
+    	  <td height="23">商品品牌：{$allnom[id].brand}</td>
+  	      <td height="23" colspan="2">商品产地：{$allnom[id].area}</td>
+    	</tr>
+    	<tr>
+    	  <td width="178" height="23">剩余数量：{$allnom[id].stocks}</td>
+  	      <td colspan="2">销售数量：{$allnom[id].sell}</td>
+    	</tr>
+    	<tr>
+    	  <td height="23">市场价：<font color="red">{$allnom[id].m_price}&nbsp;元</font></td>
+  	      <td height="23" colspan="2">上市日期：{$allnom[id].addtime}</td>
+    	</tr>
+    	<tr>
+    	  <td height="30">会员价格：<font color="#FF0000">{$allnom[id].v_price}&nbsp;元</font></td>
+  	      <td height="30" colspan="2" align="center" valign="middle"><input id="allshow" name="allshow" type="button" value="" class="showinfo" onclick="openshowcommo({$allnom[id].id})"  />  &nbsp;<input id="buy" name="buy" type="button" value="" class="buy" onclick="return buycommo({$allnom[id].id})" /></td>
+    	</tr>
+    </table>
+    <hr style="border: 1px solid #f0f0f0;" />
+    {/section}
+	
+    </td>
+  </tr>
+  <tr>
+  	<td height="25" align="center">{$showpage}</td>
+  </tr>
+</table>
+</body>
+</html>
+

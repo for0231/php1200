@@ -1,0 +1,66 @@
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th {
+	font-size: 12px;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+	color: #CC0000;
+}
+#a_login #manager {
+	height: 15px;
+	width: 125px;
+	border: 1px solid #000000;
+}
+submit {
+	border: 1px solid #f0f0f0;
+}
+
+#a_login #pwd {
+	height: 15px;
+	width: 125px;
+	border: 1px solid #000000;
+}
+#a_login #lg {
+	height: 28px;
+	width: 67px;
+	border: 1px solid #f0f0f0;
+	background-attachment: fixed;
+	background-image: url(../images/login.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#a_login #rt {
+	height: 28px;
+	width: 67px;
+	border: 1px solid #f0f0f0;
+	background-attachment: fixed;
+	background-image: url(../images/return.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+div{
+overflow:hidden;
+}
+.menu_td {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #5A3408;
+}
+.submit {
+	border: 1px solid #000000;
+}

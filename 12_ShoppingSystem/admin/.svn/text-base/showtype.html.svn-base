@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" href="css/table.css" />
+<script language="javascript" src="js/createxmlhttp.js"></script>
+<script language="javascript" src="js/changetype.js"></script>
+</head>
+<body>
+<table width="300" border="0" align="center" cellpadding="0" cellspacing="0">
+<form id="modi" name="modi" method="post" action="#">
+	<tr>
+		<td height="25" colspan="2" align="center" valign="middle" class="first">查看商品类别</td>
+	</tr>
+{foreach name=ftype key=fkey item=fitem from=$bigarray}
+    <tr>
+      <td height="25" align="center" valign="middle" class="left"><font size="2" color="#FF0000">父类：</font><input id="moditype{$fkey}" name="moditype{$fkey}" type="text" class="shorttxt" value="{$fitem}" style="border-color:#996633;" /></td>
+      <td height="25" align="center" valign="middle" class="right"><input id="modify" name="modify" type="button" class="btn" value="修改" onclick="javascript:modifytype({$fkey});" style="border-color:#FFFFFF;"/><input id="delete" name="delete" type="button" value="删除" class="btn" onclick="javascript:delbigtype({$fkey});" style="border-color:#FFFFFF;"></td>
+    </tr>
+    {foreach name = stype key = skey item = sitem from = $smallarray}
+    {if $sitem[1] == $fkey}
+    <tr>
+      <td height="25" align="center" valign="middle" class="left" style="text-indent: 50px;" ><font size="2" color="#996600">子类：</font><input id="modtype{$skey}" name="moditype{$skey}" type="text" class="shorttxt" value="{$sitem[0]}" style="border-color:#996633;" /></td>
+        <td height="25" align="center" valign="middle" class="right"><input id="modidfy" name="modify" type="button" value="修改" class="btn" onclick="javascript:modifytype({$skey})" style="border-color:#FFFFFF;"/><input id="delete" name="delete" type="button" value="删除" class="btn" onclick="javascript:delsmalltype({$skey})" style="border-color:#FFFFFF;"></td>
+    </tr>
+  	{/if}
+    {/foreach}
+{/foreach}
+</form>
+</table>
+</body>
+</html>
+

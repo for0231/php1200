@@ -1,0 +1,18 @@
+ #name,#pwd1,#pwd2,#question,#answer,#realname,#card,#tel,#phone,#qq,#email,#code,#address {
+	height: 20px;
+	width: 150px;
+	border: 1px solid #003399;
+	background-color:#e8f4ff;
+}
+ #yzm {
+	height: 20px;
+	width: 50px;
+	border: 1px solid #003399;
+	background-color:#e8f4ff;
+}
+ #name1,#pwd11,#pwd21,#question1,#answer1,#realname1,#card1,#tel1,#phone1,#qq1,#email1,#code1,#address1,#yzm1 {
+	background-color: #f0f0f0;
+	height: 13px;
+	width: 150px;
+	border: 1px dotted #CCCCCC;
+}

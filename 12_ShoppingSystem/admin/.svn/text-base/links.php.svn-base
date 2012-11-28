@@ -1,0 +1,5 @@
+<?php
+	include_once 'system/system.inc.php';
+	$smarty->assign('title','Ìí¼ÓÁ´½Ó');
+	$smarty->display('links.html');
+?>

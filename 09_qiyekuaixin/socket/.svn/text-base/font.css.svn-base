@@ -1,0 +1,40 @@
+A:link {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #006699; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #000000
+}
+BODY {
+	COLOR: #006699;
+}
+TD,TH {
+	FONT-SIZE:12px; COLOR: #006699;
+}
+.buttoncss {
+    font-family: "Tahoma", "ËÎÌו";
+    font-size: 9pt; color: #003399;
+    border: 1px #003399 solid;
+    color:006699;
+    BORDER-BOTTOM: #93bee2 1px solid; 
+    BORDER-LEFT: #93bee2 1px solid; 
+    BORDER-RIGHT: #93bee2 1px solid; 
+    BORDER-TOP: #93bee2 1px solid;
+    background-color: #e8f4ff;
+    CURSOR: hand;
+    font-style: normal ;
+}
+
+.inputcss {  
+    font-size: 9pt; 
+    color: #003399; 
+    font-family: "ËÎÌו"; 
+    font-style: normal; 	
+    border-color: #93BEE2 #93BEE2 #93BEE2 #93BEE2 ; 
+    border: 1px #93BEE2 solid; 
+}

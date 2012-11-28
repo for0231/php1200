@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php
+            echo $this->headMeta()->appendHttpEquiv('content-type', 'text/html; charset=UTF-8')
+                                  ->appendHttpEquiv('x-ua-compatible', 'ie=7');
+            echo $this->headTitle($this->escape($this->title)); 
+            echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'));                      
+        ?> 
+        <style type="text/css">
+        
+            .header                                   {width:80%; height:70px; border-bottom:2px solid #B0E000; clear:both;}
+            
+            .header .left                             {width:180px; height:77px; float:left;}
+            .header .right                            {width:150px; height:77px; text-align:right;  float:right;}
+            .logo                                     {width:80%; height:77px; clear:both;}
+            .title                                    {width:80%; clear:both;}
+            .title .title1                            {width:100%; height:20px; line-height:20px; text-align:left; border-bottom:1px dashed #000000; clear:both;}
+            .title .title2                            {width:100%; height:18px; line-height:18px; text-align:left; clear:both;}
+            .title .content                           {width:100%; text-align:left; line-height:20px; clear:both;}
+            
+            .footer                                   {width:80%; height:25px; border-top:2px solid #B0E000; clear:both;}
+            .footer .left                             {width:50%; height:23px; line-height:23px; color:#333333; text-align:left; float:left;}
+            .footer .right                            {width:30%; height:23px; line-height:23px; text-align:right; float:right;}            
+            
+            
+            @media print{
+               .noprint{
+        	       display:none
+               }
+            }
+                
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="left">
+                <img src="<?php echo $this->baseUrl('/img/logo.jpg')?>" />
+            </div>
+            <div class="right" class="noprint">
+            <ul>
+                <li class="noprint">
+            [<a href="#" onclick="printView()" class="a1">打印预览</a>]　[<a href="#" onclick="window.print()" class="">打印</a>]
+                </li>
+            </ul>
+            </div> 
+        </div>
+        <div class="cell_h"></div>
+        <div class="title">
+            <div class="title1">
+                <strong>主帖题目：</strong><?php echo $this->escape($this->arrayTitle['title'])?>
+            </div>
+            <div class="title2">
+                <strong>作者：</strong><?php echo $this->escape($this->arrayTitle['netname'])?>　　　　　　　<strong>发表于：</strong><?php echo substr($this->arrayTitle['addtime'], 0, 16)?>
+            </div>
+            <div class="cell_h"></div>
+            <div class="content">
+                <?php echo stripslashes($this->arrayTitle['content'])?>
+            </div>            
+        </div>
+        <?php foreach ($this->arrayReply as $key => $reply):?>
+        <div class="cell_h"></div>
+        <div class="title">
+            <div class="title1">
+                <strong>回复题目（<?php echo $key+1?>）：</strong><?php echo $this->escape($reply['title'])?>
+            </div>
+            <div class="title2">
+                <strong>作者：</strong><?php echo $this->escape($reply['netname'])?>　　　　　　　<strong>回复于：</strong><?php echo substr($reply['addtime'], 0, 16)?>
+            </div>
+            <div class="cell_h"></div>
+            <div class="content">
+                <?php echo stripslashes($reply['content'])?>
+            </div>            
+        </div>
+        <?php endforeach;?>
+        <div class="cell_h"></div>
+        <div class="footer">
+            <ul>
+                <li class="left"><?php echo $this->escape($this->config['default']['title'])?>&nbsp;|&nbsp;<?php echo $this->escape($this->config['default']['host'])?></li>
+                <li class="right">明日科技版权所有</li>
+            </ul>
+            
+        </div>
+    <object id="webBrowser" width="0" height="0" classid="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></object>
+    <script>     
+    function printView(){  
+        document.all.webBrowser.ExecWB(7,1) ;
+    }     
+    </script>
+    </body>
+</html>

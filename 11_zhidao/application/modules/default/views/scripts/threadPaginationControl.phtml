@@ -1,0 +1,13 @@
+<ul>
+    <li class="li1">每页&nbsp;<?php echo $this->itemCountPerPage?>&nbsp;篇/共&nbsp;<?php echo $this->totalItemCount?>&nbsp;篇回复</li>
+    <li class="li_cell"></li>
+    <?php if($this->totalItemCount>0):?>
+        <?php foreach ($this->pagesInRange as $page):?>
+    <li onclick="javascript:window.location.href='<?php echo $this->baseUrl('question/thread-'.$this->titleid.'-'.$page)?>';" class="<?php if($this->current==$page):?>li2_current<?php else:?>li2<?php endif;?>"><a href="<?php echo $this->baseUrl('question/thread-'.$this->titleid.'-'.$page)?>" class="<?php if($this->current==$page):?>a2<?php else:?>a1<?php endif;?>"><?php echo $page?></a></li>
+    <li class="li_cell"></li>
+        <?php endforeach;?>
+        <?php if($this->last > 5):?>
+    <li onclick="javascript:window.location.href='<?php echo $this->baseUrl('question/thread-'.$this->titleid.'-'.$this->last)?>';" class="li3"><a href="<?php echo $this->baseUrl('question/thread-'.$this->titleid.'-'.$this->last)?>" class="a1">...<?php echo $this->last?></a></li>
+        <?php endif;?>
+    <?php endif;?>
+</ul>

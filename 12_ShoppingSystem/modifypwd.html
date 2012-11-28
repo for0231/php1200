@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" href="css/member.css" />
+<script language="javascript" src="js/member.js"></script>
+</head>
+<body>
+<table width="636" height="39" border="0" background="images/insider.jpg">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$smarty.session.member}&gt;&gt;&gt;<a href='?page=hyzx' id="mem">查看信息</a>&gt;&gt;&gt;<a href='?page=hyzx&action=modify' id="mem">修改密码</a></p>
+<table  id="member" width="300" border="0" cellpadding="0" cellspacing="0">
+<form id="member" name="member" method="post" action="modify_pwd_chk.php" onsubmit="return pwd(member)">
+  <tr>
+    <td height="25" colspan="2" align="center" valign="middle" id="first"><font color="#f0f0f0">修改密码</font></td>
+  </tr>
+  <tr>
+    <td width="25%" height="25" align="right" valign="middle" id="left">原密码：</td>
+    <td height="25" align="left" valign="middle" id="right">&nbsp;<input id="old" name="old" type="password" /></td>
+  </tr>
+  <tr>
+    <td width="25%" height="25" align="right" valign="middle" id="left">新密码：</td>
+    <td height="25" align="left" valign="middle" id="right">&nbsp;<input id="new1" name="new1" type="password" /></td>
+  </tr>
+  <tr>
+    <td width="25%" height="25" align="right" valign="middle" id="left">确认密码：</td>
+    <td height="25" align="left" valign="middle" id="right">&nbsp;<input id="new2" name="new2" type="password" /></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" align="center" valign="middle"><input id="enter" name="enter" type="submit" value="修改" /></td>
+  </tr>
+</form>
+</table>
+</body>
+</html>

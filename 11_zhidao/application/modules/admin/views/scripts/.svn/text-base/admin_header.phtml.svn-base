@@ -1,0 +1,23 @@
+<style type="text/css">
+    .admin_header_part1                          {width:96%; height:48px; border:1px solid #BDE2FD; clear:both;}
+    .admin_header_part1 .title                   {margin:1px; height:23px; line-height:23px; color:#0000FF; text-align:left; font-size:14px; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>); clear:both;}   
+    .admin_header_part1 .dh                      {width:100%; height:23px; line-height:26px; text-align:left; clear:both;}
+                
+</style>
+
+<script language="javascript">
+    try{
+        window.parent.document.title = "<?php echo $this->escape($this->title)?>";
+    }catch(e){}
+</script>
+
+<div class="cell_h"></div>
+<div class="admin_header_part1">
+    <div class="title">
+　明日知道-管理中心
+    </div>
+    <div class="dh">
+    　当前位置：<?php echo $this->position?>
+    </div>
+</div>
+<div class="cell_h"></div>

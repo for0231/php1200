@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>鹏逊购物系统</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/table.css" />
+</head>
+<body>
+<center>
+<table width="850" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2">{include file="top.html"}</td>
+  </tr>
+  <tr>
+    <td width="216" align="left" valign="top">
+	{if $member=="F"}
+		{include file="login.html"}
+	{else}
+		{include file="info.html"}
+	{/if}
+	{include file="public.html"}
+	{include file="links.html"}
+    </td>
+    <td width="634" height="720" align="center" valign="top">
+    	{include file="search.html"}
+		{include file=$switchs}
+		{if $page==F}
+		{include file=$switches}
+		{/if}</td>
+  </tr>
+</table>
+<table width="850" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+    	<td>{include file=buttom.html}</td>
+    </tr>
+</table>
+</center>
+</body>
+</html>

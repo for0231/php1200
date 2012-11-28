@@ -1,0 +1,53 @@
+<style type="text/css">
+    .nav                                      {width:96%; height:23px; border-bottom:3px solid #94E279; clear:both;}
+    .nav .li1                                 {width:80px; height:23px; line-height:23px; float:left; background-color:#D0F9C1; margin-left:8px;}
+    .nav .li2                                 {width:80px; height:23px; line-height:23px; float:left; background-color:#E7F6FB; margin-left:8px;}                            
+    .searchArea                               {width:96%; background-color:#D0F9C1; border:1px dashed #4BB922; clear:both;}
+    .searchArea .p1                           {width:100%; height:30px; line-height:30px; text-align:left; clear:both;}
+    .table                                    {width:96%; border-collapse:collapse; clear:both;}
+    td                                        {text-align:center;}                         
+</style>
+
+<div class="nav">
+    <ul>
+        <li class="li2">
+            <a href="<?php echo $this->baseUrl('/admin/user/list/flag/all/lt/0/page/1')?>" class="a3">管理</a>
+        </li>
+        <li class="li1">
+            <a href="<?php echo $this->baseUrl('/admin/user/search')?>" class="a3">查询</a>
+        </li>
+    </ul>
+</div>
+<div class="cell_h"></div>
+<div class="searchArea">
+    <form name="form_searchProgram" id="form_searchProgram" method="post" action="<?php echo $this->baseUrl('/admin/user/search')?>" style="margin:0px; padding:0px;" onsubmit="return chkInputSearchProgram()">
+    <div class="cell_h"></div>
+    <div class="p1">
+　昵称关键字：<input type="text" name="keywords" id="keywords" class="input" style="width:300px; height:17px; line-height:17px;" <?php if($this->fData!=null):?>value="<?php echo $this->fData['keywords']?>"<?php endif;?>/>   　<input type="submit" value="查询" />   
+    </div> 
+    </form>
+</div>
+<?php if($this->isShow == 'T'):?>
+<div class="cell_h"></div>
+<table class="table" align="center">
+    <tr>
+        <td style="height:24px; border:1px solid #BDE2FD; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>);">昵称</td>
+        <td style="width:100px; height:24px; border:1px solid #BDE2FD; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>);">来自</td>
+        <td style="width:150px; height:24px; border:1px solid #BDE2FD; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>);">注册时间</td>
+        <td style="width:150px; height:24px; border:1px solid #BDE2FD; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>);">E-mail</td>
+        <td style="width:40px; height:24px; border:1px solid #BDE2FD; background:url(<?php echo $this->baseUrl('/img/admin/title_bg1.gif')?>);">操作</td>
+    </tr>
+    <?php foreach ($this->users as $key => $user):?>
+    <tr>
+        <td style="height:24px; border:1px solid #BDE2FD; text-align:left;">　<?php echo $this->escape($user['netname'])?></td>
+        <td style="width:100px; height:24px; border:1px solid #BDE2FD;"><?php echo $user['pc']?></td>
+        <td style="width:150px; height:24px; border:1px solid #BDE2FD;"><?php echo $user['regtime']?></td>
+        <td style="width:150px; height:24px; border:1px solid #BDE2FD;"><?php echo $user['email']?></td>
+        <td style="width:40px; height:24px; border:1px solid #BDE2FD;"><a href="javascript:if(window.confirm('确认删除该用户信息么？')){window.location.href='<?php echo $this->baseUrl('/admin/user/delete/id/'.$user['id'].'/isSearch/T/keywords/\'+encodeURI(\''.$this->fData['keywords'].'\')+\'')?>';}"><img src="<?php echo $this->baseUrl('/img/admin/del.gif')?>" title="删除" border="0"/></a></td>
+    </tr>
+    <?php endforeach;?>
+</table>
+<?php endif;?>
+<div class="cell_h"></div>
+
+

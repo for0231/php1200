@@ -1,0 +1,27 @@
+/* CSS Document */
+
+a:link {
+	color: #009999;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #999900;
+}
+a:hover {
+	text-decoration: none;
+	color: #00FF66;
+}
+a:active {
+	text-decoration: none;
+	color: #33CC99;
+}
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}

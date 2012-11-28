@@ -1,0 +1,8 @@
+<html>
+    <head>
+        <title>明日知道网站</title>
+    </head>
+    <body>
+    <a href="http://www.mingrizd.com" target="_blank">恭喜您！您已经成功注册为明日知道网站用户！</a>
+    </body>
+</html>

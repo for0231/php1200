@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel='stylesheet' href='css/table.css' />
+<script language='javascript' src='js/createxmlhttp.js'></script>
+<script language='javascript' src='js/queryform.js'></script>
+</head>
+<body>
+<table width='630' border='0' align='center' cellpadding='0' cellspacing='0'>
+<form id='queryform' name='queryform' method='post' action='#'>
+  <tr>
+    <td height='25' colspan='4' align='center' valign='middle' class='first'>查询订单</td>
+  </tr>
+  <tr>
+    <td width='75' height='25' align='right' class='left'>查询用户：</td>
+    <td width='125' height='25' align='left'class='center'>
+    	&nbsp;<input id='name' name='name' type='text' class='txt' /></td>
+    <td width='75' height='25' align='right' class='center'>查询订单号：</td>
+    <td width='125' height='25' align='left' class='right'>
+    	&nbsp;<input id='formid' name='formid' type='text' class='txt' /></td>
+  </tr>
+  <tr>
+    <td height='25' colspan="4" align='center' class='left'> <input id='enters' name='enters' type='button' value='查询' class='btn' onClick='return queryrst(queryform)'/></td>
+    </tr>
+</form>
+</table>
+
+<div id='exam'></div>
+</body>
+</html>
+
+
+

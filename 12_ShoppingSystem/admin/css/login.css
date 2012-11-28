@@ -1,0 +1,31 @@
+/* CSS Document */
+body {
+	font-size: 12px;
+	margin-top: 0px;
+	background-attachment: fixed;
+	background: url(../images/login_01.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+ #user,#pwd {
+	margin: 0px;
+	padding: 0px;
+	height: 13px;
+	width: 116px;
+	border: 1px solid #e8f4ff;
+	background-color:#e8f4ff;
+}
+ #enter,#reset {
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	height: 17px;
+	width: 46px;
+	border: 1px solid #FFFFFF;	
+}
+ #reset {
+	background: url(../images/login_13.gif);
+}
+ #enter {
+	background: url(../images/login_12.gif);
+}

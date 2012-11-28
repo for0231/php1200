@@ -1,0 +1,304 @@
+<style type="text/css">
+    .register                                    {width:700px; clear:both;}
+    .register .left                              {width:50px; float:left; }  
+    .register .center                            {width:430px; float:left; }  
+    .register .right                             {width:220px;  float:right; }  
+      
+    .register .center .label                     {width:430px; height:20px; line-height:20px; color:#006600; text-align:left; font-size:13px; clear:both; }
+    .register .center .field                     {width:430px; height:25px; line-height:25px; text-align:left; clear:both;}
+    .register .center .fieldvcode                {width:430px; height:35px; line-height:35px; font-size:0px; position:relative; text-align:left; clear:both;}
+    .register .center .fieldsubmit               {width:430px; height:35px; line-height:35px; font-size:0px; text-align:left; clear:both;}
+    .register .center .fieldAgreement            {width:430px; height:120px; line-height:120px; text-align:left; clear:both;}
+    .register .center .description               {width:430px; height:20px; line-height:20px; color:#999999; text-align:left; clear:both; }
+
+	.register .center .alert                     {width:378px; height:22px; line-height:22px; text-align:left; float:left; display:none; background:url(<?php echo $this->baseUrl('/img/input_error_mark.jpg')?>); clear:both;  }
+    .register .center .safeAlert                 {width:430px; height:18px; display:none; clear:both;}
+	.register .center .safeAlert .pwdSafe        {width:50px; height:18px; line-height:18px; float:left; background-color:#D4D4D4; border-right:1px solid #FFFFFF;}
+    .register .center .safeAlert .safeTitle      {width:50px; height:18px; line-height:18px; float:left; color:#FF0000; }	
+    .register .center .cell_h                    {width:430px; height:15px; font-size:0px; clear:both; }
+     
+</style>
+<script src="<?php echo $this->baseUrl('/js/jquery.js')?>"></script>
+<div class="cell_h"></div>
+<div class="register">
+    <div class="left"></div>
+    <div class="center">
+        <?php echo $this->form('register_form', array('method'=>'post', 'action'=>$this->baseUrl('/user/register')), false)?>
+        <ul>
+            <li class="label">给自己找个登录昵称：</li>
+            <li class="field">
+                <?php echo $this->formText('netname', '', array('size'=>'25', 'maxlength'=>'15', 'class'=>'input_register_form', 'onblur'=>'checkInputRegister(0)'))?>
+            </li> 
+            <li class="description">登录昵称为4-15个字符之间，用来区分注册用户，要求彼此不同</li> 
+            <li id="chkNetname" class="alert"></li>
+            <li class="cell_h"></li>
+            
+            
+            <li class="label">设置一个登录密码：</li>
+            <li class="field">
+                <?php echo $this->formPassword('password', '', array('size'=>'35', 'maxlength'=>'15', 'class'=>'input_register_form', 'onblur'=>'checkInputRegister(1)'))?>
+            </li> 
+            <li class="description">登录密码为6-15个字符之间</li> 
+            <li id="chkPassword" class="alert"></li>        
+		   
+		    <li id="passwordSafe" class="safeAlert">
+		        <span class="safeTitle">安全性：</span>
+		        <span id="unsafe" class="pwdSafe">差</span>
+		        <span id="centersafe" class="pwdSafe">中</span>
+		        <span id="verysafe" class="pwdSafe">强</span>
+		    </li>
+            <li class="cell_h"></li>
+            
+            
+            <li class="label">确认密码：</li>
+            <li class="field">
+                <?php echo $this->formPassword('defPassword', '', array('size'=>'35', 'maxlength'=>'15', 'class'=>'input_register_form', 'onblur'=>'checkInputRegister(2)'))?>
+            </li>
+            <li class="description">再输入一次密码，确保密码正确</li> 
+            <li id="chkDefPassword" class="alert"></li>        
+            <li class="cell_h"></li>
+                  
+            <li class="label">E-mail：</li>
+            <li class="field">
+                <?php echo $this->formText('email', '', array('size'=>'35', 'maxlength'=>'50', 'class'=>'input_register_form', 'onblur'=>'checkInputRegister(3)'))?>
+            </li>
+            <li class="description">请输入您的邮箱地址</li> 
+            <li id="chkEmail" class="alert"></li>        
+            <li class="cell_h"></li>
+            
+            
+            <li class="label">联系电话：</li>
+            <li class="field">
+                <?php echo $this->formText('tel', '', array('size'=>'35', 'maxlength'=>'20', 'class'=>'input_register_form', 'onblur'=>'checkInputRegister(4)'))?>
+            </li>
+            <li class="description">请输入您的联系电话，移动电话和固定电话均可</li> 
+            <li id="chkTel" class="alert"></li>        
+            <li class="cell_h"></li>            
+            
+            <li class="label">所在地：</li>
+            <li class="field">
+                <?php echo $this->formSelect('p', '-1', array('onchange'=>'changeCity()', 'onblur'=>'checkInputRegister(5)'), $this->p)?>
+                <?php echo $this->formSelect('c', '-1', null, array('-1'=>'请选择城市'))?>   
+            </li>
+            <li class="description">请从列表中选择您目前所在地</li> 
+            <li id="chkProvinceAndCity" class="alert"></li>        
+            <li class="cell_h"></li> 
+            
+            <li class="label">验证码：</li>
+            <li class="fieldvcode">
+                <?php echo $this->formText('vcode', '', array('size'=>'8', 'maxlength'=>'4', 'class'=>'input_register_form', 'style'=>'left:0px; top:17px; position:absolute;', 'onblur'=>'checkInputRegister(6)'))?>
+                <img id="vcodeImg" src="<?php echo $this->baseUrl('/common/vcode')?>" style="position:absolute; left:80px; top:0px;" /><span style="position:absolute; left:170px; top:10px;"><a href="javascript:changeValidateCode()" class="a4">看不清，我想换一张</a></span>
+            </li>
+            <li class="description">请将将图片中的字符填写到验证码文本框，字母不区分大小写</li> 
+            <li id="chkVcode" class="alert"></li>        
+            <li class="cell_h"></li> 
+            
+            
+            <li class="fieldsubmit">
+                <img  src="<?php echo $this->baseUrl('/img/btn_register.gif')?>"  onclick="checkInputRegister(-1)" style="cursor:pointer"/>
+            </li>
+            <li class="cell_h"></li>
+            <li class="fieldAgreement">
+                <?php echo $this->formTextarea('', $this->regAgreement, array('cols'=>'45', 'rows'=>'8', 'style'=>'width:350px; height:120px; font-size:12px; border:1px solid #777777; font-family:宋体; color:#333333;'))?>
+            </li>
+        </ul>
+        <?php echo '</form>'?>
+    </div>
+    <div class="right">
+   
+    </div>
+</div>
+<script language="javascript">
+function checkInputRegister(flag){  
+    $.get("<?php echo $this->baseUrl('/user/check-netname/netname/"+encodeURI($.trim($("#netname").val()))+"')?>", null, function(data){ 
+	    $.get("<?php echo $this->baseUrl('/common/check-vcode/vcode/"+encodeURI($.trim($("#vcode").val()))+"')?>", null, function(data1){ 
+	    
+	        var isSubmit0 = false;
+	        var isSubmit1 = false;
+	        var isSubmit2 = false;
+	        var isSubmit3 = false;
+	        var isSubmit4 = false;
+	        var isSubmit5 = false;
+	        var isSubmit6 = false;
+	        
+	        if(flag==0 || flag ==-1){
+		        if($("#netname").val()=="" || $("#netname").val().length < 4 || $("#netname").val().length > 15 || $.trim(data)=="T" ){
+		            if($("#netname").val()==""){
+			            $("#chkNetname").html("　　请输入登录昵称，为4-15个字符之间");
+			        }else if($("#netname").val().length < 4 || $("#netname").val().length > 15){
+			            $("#chkNetname").html("　　登录昵称应该为4-15个字符之间");
+			        }else if($.trim(data)=="T"){
+			            $("#chkNetname").html("　　该昵称已经被占用");
+			        }
+			        $("#netname").css("border", "1px solid #FF0000");
+			        $("#chkNetname").css("display", "inline");
+			        isSubmit0 = false;
+		        }else{
+		        	$("#chkNetname").html("");
+			        $("#netname").css("border", "1px solid #777777");
+			        $("#chkNetname").css("display", "none");
+			        isSubmit0 = true;
+		        }
+	        }
+	    
+	        if(flag==1 || flag ==-1){
+                if($("#password").val()=="" || $("#password").val().length < 6 || $("#password").val().length > 15){
+			        $("#chkPassword").html("　　请输入大于6-15位的登录密码，建议包含特殊字符，如#￥%等");
+			        $("#password").css("border", "1px solid #FF0000");
+			        $("#chkPassword").css("display", "inline");
+			        $("#passwordSafe").css("display", "none");
+			        isSubmit1 = false;
+			    }else{
+			        $("#chkPassword").html("");
+			        $("#password").css("border", "1px solid #777777");
+			        $("#chkPassword").css("display", "none");
+			    		    
+				    var p1 = ($("#password").val().search(/[a-zA-Z]/)!=-1)?1:0;
+				    var p2 = ($("#password").val().search(/[0-9]/)!=-1)?1:0;
+				    var p3 = ($("#password").val().search(/[^a-zA-Z0-9_]/)!=-1)?1:0;
+				    var p = p1+p2+p3;
+				    if(p==1){
+				        $("#unsafe").css("background-color", "#FF0000");
+				        $("#centersafe").css("background-color", "#D4D4D4");
+				        $("#verysafe").css("background-color", "#D4D4D4");
+				        $("#unsafe").css("color", "#FFFFFF");
+				        $("#centersafe").css("color", "#000000");
+				        $("#verysafe").css("color", "#000000");
+				        $("#passwordSafe").css("display", "inline");
+				    }else if(p==2){
+				        $("#unsafe").css("background-color", "#D4D4D4");
+				        $("#centersafe").css("background-color", "#FF0000");
+				        $("#verysafe").css("background-color", "#D4D4D4");
+				        $("#unsafe").css("color", "#000000");
+				        $("#centersafe").css("color", "#FFFFFF");
+				        $("#verysafe").css("color", "#000000");
+				        $("#passwordSafe").css("display", "inline");   
+				         
+				    }else if(p==3){
+				        $("#unsafe").css("background-color", "#D4D4D4");
+				        $("#centersafe").css("background-color", "#D4D4D4");
+				        $("#verysafe").css("background-color", "#FF0000");
+	                    $("#unsafe").css("color", "#000000");
+				        $("#centersafe").css("color", "#000000");
+				        $("#verysafe").css("color", "#FFFFFF");
+				        $("#passwordSafe").css("display", "inline");	    
+				    }
+                    isSubmit1 = true;
+				}       
+	        }
+	    
+	    
+	        if(flag==2 || flag ==-1){
+			    if($("#defPassword").val()=="" || $("#defPassword").val()!=$("#password").val()){
+			        if($("#defPassword").val()==""){
+			            $("#chkDefPassword").html("　　请输入确认密码");
+			        }else{
+			            $("#chkDefPassword").html("　　确认密码与密码不同");
+			        }
+			        $("#defPassword").css("border", "1px solid #FF0000");
+			        $("#password").css("border", "1px solid #FF0000");
+			        $("#chkDefPassword").css("display", "inline");
+			        isSubmit2 = false;
+			    }else{
+			        $("#chkDefPassword").html("");
+			        $("#defPassword").css("border", "1px solid #777777");
+			        $("#password").css("border", "1px solid #777777");
+			        $("#chkDefPassword").css("display", "none");
+			        isSubmit2 = true;
+			    }
+	    
+	        }
+	        
+	        if(flag==3 || flag ==-1){
+			    if($("#email").val()=="" || !$("#email").val().match(/^.+@.+$/)){
+			        if($("#email").val()==""){
+		                $("#chkEmail").html("　　请输入Email地址");
+		            }else if(!$("#email").val().match(/^.+@.+$/)){
+		                $("#chkEmail").html("　　Email地址输入有误");
+		            }
+			        $("#email").css("border", "1px solid #FF0000");
+			        $("#chkEmail").css("display", "inline");  
+			        isSubmit3 = false;      
+			    }else{ 
+			        $("#chkEmail").html("");
+			        $("#email").css("border", "1px solid #777777");
+			        $("#chkEmail").css("display", "none");
+			        isSubmit3 = true;
+			    }
+	        }
+	        
+	        
+	        if(flag==4 || flag ==-1){
+				var telNo = /^([0-9]|[\-])+$/g;      
+			    if($("#tel").val()=="" || !$("#tel").val().match(telNo) || $("#tel").val().length>18 || $("#tel").val().length<7 ){
+		            if($("#tel").val()==""){
+		                $("#chkTel").html("　　请输入联系电话");
+			        }else if(!$("#tel").val().match(telNo) || $("#tel").val().length>18 || $("#tel").val().length<7 ){
+			           $("#chkTel").html("　　联系电话输入有误");
+			        }
+			        $("#tel").css("border", "1px solid #FF0000");
+			        $("#chkTel").css("display", "inline"); 
+			        isSubmit4 = false;             
+			    }else{ 
+			        $("#chkTel").html("");
+			        $("#tel").css("border", "1px solid #777777");
+			        $("#chkTel").css("display", "none");
+			        isSubmit4 = true;
+			    }	
+	        }
+	        
+	        
+	        if(flag==5 || flag ==-1){
+			    if($("#p").val()=="-1"){
+		            $("#chkProvinceAndCity").html("　　请选择您所在的省份");
+			        $("#p").css("border", "1px solid #FF0000");
+			        $("#chkProvinceAndCity").css("display", "inline");
+			        isSubmit5 = false;              
+			    }else{ 
+			        $("#chkProvinceAndCity").html("");
+			        $("#p").css("border", "1px solid #777777");
+			        $("#chkProvinceAndCity").css("display", "none");
+			        isSubmit5 = true;
+			    }
+	        } 
+	        
+	        
+	        if(flag==6 || flag ==-1){
+		        if($.trim(data1)=="0" || $.trim($("#vcode").val())==""){
+		            if($.trim($("#vcode").val())==""){
+		                $("#chkVcode").html("　　请输入验证码，字母不区分大小写");
+				    }else{
+				        $("#chkVcode").html("　　验证码输入有误");
+				    }
+				    $("#vcode").css("border", "1px solid #FF0000");
+				    $("#chkVcode").css("display", "inline"); 
+				    isSubmit6 = false;   
+				}else{
+					$("#chkVcode").html("");
+					$("#vcode").css("border", "1px solid #777777");
+					$("#chkVcode").css("display", "none");
+					isSubmit6 = true;
+				} 
+	        }
+
+	        if(isSubmit0 == true && isSubmit1 == true && isSubmit2 == true && isSubmit3 == true && isSubmit4 == true && isSubmit5 == true && isSubmit6 == true && flag == -1){
+	            $("#register_form").submit();
+	        }
+	       
+        });
+	});
+}
+
+
+function changeValidateCode(){
+    $("#vcodeImg").attr("src", "<?php echo $this->baseUrl('/common/vcode/rand/"+Math.random()+"')?>");
+}
+
+function changeCity(){
+    $.get("<?php echo $this->baseUrl('/common/city/pindex/"+$("#p").val()+"')?>", null, function(data){
+        $("#c").empty();
+        $("#c").append(data); 
+    });
+	
+}
+</script>

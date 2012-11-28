@@ -1,0 +1,16 @@
+<style type="text/css">
+    .login_top                                  {width:769px; height:26px; background:url(<?php echo $this->baseUrl('/img/user_reg_top.gif')?>); clear:both;}  
+    .login_center                               {width:769px; font-size:14px; line-height:26px; background:url(<?php echo $this->baseUrl('/img/user_reg_center.gif')?>); clear:both;}  
+    .login_bottom                               {width:769px; height:35px; background:url(<?php echo $this->baseUrl('/img/user_reg_bottom.gif')?>); clear:both;} 
+   
+    
+</style>
+<div class="login_top"></div>
+<div class="login_center">
+
+    恭喜&nbsp;<a href="" class="a9"><?php echo $this->loginUser['netname']?></a>，您已经成功登录<?php echo $this->config['pageInfo']['default']['title']?>！<br>
+    <a href="<?php echo $this->baseUrl('/')?>" class="a3">[返回首页]</a>　<a href="<?php echo $this->baseUrl('/user/logout')?>" class="a3">[注销退出]</a>
+
+
+</div>
+<div class="login_bottom"></div>

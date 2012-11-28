@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php 
+            echo $this->headMeta()->setHttpEquiv('content-type', 'text/html; charset=utf-8')
+                                  ->appendHttpEquiv('x-ua-compatible', 'ie=7');
+        ?>
+        <?php echo $this->headTitle($this->escape($this->title))?>
+        <?php echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'))?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('/js/jquery.js'))?>
+        <style type="text/css">
+            .header_top                                 {width:100%; height:80px; background:url(<?php echo $this->baseUrl('/img/user_top_bg.gif')?>); clear:both;}
+            .header_top .logo                           {width:880px; clear:both;}
+            .header_top .logo .left                     {width:300px; height:80px; background-color:#FFFFFF; float:left;}
+            .header_top .logo .right                    {width:550px; height:80px; float:right;}
+            .login_top                                  {width:769px; height:26px; background:url(<?php echo $this->baseUrl('/img/user_reg_top.gif')?>); clear:both;}  
+            .login_center                               {width:769px; background:url(<?php echo $this->baseUrl('/img/user_reg_center.gif')?>); clear:both;}  
+            .login_center .left                         {position:relative; width:41%;float:left;} 
+            .login_center .right                        {width:58%; float:right;} 
+            .login_center .right .title                 {width:75%; height:26px; line-height:26px; color:#006600; font-size:14px; text-align:left; clear:both;}
+            .login_center .right .field                 {width:75%; height:26px; line-height:26px; font-size:14px; text-align:left; position:relative; clear:both;}
+            .login_center .right .alert                 {width:335px; height:22px; line-height:22px; text-align:left; color:#AC2C08; display:none; background:url(<?php echo $this->baseUrl('/img/input_error_mark.jpg')?>); clear:both;}
+            .login_center .right .description           {width:75%; height:40px; line-height:26px; text-align:left; color:#666666; font-size:12px; clear:both;}
+            .login_center .right .submit                {position:relative; width:75%; height:40px; line-height:40px; text-align:left; clear:both;}
+            .login_bottom                               {width:769px; height:35px; background:url(<?php echo $this->baseUrl('/img/user_reg_bottom.gif')?>); clear:both;} 
+            .login_errMsg                               {width:720px; height:30px; font-size:14px; color:#0000FF; line-height:30px; background-color:#FCD9D7; border:1px dashed #FF0000; clear:both;}
+            .footer_msg                                 {width:763px; height:31px; line-height:31px; text-align:left; background:url(<?php echo $this->baseUrl('/img/user_bottom_bg.gif')?>); clear:both;}
+    
+        </style>
+    </head>
+    <body>
+        <div class="cell_h"></div>
+        <div class="header_top">
+            <div class="logo">
+                <div class="left">
+                    <a href="<?php echo $this->baseUrl('/')?>"><img src="<?php echo $this->baseUrl('/img/logo.jpg')?>" style="margin-top:13px; border:0px;"/></a>
+                </div>
+                <div class="right">
+            
+                </div>
+            </div>
+        </div>
+        <div class="cell_h"></div>
+        
+        <div class="login_top"></div>
+        <div class="login_center">
+            <div class="left">
+                <img src="<?php echo $this->baseUrl('/img/admin_login_mark.jpg')?>" style="position: absolute; left:20px; top:60px;"/>
+            </div>
+            
+            <div class="right">
+                <form name="form_login" id="form_login" method="post"  style="padding:0px; margin:0px;">
+                <!-- 登录名 -->  
+                <div class="title">
+        管理员名称：
+                </div>
+                <div class="field">
+                    <input type="text" name="netname" id="netname" class="input" maxlength="15" style="width:200px; height:16px; line-height:16px;" onblur="chkInputLogin(1)"/>
+                </div>
+                <div id="chkNetname" class="alert"></div>
+                <div class="description">
+        请在上述文本框中输入管理员名称
+                </div>
+                <!-- 登录密码 -->
+                <div class="title">
+        登录密码：
+                </div>
+                <div class="field">
+                    <input type="password" name="password" id="password" maxlength="15" class="input" style="width:200px; height:16px; line-height:16px;" onblur="chkInputLogin(2)"/>
+                </div>
+                <div id="chkPassword" class="alert"></div>
+                <div class="description">
+        请在上述文本框中输入管理员的登录密码
+                </div>
+                <!-- 验证码 -->
+                <div class="title">
+        验证码：
+                </div>
+                <div class="field">
+                    <input type="text" name="vcode" id="vcode" class="input" maxlength="4" style="width:70px; height:16px; line-height:16px;" onblur="chkInputLogin(3)"/><img id="vcodeImg" src="<?php echo $this->baseUrl('/common/vcode/w/80/h/30/t/0')?>" style="position:absolute; left:85px; top:-10px;" />　　　　　　　<a href="javascript:changeVcode()" class="a24">看不清，换一张</a>
+                </div>
+                <div id="chkVcode" class="alert"></div>
+                <div class="description">
+        请将图片中的字符填写到验证码文本框内，字母不区分大小写
+                </div>
+                <!-- 提交按钮 -->
+                <div class="submit">
+                    <img src="<?php echo $this->baseUrl('/img/btn_login.gif')?>" style="cursor:pointer; position:absolute; left:0px; top:0px;" onclick="chkInputLogin(-1)"/>
+                </div> 
+                </form>    
+            </div>
+           
+            <div class="clear"></div>   
+           
+        </div>
+        <div class="login_bottom"></div>
+        <?php if($this->errMsg != null):?>
+        <div class="cell_h"></div>
+        <div class="login_errMsg">
+            <?php echo $this->errMsg?>
+        </div>
+        <?php endif;?>
+        
+        <div class="cell_h"></div>
+        <div class="footer_msg">
+        　　<a href="<?php echo $this->baseUrl('/')?>">(C)　<?php echo $this->escape($this->config['pageInfo']['default']['siteRunTime'])?>&nbsp;<?php echo $this->escape($this->config['pageInfo']['default']['title'])?></a>
+        </div>
+        
+        <script language="javascript">
+            //切换验证码图片
+            function changeVcode()
+            {
+                 $("#vcodeImg").attr("src", "<?php echo $this->baseUrl('/common/vcode/w/80/h/30/t/0/rand/"+Math.random()+"')?>");   
+            }
+            //表单验证
+            function chkInputLogin(flag)
+            {
+                $.get("<?php echo $this->baseUrl('/common/check-vcode/vcode/"+encodeURI($("#vcode").val())+"')?>", null, function(chkVcodeReturnData){
+                    var k1=false;
+                    var k2=false;
+                    var k3=false;
+                    //用户昵称
+                    if(flag == 1 || flag == -1){
+                        if($.trim($("#netname").val())==""){
+                            $("#chkNetname").html("　　请输入管理员名称");
+                            $("#netname").css("border", "1px solid #FF0000");
+                            $("#chkNetname").css("display", "block");
+                        }else{
+                            $("#chkNetname").html("");
+                            $("#netname").css("border", "1px solid #777777");
+                            $("#chkNetname").css("display", "none");
+                            k1=true;
+                        }
+                    } 
+                    //登录密码
+                    if(flag == 2 || flag == -1){
+                        if($.trim($("#password").val())==""){
+                            $("#chkPassword").html("　　请输入登录密码");
+                            $("#password").css("border", "1px solid #FF0000");
+                            $("#chkPassword").css("display", "block");
+                        }else{
+                            $("#chkPassword").html("");
+                            $("#password").css("border", "1px solid #777777");
+                            $("#chkPassword").css("display", "none");
+                            k2=true;
+                        }
+                    }  
+                    //验证码
+                    if(flag == 3 || flag == -1){
+                        if($.trim($("#vcode").val())==""){
+                            $("#chkVcode").html("　　请输入验证码");
+                            $("#vcode").css("border", "1px solid #FF0000");
+                            $("#chkVcode").css("display", "block");
+                        }else if(chkVcodeReturnData == "N"){
+                            $("#chkVcode").html("　　验证码输入有误");
+                            $("#vcode").css("border", "1px solid #FF0000");
+                            $("#chkVcode").css("display", "block");
+                        }else{
+                            $("#chkVcode").html("");
+                            $("#vcode").css("border", "1px solid #777777");
+                            $("#chkVcode").css("display", "none");
+                            k3=true;
+                        }
+                    } 
+        
+                    //提交表单
+                    if(flag == -1 && k1 && k2 && k3 ){
+                        $("#form_login").submit();               
+                    } 
+                });  
+            }
+            
+        </script>
+    </body>
+</html>

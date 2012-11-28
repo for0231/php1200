@@ -1,0 +1,52 @@
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#login #txt {
+	font-family: "ËÎÌו";
+	font-weight: bold;
+	color: #296D8C;
+	font-size: 14px;
+	font-style: normal;
+}
+#login #username {
+	border: 1px solid #397594;
+}
+#login #pwd {
+	border: 1px solid #31718C;
+}
+#login #login {
+	background-image: url(../images/login_button.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 25px;
+	width: 68px;
+	border: 0px outset #A5C7CE;
+}
+#butt{
+BORDER-BOTTOM: #000000 1px solid; 
+BORDER-LEFT: #000000 1px solid;
+BORDER-RIGHT: #000000 1px solid;
+BORDER-TOP: #000000 1px solid;
+color:#000000;
+}
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+.STYLE1 {color: #FF0000}

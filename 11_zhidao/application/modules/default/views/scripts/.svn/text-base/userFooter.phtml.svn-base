@@ -1,0 +1,8 @@
+<style type="text/css">
+    .userFooter                        {width:760px; height:31px; line-height:31px; font-size:13px; text-align:left; background:url(<?php echo $this->baseUrl('/img/user_bottom_bg.gif')?>); clear:both;}
+</style>
+<div class="cell_h"></div>
+<div class="userFooter">
+    　　(C)　1999-2010吉林省明日科技有限公司
+</div>
+<div class="cell_h"></div>

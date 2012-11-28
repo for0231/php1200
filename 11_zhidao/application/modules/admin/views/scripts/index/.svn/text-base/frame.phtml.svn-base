@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <?php
+            echo $this->headMeta()->setHttpEquiv('content-type', 'text/html; charset=utf-8');
+            echo $this->headTitle($this->escape($this->title));                      
+            echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'));
+            echo $this->headScript()->setFile($this->baseUrl('/js/jquery.js'));                      
+        ?>
+        <style type="text/css">
+            .top                                  {width:100%; height:65px; background:url(<?php echo $this->baseUrl('/img/admin/top_bg.jpg')?>); clear:both;}
+            .top .dh1                             {width:100%; height:40px; clear:both;}
+            .top .dh1 .left                       {width:300px;; height:38px; background:url(<?php echo $this->baseUrl('/img/admin/admin_logo.gif')?>); float:left;}
+            .top .dh1 .right                      {width:300px;; height:38px; line-height:38px; color:#FFFFFF; font-size:14px; float:right;}
+            
+            .top .dh2                             {width:100%; height:22px; line-height:22px; text-align:left; background-color:#333333; clear:both;}
+
+            .tab                                  {width:100%; height:100%; border:0px; border-collapse:collapse; margin:0px; padding:0px; clear:both;}
+            .leftFrame                            {width:160px; height:100%; margin:0px; padding:0px; display:block;} 
+            .centerFrame                          {width:10px; height:100%; background-color:#F7FBFE;}
+            .rightFrame                           {height:100%;}
+            
+          
+        </style>
+        
+    </head>
+    <body scroll="no">
+        <div class="top">
+            <div class="dh1">
+                <div class="left">
+                
+                </div>
+                <div class="right">
+                当前管理员：<a href="<?php echo $this->baseUrl('/space/'.$this->loginUser['id'])?>" target="_blank" class="a2"><?php echo $this->loginUser['netname']?></a>　|　<a href="<?php echo $this->baseUrl('/user/logout')?>" class="a2">注销退出</a>
+                </div>
+            </div>
+            <div class="dh2">
+　　<a href="<?php echo $this->baseUrl('/')?>" class="a2">首　页</a>
+　<a href="<?php echo $this->baseUrl('/news/list-0-0-1.html')?>" class="a26">站内新闻</a>
+　<a href="<?php echo $this->baseUrl('/news/list-1-0-1.html')?>" class="a26">IT人物</a>
+　<a href="<?php echo $this->baseUrl('/news/list-2-0-1.html')?>" class="a26">高端访谈</a>
+　<a href="<?php echo $this->baseUrl('/news/list-3-0-1.html')?>" class="a26">产品快讯</a>
+　<a href="<?php echo $this->baseUrl('/news/list-4-0-1.html')?>" class="a26">企业动态</a>
+　<a href="<?php echo $this->baseUrl('/news/list-5-0-1.html')?>" class="a26">互联网</a>
+　<a href="<?php echo $this->baseUrl('/news/list-6-0-1.html')?>" class="a26">游戏资讯</a>
+　<a href="<?php echo $this->baseUrl('/news/list-7-0-1.html')?>" class="a26">广告传媒</a>
+　<a href="<?php echo $this->baseUrl('/news/list-8-0-1.html')?>" class="a26">财经报道</a>
+　<a href="<?php echo $this->baseUrl('/news/list-9-0-1.html')?>" class="a26">图片新闻</a>
+            </div>
+        
+        </div>
+        <table class="tab">
+            <tr>
+                <td id="leftFrame" class="leftFrame">
+                    <iframe src="<?php echo $this->baseUrl('/admin/index/tree')?>" style="width:100%; height:100%; border:0px;" frameborder="0" scrolling="yes"></iframe>
+                </td>
+                <td class="centerFrame">
+                    <img id="dhBtn" src="<?php echo $this->baseUrl('/img/admin/btn_open_close_1.gif')?>" onclick="openCloseLeft()" style="cursor:pointer;"/>
+                </td>
+                <td class="rightFrame">
+                    <iframe id="mainFrame" name="mainFrame" src="<?php echo $this->baseUrl('/admin/index/main')?>" style="width:100%; height:100%; border:0px;" frameborder="0"></iframe>
+                </td>
+            </tr>
+        </table>
+        <script language="javascript">
+            function openCloseLeft()
+            {
+                //$("#left").slideToggle("fast");
+                if($("#leftFrame").css("display")=="none"){
+                	$("#leftFrame").css("display", "");  
+                }else{
+                	$("#leftFrame").css("display", "none");  
+                }
+                
+                if($("#dhBtn").attr("src")=="<?php echo $this->baseUrl('/img/admin/btn_open_close_1.gif')?>"){
+                	$("#dhBtn").attr("src", "<?php echo $this->baseUrl('/img/admin/btn_open_close_2.gif')?>");
+                }else{
+                	$("#dhBtn").attr("src", "<?php echo $this->baseUrl('/img/admin/btn_open_close_1.gif')?>");
+                }
+            }
+        </script>
+    </body>
+</html>
+

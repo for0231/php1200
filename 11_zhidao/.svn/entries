@@ -1,0 +1,80 @@
+10
+
+dir
+2
+svn://www.t341.com/phpproject/11_zhidao
+svn://www.t341.com/phpproject
+
+
+
+2011-12-25T07:49:24.690879Z
+1
+tuhongbo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fc8ef83b-fd6c-4510-ada6-b594c01ccc28
+
+.cache
+dir
+
+public_html
+dir
+
+application
+dir
+
+library
+dir
+
+.project
+file
+
+
+
+
+2012-01-02T07:45:50.517980Z
+4195ba6b00ea2434e8491079f8a3552a
+2011-12-25T07:49:24.690879Z
+1
+tuhongbo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+530
+
+data
+dir
+
+.settings
+dir
+

@@ -1,0 +1,75 @@
+.a1:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.a1:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.a1:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.a1:hover {
+	COLOR: red;
+}
+.a2:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:hover {
+	COLOR: red;
+}
+BODY {
+	COLOR: #000000;
+}
+TD,TH {
+	FONT-SIZE:12px; COLOR: #000000;
+}
+.buttoncss {
+    font-family: "Tahoma", "ËÎÌו";
+    font-size: 9pt; color: #000000;
+    border: 1px #6E7065 solid;
+    color:#000000;
+    BORDER-BOTTOM: #6E7065 1px solid; 
+    BORDER-LEFT: #6E7065 1px solid; 
+    BORDER-RIGHT: #6E7065 1px solid; 
+    BORDER-TOP: #6E7065 1px solid;
+    background-color: #E7EBE4;
+    CURSOR: hand;
+    font-style: normal ;
+}
+
+.inputcss {  
+    font-size: 9pt; 
+    font-family: "ËÎÌו"; 
+    font-style: normal; 	
+    
+}
+
+.scrollbar{
+   SCROLLBAR-FACE-COLOR: #3A85C7; 
+   FONT-SIZE: 9pt; 
+   SCROLLBAR-HIGHLIGHT-COLOR: #3A85C7; 
+   SCROLLBAR-SHADOW-COLOR: #CFD9EC; 
+   SCROLLBAR-3DLIGHT-COLOR: #CFD9EC; 
+   SCROLLBAR-ARROW-COLOR: #CFD9EC; 
+   SCROLLBAR-TRACK-COLOR: #CFD9EC;
+   SCROLLBAR-DARKSHADOW-COLOR: #CFD9EC;
+
+ }
+.STYLE22 {
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFAA27;
+}
+.STYLE1 {
+	font-size: 12px;
+	color: #575757;
+}
+.STYLE33 {
+	font-size: 13px;
+	font-weight: bold;
+}

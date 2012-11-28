@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="overflow-x: hidden; overflow-y: auto;">
+    <head>
+        <?php
+            echo $this->headMeta()->appendHttpEquiv('content-type', 'text/html; charset=UTF-8')
+                                  ->appendHttpEquiv('x-ua-compatible', 'ie=7');
+            echo $this->headTitle($this->escape($this->title)); 
+            echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'));                    
+        ?> 
+        <!--  
+        <link rel="shortcut icon" href="http://email.163.com/favicon.ico" />
+        -->
+        <?php echo $this->headScript()->setFile($this->baseUrl() . '/js/jquery.js')?>
+        <?php echo $this->headScript()->setFile($this->baseUrl() . '/js/LzhEditor/LzhEditor.js')?>
+    </head>
+    <body>
+        <?php echo $this->render('admin_header.phtml')?>
+        <?php echo $this->layout()->content?>
+        <?php echo $this->render('admin_footer.phtml')?>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,128 @@
+//后台数据库
+表名：tb_controller	//管理员
+fields{
+	id		//自动编号
+	manager		//管理员账号
+	mana_pwd	//管理员密码
+	perview		//级别权限
+}		
+表名：tb_depart		//部门
+fields{
+	id		//自动编号
+	d_name		//部门名称				
+	top_depart	//根部门
+	up_depart	//上层部门
+	remark		//部门备注
+}
+表名：tb_users		//职员
+fields{
+	id		//自动编号
+	u_user		//账号
+	u_pwd		//密码
+	u_name		//员工姓名
+	u_sex		//性别
+	u_dirth		//出生日期
+	u_address	//地址
+	u_tel		//电话
+	u_email		//E-mail
+	u_depart	//部门
+	is_on		//账号是否可用
+}
+表名：tb_group		//用户组
+field{
+	id		//自动编号
+	g_group		//用户组
+	g_level		//组权限
+}
+表名：tb_purview	//组权限
+fields{
+	id		//自动编号
+	u_level		//权限级别
+}
+表名：tb_list		//功能列表
+field{
+	id		//自动编号
+	l_name		//功能名称
+	l_type		//所属类别
+	l_url		//连接地址
+	l_group		//开放工作组
+	l_user		//开放职员
+}
+//前台数据库
+表名：tb_company	//公司信息
+fields{
+	id		//自动编号
+	c_name		//标题
+	c_content	//内容
+}
+表名：tb_person		//人事管理
+fields{
+	id		//自动编号
+	p_title		//标题
+	p_content	//内容
+	p_time		//发布时间
+	p_type		//消息类别
+}
+表名：tb_lyb		//意见箱
+fields{
+	id		//自动编号
+	l_title		//主题
+	l_content	//内容
+	l_time		//留言时间
+	is_reply	//是否回复
+}
+表名：tb_plan
+
+fields{
+	id		//自动编号
+	p_plan		//计划内容
+	p_type		//类别
+	p_id		//所属人id
+	p_time		//日期
+}
+表名：tb_register
+field{
+	id		//自动编号
+	r_date		//登记日期（年月日）
+	r_time		//登记时间（时分秒）
+	r_type		//登记类型（上、下班等）
+	r_state		//登记状态（迟到、早退）
+	r_remark	//登记备注（原因）
+	r_id		//功能类别（上下班、病事假）
+	p_id		//员工编号（员工id）
+}
+表名：tb_setup
+field{
+	id		//自动编号
+	s_name		//名称
+	s_time		//时间
+}
+表名:tb_iss
+field{
+	id		//自动编号
+	i_title		//标题
+	i_content	//内容
+	i_time		//日期
+	i_state		//是否审核(0,1,2)
+	i_id		//申请人
+}
+表名:tb_superson
+field{
+	id		//自动编号
+	s_fmonth	//第一个月份
+	s_lmonth	//最后一个月份
+	s_id		//优秀员工id
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

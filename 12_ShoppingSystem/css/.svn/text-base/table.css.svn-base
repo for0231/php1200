@@ -1,0 +1,98 @@
+/* CSS Document */
+.lk:link {
+	text-decoration: none;
+	color: #6699CC;
+}
+.lk:visited {
+	text-decoration: none;
+	color: #6699CC;
+}
+.lk:hover {
+	text-decoration: none;
+}
+.lk:active {
+	text-decoration: none;
+	color: #CCCCFF;
+}
+.first {
+	background-color: #6699CC;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #6699CC;
+	color: #FFFFFF;
+}
+.left {
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-color: #6699CC;
+	border-right-color: #6699CC;
+	border-bottom-color: #6699CC;
+}
+.center {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #6699CC;
+	border-bottom-color: #6699CC;
+}
+.right {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #6699CC;
+	border-bottom-color: #6699CC;
+}
+.txt {
+	margin: 0px;
+	padding: 0px;
+	height: 18px;
+	width: 100px;
+	border: 1px solid #6699CC;
+}
+.shorttxt {
+	margin: 0px;
+	padding: 0px;
+	height: 18px;
+	width:50px;
+	border:1px solid #6699CC;
+}
+.langtxt {
+	margin: 0px;
+	padding: 0px;
+	height: 18px;
+	width: 200px;
+	border: 1px solid #6699CC;
+}
+.areatxt {
+	margin: 0px;
+	padding: 0px;
+	border:1px solid #6699CC;
+}
+.btn {
+	font-size: 12px;
+	color: #6699CC;
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	height: 15px;
+	width: 50px;
+	border: 1px solid #6699CC;
+}
+.all{
+	border: 1px solid #6699CC;	
+}
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}

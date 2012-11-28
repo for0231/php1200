@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php
+            echo $this->headMeta()->appendHttpEquiv('content-type', 'text/html; charset=UTF-8')
+                                  ->appendHttpEquiv('keywords', $this->escape($this->keywords))
+                                  ->appendHttpEquiv('x-ua-compatible', 'ie=7');
+            echo $this->headTitle($this->escape($this->title)); 
+            echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'));                      
+        ?> 
+        <style type="text/css">
+            .userHeader_top                                     {width:100%; height:75px; background:url(<?php echo $this->baseUrl('/img/user_top_bg.gif')?>); clear:both;}
+            .userHeader_top .dh                                 {width:760px; height:75px; clear:both;}
+            .userHeader_top .dh .logo                           {width:230px; height:75px; background-color:#FFFFFF; float:left;}
+            .login_top                                          {width:769px; height:26px; background:url(<?php echo $this->baseUrl('/img/login_top_bg.gif')?>); clear:both;}
+            .login_center                                       {width:769px; height:80px; background:url(<?php echo $this->baseUrl('/img/login_center_bg.gif')?>); clear:both;}
+            .login_error                                        {width:769px; background:url(<?php echo $this->baseUrl('/img/login_center_bg.gif')?>); clear:both;}
+            .login_error .msg                                   {width:80%; text-align:left; line-height:20px; font-size:14px; color:#067F06; border:1px solid #FF6600; background-color:#FDF5EF; clear:both; }
+            .login_center .left                                 {width:200px; height:80px; float:left;}
+            .login_center .right                                {width:550px; height:80px; font-size:16px; text-align:left; line-height:30px; float:left;}
+            .login_bottom                                       {width:769px; height:35px; background:url(<?php echo $this->baseUrl('/img/login_bottom_bg.gif')?>); clear:both;}
+            .userFooter                                         {width:760px; height:31px; line-height:31px; font-size:13px; text-align:left; background:url(<?php echo $this->baseUrl('/img/user_bottom_bg.gif')?>); clear:both;}
+            
+        </style>
+    </head>
+    <body>
+        <div class="cell_h"></div>
+        <div class="userHeader_top">
+            <div class="dh">
+                <div class="logo">
+                    <img src="<?php echo $this->baseUrl('/img/logo.jpg')?>" />
+                </div>
+            </div>
+        </div>
+        <div class="cell_h"></div>
+        <div class="login_top"></div>
+
+        <div class="login_center">
+            <div class="left">
+                <img src="<?php echo $this->baseUrl('/img/mark_telllogin.gif')?>" />
+            </div>
+            
+            <div class="right">
+                对不起，您要浏览的页面不存在或发生未知错误，请与本站管理员联系！    
+            </div>
+        </div>
+        <div class="login_bottom"></div>
+        <div class="cell_h"></div>
+        <div class="userFooter">
+            　　(C)　1999-2010吉林省明日科技有限公司
+        </div>
+        <div class="cell_h"></div>
+    </body>
+</html>

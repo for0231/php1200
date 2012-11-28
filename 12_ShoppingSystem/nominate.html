@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="css/nominate.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="js/createxmlhttp.js"></script>
+<script language="javascript" src="js/showcommo.js"></script>
+</head>
+<body>
+<table width="643" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="6" background="images/default_14.gif" width="636" height="39" align="right" valign="middle"><a href="?page=nom" class="lk">&gt;&gt;more&lt;&lt;</a></td>
+		<td rowspan="3" width="7" height="238">&nbsp;</td>
+	</tr>
+	<tr>
+    	<td width="23" height="185">&nbsp;</td>
+       {section name=id loop=$nomarr} 
+	  <td width="145" height="185" align="left" valign="top">
+      
+       	  <table width="145" border="0" cellpadding="0" cellspacing="0" >
+<tr>
+               	  <td height="100" align="center" valign="middle"><img src="{$nomarr[id].pics}" width="100" height="80" alt="{$nomarr[id].name}" style="border: 1px solid #f0f0f0;" ></td>
+            </tr>
+                <tr>
+               	  <td height="17" align="center" valign="middle">&nbsp;{$nomarr[id].name}</td>
+            </tr>
+                <tr>
+               	  <td height="17" align="center" valign="middle">市场价：{$nomarr[id].m_price}&nbsp;元</td>
+            </tr>
+                <tr>
+                	<td height="19" align="center" valign="middle">会员价：{$nomarr[id].v_price}&nbsp;元</td>
+            </tr>
+                <tr>
+                	<td height="32" align="center" valign="middle"><input id="showinfo" name="showinfo" type="button" value="" class="showinfo" onclick="openshowcommo({$nomarr[id].id})"/>&nbsp;<input id="buy" name="buy" type="button" value="" class="buy" onclick="return buycommo({$nomarr[id].id})" /></td>
+            </tr>
+       	</table>
+      </td>
+      {/section}
+        <td width="33" height="185">&nbsp;</td>
+  </tr>
+	<tr>
+		<td colspan="6" width="636" height="14">&nbsp;</td>
+	</tr>
+</table>
+</body>
+</html>
+

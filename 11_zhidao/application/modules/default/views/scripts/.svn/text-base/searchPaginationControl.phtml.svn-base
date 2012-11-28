@@ -1,0 +1,13 @@
+<ul>
+    <li class="li1">每页&nbsp;<?php echo $this->itemCountPerPage?>&nbsp;条/共查找到&nbsp;<?php echo $this->totalItemCount?>&nbsp;条</li>
+    <li class="li_cell"></li>
+    <?php if($this->totalItemCount>0):?>
+        <?php foreach ($this->pagesInRange as $page):?>
+    <li onclick="javascript:window.location.href='<?php echo $this->baseUrl('/index/search/keywords/'.$this->keywords.'/page/'.$page)?>';" class="<?php if($this->current==$page):?>li2_current<?php else:?>li2<?php endif;?>"><a href="<?php echo $this->baseUrl('/index/search/keywords/'.$this->keywords.'/page/'.$page)?>" class="<?php if($this->current==$page):?>a2<?php else:?>a1<?php endif;?>"><?php echo $page?></a></li>
+    <li class="li_cell"></li>
+        <?php endforeach;?>
+        <?php if($this->last > 5):?>
+    <li onclick="javascript:window.location.href='<?php echo $this->baseUrl('/index/search/keywords/'.$this->keywords.'/page/'.$this->last)?>';" class="li3"><a href="<?php echo $this->baseUrl('/index/search/keywords/'.$this->keywords.'/page/'.$this->last)?>" class="a1">...<?php echo $this->last?></a></li>
+        <?php endif;?>
+    <?php endif;?>
+</ul>

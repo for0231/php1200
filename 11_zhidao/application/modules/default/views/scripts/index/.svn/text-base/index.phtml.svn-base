@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php 
+            echo $this->headMeta()->appendHttpEquiv('content-type', 'text/html; charset=utf-8')
+                                  ->appendHttpEquiv('keywords', $this->escape($this->keywords))
+                                  ->appendHttpEquiv('description', $this->escape($this->description));
+        ?>
+        <?php echo $this->headTitle($this->escape($this->title))?>
+        <?php echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'))?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('/js/jquery.js'))?>
+        <style type="text/css">
+            .part1                        {width:850px; height:120px; line-height:120px; text-align:right; color:#0034C5; clear:both;}
+            .part2                        {width:850px; font-size:0px; clear:both;}
+            .part3                        {width:850px; height:40px; clear:both;}
+            .part4                        {width:850px; height:30px; clear:both;}
+            .part5                        {width:780px; height:70px; background:url(<?php echo $this->baseUrl('/img/bg.gif')?>); clear:both;}
+            .part5 .search                {width:550px; margin-left:160px; clear:both;}
+            
+            .part6                        {width:850px; height:80px; line-height:80px; color:#0034C5; clear:both;}
+            .part7                        {width:600px; height:75px; line-height:25px; color:#666666; clear:both;}
+        </style>
+    </head>
+    <body>
+
+        <div class="part1">
+            <?php if($this->isLogin==false):?><a href="<?php echo $this->baseUrl('/user/login')?>" class="a16">登录</a>　|　<a href="<?php echo $this->baseUrl('/user/register')?>" class="a16">注册</a><?php else: ?>当前用户：<?php echo $this->nowLoginNetname?>　|　<a href="<?php echo $this->baseUrl('/user/logout')?>" class="a16">注销退出</a><?php endif;?>
+        </div>
+        <div class="part2">
+           <img src="<?php echo $this->baseUrl('/img/logo.jpg')?>" /> 
+        </div>
+        <div class="part3">
+        
+        </div>
+        <div class="part4">
+            <ul>
+                <li style="width:60px; height:30px; line-height:30px; float:left"></li>
+                <li id='st_0' style="width:96px; height:30px; line-height:30px; float:left; margin-left:8px; background:url(<?php echo $this->baseUrl('/img/main_dh_btn1.gif')?>); color:#FFFFFF; font-size:15px; font-weight:bold; cursor:pointer;" onclick="changeSearchType('st_0', '0')">全部</li>
+                <?php foreach ($this->types as $type):?>
+                <li id="st_<?php echo $type['tid']?>" style="width:96px; height:30px; line-height:30px; float:left; margin-left:6px; background:url(<?php echo $this->baseUrl('/img/main_dh_btn2.gif')?>); color:#333333; font-size:15px; font-weight:bold; font-family:Arial; cursor:pointer;" onclick="changeSearchType('st_<?php echo $type['tid']?>', '<?php echo $type['tid']?>')"><?php echo $this->escape($type['typename'])?></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <div class="part5">
+            <div class="cell_h"></div>
+            <?php echo $this->form('search_form', array('method'=>'post','style' => 'padding:0px; margin:0px;', 'onsubmit'=>'return chkinput(this)', 'action'=>$this->baseUrl('/index/search')), false)?>
+            <div class="search">
+                <div style="position:relative; width:359px; height:35px; background:url(<?php echo $this->baseUrl('/img/search_bg.gif')?>); float:left;">
+                    <?php echo $this->formHidden('typeid', '0')?>
+                    <?php echo $this->formText('keywords', '', array('style'=>'width:350px; height:26px; line-height:26px; font-size:15px; color:#333333; border:0px;', 'onkeyup'=>'showKeywordsList()', 'onkeydown'=>'selectList()', 'autocomplete'=>'off'))?>
+                    <div id="searchLayer" style="position: absolute; width: 357px; left:0px; top:33px;  z-index: 1; border:1px solid #898989; background-color:#FBFCFC; clear:both; display:none" onmouseleave="document.getElementById('searchLayer').style.display='none'"></div>
+                </div>
+                <div style="width:109px; height:35px; font-size:0px; float:left;">
+                    <input type="image" src="<?php echo $this->baseUrl('/img/search_btn.gif')?>" style="margin-left:6px;"/>
+                </div>
+                <div style="width:70px; height:34px; line-height:17px; float:right">
+                    <a href="<?php if($this->isLogin==true):?><?php echo $this->baseUrl('/question/pubtitle/bbstypeid/0')?><?php else:?><?php echo $this->baseUrl('/user/unlogin/tourl/question-pubtitle-bbstypeid-0')?><?php endif;?>" class="a2">我要提问</a><br/><a href="<?php echo $this->baseUrl('/question')?>" class="a2">我要回答</a>
+                </div>
+            </div>
+            <?php echo '</form>'?>
+            <div style="width:500px; height:26px; line-height:26px; text-align:left; color:#FFFFFF; clear:both;">
+               <font style="color:#F8E546; font-weight:bold;">明日知道热门搜索：</font>
+               <?php foreach ($this->hotKeywords as $hotKeyword):?>
+                   <a href="<?php echo $this->baseUrl('/index/search/keywords/'.urlencode($hotKeyword['keyword']))?>" class="a6"><?php echo $this->escape($hotKeyword['keyword'])?></a>&nbsp;&nbsp;&nbsp;
+               <?php endforeach;?>
+               ...
+            </div> 
+        </div>
+        
+        <div class="part6">
+            <a href="http://www.mingribook.com" target="_blank" class="a16">明日图书</a>　|　<a href="http://www.mingrisoft.com" target="_blank" class="a16">明日软件</a>　|　<a href="http://www.mrbccd.com" target="_blank" class="a16">编程词典</a>
+        </div>
+        <div class="part7">
+        技术服务热线：400-675-1066　传真：0431-84939777　企业邮箱：mingrisoft@mingrisoft.com<br/>
+公司地址：吉林省长春市二道区东盛大街89号亚泰广场C座　吉ICP备07500273号<br/>
+Copyright&nbsp;©&nbsp;www.mingribook.com All Rights Reserved!<br/>
+        </div>
+       
+       
+       
+    <script language="javascript">
+
+var index = 0;    //关键字列表项索引
+var count = 0;    //关键字列表总数
+function showKeywordsList(){    //显示关键字下拉列表
+    var keycode = event.keyCode;        //用户按键的ASCII码
+    if(keycode != 40 && keycode != 38){      //如果不是向上和向下方向键
+        index = 0;                        //关键字索引归0
+        if($("#keywords").val() == "" || $.trim($("#keywords").val()) == ""){
+            $("#searchLayer").css("display", "none");   //如果用户输入空字符或空格则隐藏下拉列表
+        }else{
+            setTimeout("reSearch()", 150);    //否则每隔150毫秒调用一次reSearch()方法
+        } 
+    }
+}
+
+function reSearch(){
+    if($("#keywords").val() != ""){                       //如果用户录入的关键字不为空
+        $.get("<?php echo $this->baseUrl('/index/keywords-list/keyword/"+encodeURI($("#keywords").val())+"')?>", null, function(data){
+                                                          //通过jQuery向服务器发送GET请求
+            if($.trim(data) == ""){                       //如果返回数据为空，则隐藏下拉列表层
+                $("#searchLayer").css("display", "none");
+            }else{
+                $("#searchLayer").html(data);             //如果返回数据不为空则显示下拉列表
+                $("#searchLayer").css("display", "block");
+            	count = parseInt($("#totalList").val());   //获取列表中关键字个数
+            }
+        });
+    }
+}  
+        
+        
+function selectList(){
+    var keycode = event.keyCode;                   //获取用户录入字符的ASCII
+    if(keycode == 40){                             //如果用户按向下方向键
+    	$("#listItem_"+index).css("background-color", "#158CD0");  //更改当前所选项的背景色
+    	$("#listItem_"+index).css("color", "#FFFFFF");             //更改当前所选项的前景色
+    	$("#keywords").val($.trim($("#listItem_li_"+index).html())); //将当前所选项显示在文本框中
+    	if(index > 0){                   
+    	    $("#listItem_"+parseInt(index-1)).css("background-color", "#FFFFFF");   //更改当前项前一项的背景色
+    	    $("#listItem_"+parseInt(index-1)).css("color", "#333333");            //更改当前项前一项的前景色
+        }
+        if(index < count-1){            //如果当前索引小于总关键字数减1
+    	    index++;                  //索引数增1
+        }
+    }else if(keycode == 38){   //如果用户按向上方向键
+    	if(index > 0){             //如果索引大于0
+        	$("#listItem_"+parseInt(index-1)).css("background-color", "#158CD0");   //更改当前项前一项背景色
+        	$("#listItem_"+parseInt(index-1)).css("color", "#FFFFFF");          //更改当前项钱一项前景色
+        	$("#keywords").val($.trim($("#listItem_li_"+parseInt(index-1)).html()));       //将当前所选项显示在文本框中 
+    	}
+	    $("#listItem_"+index).css("background-color", "#FFFFFF");       //更改 当前项背景色 
+	    $("#listItem_"+index).css("color", "#333333");                   //更改当前项前景色
+        if(index > 1){                                                     //如果索引大于1
+    	    index--;                                                     //索引减1
+        }
+    }
+}
+        
+        function setText(x){
+             $("#keywords").val(x);
+             $("#searchLayer").css("display", "none");
+        }
+
+function changeSearchType(x, y)
+{     //该方法中的两个参数x,y分别为每个 选项卡按钮的ID和选项卡对应语言的ID
+    $("#st_0").css("background", "url(<?php echo $this->baseUrl('/img/main_dh_btn2.gif')?>)"); //更改全部选项卡背景图片
+    $("#st_0").css("color", "#333333");   //更改全部选项卡前景色
+    <?php foreach ($this->types as $type):?>
+        $("#st_<?php echo $type['tid']?>").css("background", "url(<?php echo $this->baseUrl('/img/main_dh_btn2.gif')?>)");  //更改语言类别选项卡背景图片
+        $("#st_<?php echo $type['tid']?>").css("color", "#333333");  //更改语言类别选项卡前景色
+    <?php endforeach;?>
+    $("#"+x).css("background", "url(<?php echo $this->baseUrl('/img/main_dh_btn1.gif')?>)");   //更改当前选中的选项卡背景图片
+    $("#"+x).css("color", "#FFFFFF");  //更改当前选中的选项卡的前景色
+    $("#typeid").val(y);   //更改隐藏域typeid的值为当前选中选项卡对应的语言ID
+}
+
+       function chkinput(form){
+           if($.trim(form.keywords.value)==""){
+               alert("请输入查询关键字！");
+               form.keywords.focus();
+               return false;
+           } 
+           return true;
+       }
+        
+    </script> 
+    </body>
+</html>
+
+
+
+

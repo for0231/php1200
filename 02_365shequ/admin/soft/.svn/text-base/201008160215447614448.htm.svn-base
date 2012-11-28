@@ -1,0 +1,1916 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.souzz.net/online/adobd.html -->
+<HTML><HEAD><TITLE>ADODB手册 PHP ADODB 1.99版手册</TITLE>
+<META http-equiv=CONTENT-TYPE content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.3790.0" name=GENERATOR>
+<META content=20021118;20600 name=CREATED>
+<META content="ming song" name=CHANGEDBY>
+<META content=20021118;305724 name=CHANGED>
+<STYLE>TD P {
+	FONT-SIZE: 10pt; LINE-HEIGHT: 0.42cm; FONT-FAMILY: "arial"
+}
+</STYLE>
+</HEAD>
+<BODY lang=zh-TW>
+<CENTER>
+<TABLE border=1>
+  <TBODY>
+  <TR>
+    <TD colSpan=10>
+      <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+      href="http://www.souzz.net/online/adobd.html#01">PHP ADODB 
+      1.99版手册中文翻译</A>(Tripc)<BR><A 
+      href="http://www.souzz.net/online/adobd.html#02">感谢</A><BR><A 
+      href="http://www.souzz.net/online/adobd.html#03">记事</A></SPAN></P>
+      <HR color=#ffcccc SIZE=2>
+
+      <P><A name=01></A><SPAN>PHP ADODB 1.99版手册中文翻译 <BR>翻译作者：Tripc 
+      <BR>------------------ </SPAN></P></TD></TR>
+  <TR>
+    <TD colSpan=8>
+      <H1><FONT face="Thorndale, serif"><SPAN>ADODB</SPAN></FONT></H1>
+      <P><SPAN>PHP在资料库的支援上是很令人称道的，几乎所有的知名资料库系统都有对应的函数群支援，而且支援的很完整。但很不幸的，每一群资料库支援函数无论在名称或叁数结构上，都有很大的差异，这使得PHP的系统开发者在面临更换资料库时，总会觉得痛苦万分。难道这个问题就没有解决方法吗？呵呵，当然有，答案就是我现在要介绍的 
+      ADODB 这个PHP物件。</SPAN></P>
+      <P><SPAN>ADODB提供了完整的方法和属性让工程师去控制资料库系统，更棒的是你只要记得它的功能就好了，因为不同的资料库系统，只要修改一个属性值就可以了，ADODB会自动依据设定取用正确的PHP函数。此外，最多再配合资料库系统修改修改SQL指令，你的PHP系统就可以在最短的时间内更换到另一个资料库系统了，如果在撰写程式时，对SQL指令能做妥善规划，那就更快了。</SPAN></P>
+      <P><SPAN>经过以上的介绍，相信你已经对ADODB的功用有所了解，以下为ADODB的详细介绍。</SPAN></P>
+      <H2><FONT face="Thorndale, serif"><SPAN>取得ADODB</SPAN></FONT></H2>
+      <P><SPAN>你可以在 <A 
+      href="http://php.weblogs.com/ADOdb">http://php.weblogs.com/ADOdb</A> 
+      取得最新版的ADODB。我在撰写本文时，最新版本是1.99版，版权采BSD-Style及LGPL双轨制，换句话就是Freeware，没有什麽限制。但在取得ADODB後，最好还是要看一下相关版权说明及用法，并和本文对照一下，以免错误。</SPAN></P>
+      <H2><FONT face="Thorndale, serif"><SPAN>使用ADODB</SPAN></FONT></H2>
+      <P><SPAN>基本上使用ADODB是相当容易的，取得压缩档後解开，我建议将整个内容都解到ADODB的目录里。然後你可以一边叁考本文，一边研究里面的范例，就放在里面的<B>test</B>目录下。</SPAN></P>
+      <P><SPAN>由於ADODB附上的说明十分完整详实，以下的说明大部份来自ADODB的readme.htm，这里不是全部的内容，我把一些我认为没有用的内容都去掉了，像版本差异说明、何撰写支援ADODB的驱动程式等与应用无关的部份。想要了解全部内容的读者还是可以自己去叁考 
+      readme.htm。</SPAN></P>
+      <HR>
+
+      <UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#intro">简介</A> </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#features">特色</A> 
+</SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#install">安装</A> </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#coding">启动ADODB</A> 
+        </SPAN></P>
+        <UL>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#adonewconnection">ADONewConnection</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#adonewconnection">NewADOConnection</A> 
+          </SPAN></P></LI></UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#drivers">支援的资料库</A> 
+        </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#quickstart">学习手册</A> 
+        </SPAN></P>
+        <UL>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex1">范例 1 : Select</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex2">范例 2 : 进阶 Select</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex3">范例 3 : Insert</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex4">范例 4 : 除错及 rs2html 
+          范例</A> </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex5">范例 5 : MySQL 及选单</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex6">范例 6 : 一次连结两个资料库</A> 
+          </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex7">范例 7 : 
+          产生更新及新增的SQL指令</A> </SPAN></P>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ex8">范例 8 : 
+          用下一笔及上一笔实作卷动</A> </SPAN></P></LI></UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#errorhandling">客制化错误处理及PEAR错误</A> 
+        </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#caching">资料集快取</A> 
+        </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#ref">叁考手册</A> </SPAN></P>
+        <UL>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ADOConnection">ADOConnection</A> 
+          </SPAN></P>
+          <UL>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>连结资料库：<A 
+            href="http://www.souzz.net/online/adobd.html#connect">Connect</A> <A 
+            href="http://www.souzz.net/online/adobd.html#pconnect">PConnect</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>执行SQL：<A 
+            href="http://www.souzz.net/online/adobd.html#execute">Execute</A> <A 
+            href="http://www.souzz.net/online/adobd.html#cacheexecute">CacheExecute</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#selectlimit">SelectLimit</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#cacheselectlimit">CacheSelectLimit</A> 
+            <A href="http://www.souzz.net/online/adobd.html#prepare">Prepare</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#preparesp">PrepareSP</A> 
+            <A href="http://www.souzz.net/online/adobd.html#getone">GetOne</A> 
+            <A href="http://www.souzz.net/online/adobd.html#getrow">GetRow</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>产生 更新/新增：<A 
+            href="http://www.souzz.net/online/adobd.html#getupdatesql">GetUpdateSQL</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#getinsertsql">GetInsertSQL</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>BLOB : <A 
+            href="http://www.souzz.net/online/adobd.html#updateBlob">UpdateBlob</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#updateclob">UpdateClob</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#updateblobfile">UpdateBlobFile</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>换页/卷页 : <A 
+            href="http://www.souzz.net/online/adobd.html#pageexecute">PageExecute</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#cachepageexecute">CachePageExecute</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>清除 : <A 
+            href="http://www.souzz.net/online/adobd.html#cacheflush">CacheFlush</A> 
+            <A href="http://www.souzz.net/online/adobd.html#close">Close</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>交易 : <A 
+            href="http://www.souzz.net/online/adobd.html#begintrans">BeginTrans</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#committrans">CommitTrans</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#rollbacktrans">RollbackTrans</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>提取资料 : <A 
+            href="http://www.souzz.net/online/adobd.html#adodb_fetch_mode">$ADODB_FETCH_MODE</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#blankrecordset">BlankRecordSet</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>字串 : <A 
+            href="http://www.souzz.net/online/adobd.html#concat">Concat</A> <A 
+            href="http://www.souzz.net/online/adobd.html#qstr">qstr</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>日期 : <A 
+            href="http://www.souzz.net/online/adobd.html#dbdate">DBDate</A> <A 
+            href="http://www.souzz.net/online/adobd.html#dbtimestamp">DBTimeStamp</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#unixdate">UnixDate</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#unixtimestamp">UnixTimeStamp</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>"列"管理器 : <A 
+            href="http://www.souzz.net/online/adobd.html#affected_rows">Affected_Rows</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#insert_id">Insert_ID</A> 
+            <A href="http://www.souzz.net/online/adobd.html#genid">GenID</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>错误处理 : <A 
+            href="http://www.souzz.net/online/adobd.html#errormsg">ErrorMsg</A> 
+            <A href="http://www.souzz.net/online/adobd.html#errorno">ErrorNo</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>资料辞典 : <A 
+            href="http://www.souzz.net/online/adobd.html#metadatabases">MetaDatabases</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#metatables">MetaTables</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#metacolumns">MetaColumns</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#metacolumnnames">MetaColumnNames</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>反对 : <A 
+            href="http://www.souzz.net/online/adobd.html#bind">Bind</A> (? 没有说明) 
+            </SPAN></P></LI></UL>
+          <LI>
+          <P style="MARGIN-BOTTOM: 0cm"><SPAN><A 
+          href="http://www.souzz.net/online/adobd.html#ADORecordSet"><B>ADORecordSet</B></A> 
+          </SPAN></P>
+          <UL>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>取单笔记录 : <A 
+            href="http://www.souzz.net/online/adobd.html#fetchrow">FetchRow</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#fetchinto">FetchInto</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#fetchobject">FetchObject</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#fetchnextobject">FetchNextObject</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#getrowassoc">GetRowAssoc</A> 
+            <A href="http://www.souzz.net/online/adobd.html#fields">Fields</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#getassoc">GetAssoc</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>取全部记录 : <A 
+            href="http://www.souzz.net/online/adobd.html#getarray">GetArray</A> 
+            <A href="http://www.souzz.net/online/adobd.html#getrows">GetRows</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>卷动 : <A 
+            href="http://www.souzz.net/online/adobd.html#move">Move</A> <A 
+            href="http://www.souzz.net/online/adobd.html#movenext">MoveNext</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#movefirst">MoveFirst</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#movelast">MoveLast</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#abspos">AbsolutePosition</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#currentrow">CurrentRow</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#atfirstpage">AtFirstPage</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#atlastpage">AtLastPage</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#absolutepage">AbsolutePage</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>选单制作 : <A 
+            href="http://www.souzz.net/online/adobd.html#getmenu">GetMenu</A> <A 
+            href="http://www.souzz.net/online/adobd.html#getmenu2">GetMenu2</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>日期 : <A 
+            href="http://www.souzz.net/online/adobd.html#userdate">UserDate</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#usertimestamp">UserTimeStamp</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#unixdate">UnixDate</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#unixtimestamp">UnixTimeStamp</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>记录资讯 : <A 
+            href="http://www.souzz.net/online/adobd.html#recordcount">RecordCount</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#po_recordcount">PO_RecordSet</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>栏位资讯 : <A 
+            href="http://www.souzz.net/online/adobd.html#fieldcount">FieldCount</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#fetchfield">FetchField</A> 
+            <A 
+            href="http://www.souzz.net/online/adobd.html#metatype">MetaType</A> 
+            </SPAN></P>
+            <LI>
+            <P style="MARGIN-BOTTOM: 0cm"><SPAN>清除 : <A 
+            href="http://www.souzz.net/online/adobd.html#rsclose">Close</A> 
+            </SPAN></P></LI></UL></LI></UL>
+        <LI>
+        <P><SPAN><A 
+        href="http://www.souzz.net/online/adobd.html#rs2html"><B>rs2html 
+        公用函式说明</B></A>&nbsp; <A 
+        href="http://www.souzz.net/online/adobd.html#exrs2html">范例</A> 
+        </SPAN></P></LI></UL>
+      <H2><A name=intro></A><FONT 
+      face="Thorndale, serif"><SPAN>简介</SPAN></FONT></H2>
+      <P><SPAN>由於PHP的资料库存取函数没有标准化，所以我们需要一组函数库或是类别来隐藏不同资料库函数介面间的差异，让我们可以很简单的去切换资料库，而这，就是ADODB的目的。</SPAN></P>
+      <P><SPAN>ADODB目前支援MySQL, Oracle, Microsoft SQL Server, Sybase, Sybase SQL 
+      Anywhere, Informix, PostgreSQL, FrontBase, Interbase (Firebird 及 Borland 
+      版本), Foxpro, Access, ADO 和 
+      ODBC。ADODB也有透过ODBC成功连结Progress及DB2的报告，我们希望能有更的人提供驱动介面来支援更多的资料库。</SPAN></P>
+      <P><SPAN>PHP4支援连结变数(session 
+      variables)，使用者可以透过ADODB储存连结资讯，以达成真正的可携性及弹性，相关的用法及资讯请自行叁考ADOdb-session.php这个范例。</SPAN></P>
+      <P><SPAN>另外，如果要撰写一个具有高度可移植性的SQL码，也可以叁阅 <A 
+      href="http://php.weblogs.com/portable_sql">http://php.weblogs.com/portable_sql</A> 
+      这篇文章。</SPAN></P>
+      <H2><A name=features></A><FONT 
+      face="Thorndale, serif"><SPAN>特色</SPAN></FONT></H2>
+      <UL>
+        <LI>
+        <P 
+        style="MARGIN-BOTTOM: 0cm"><SPAN>对熟悉Windows的工程师而言，ADODB很容易使用，因为ADODB里的很多功能和Microsoft的ADO很像。 
+        </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN>与其它的PHP资料库类别不同，它们大多集中在处理与 select 
+        指令有关的东西，而ADODB对於 inserts 及 update 
+        也提供额外的支援，并且可以很快的连结到多资料库。所提供的方法更扩及日期的掌握，字串的连结及字串标记字元差异处理(在某些资料库间字串的连结和标记符号是有差异的) 
+        </SPAN></P>
+        <LI>
+        <P 
+        style="MARGIN-BOTTOM: 0cm"><SPAN>型别对照系统是内建的，所以我们可以设定或描述像CHAR,TEXT及STRING在不同的资料库间其实是相同的资料型别。 
+        </SPAN></P>
+        <LI>
+        <P 
+        style="MARGIN-BOTTOM: 0cm"><SPAN>更容易去移植，因为所有与资料库相依的程式码被都隐藏在後端，所以使用者不再需要去移植类别里的逻辑。 
+        </SPAN></P>
+        <LI>
+        <P><SPAN>支援 PHP4 连结变数，请叁考 ADOdb-session.php。 </SPAN></P></LI></UL>
+      <H2><A name=install></A><FONT 
+      face="Thorndale, serif"><SPAN>安装</SPAN></FONT></H2>
+      <P><SPAN>首先要确定你所使用的PHP版本是 4.01pl2 或是之後的版本(因为ADODB使用到了 
+      require_once及include_once两个函数)。解压缩全部的档案到你的Web伺服器可以存取的一个目录里。</SPAN></P>
+      <P><SPAN>要测试ADODB你需要一个资料库，开启 testdatabase.inc.php 
+      这个档案，并且修改连结叁数，以适合你所使用的资料库。这个程式会建立一个新的资料表在你的资料库中，以支援我们提供的测试程式及范例。</SPAN></P>
+      <P><SPAN>就这样，你安装好了。</SPAN></P>
+      <H3><A name=coding></A><FONT 
+      face="Thorndale, serif"><SPAN>启动ADODB</SPAN></FONT></H3>
+      <P><SPAN>当要执行ADODB时，至少有两个档案要被载进来，第一个是 ADOdb.inc.php 
+      ，这里面包含了所有资料库类中要被使用的函数。而对资料库实作的程式码则被置放在ADOdb-????.inc.php档案里。</SPAN></P>
+      <P><SPAN>例如说，要连结一个mysql资料库：</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>include('/path/to/set/here/ADOdb.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$conn = &amp;ADONewConnection('mysql');</SPAN></FONT></PRE>
+      <P><SPAN>无论何时你需要连结到一个资料库时，你必需使用ADONewConnection()函数建立了一个连结物件。ADONewConnection接受一个选择性叁数, 
+      &lt;database-name-here&gt;。如果没有叁数被指定，它将会使用被 ADOLoadCode() 所载入的最後一个资料库。 
+      NewADOConnection() 是另一个相同的函数。</SPAN></P>
+      <P><SPAN>当你建立好一个连结物件时，你并没有真的连结上你的资料库。你仍需要使用 <CODE>$conn-&gt;<A 
+      href="http://www.souzz.net/online/adobd.html#connect">Connect()</A></CODE> 
+      或者 <CODE>$conn-&gt;<A 
+      href="http://www.souzz.net/online/adobd.html#pconnect">PConnect()</A></CODE> 
+      两个方法来完成真正的连结。</SPAN></P>
+      <P><SPAN>你可以叁考教学手册里的范例，对上面的说明做更深入的了解。</SPAN></P>
+      <H3><A name=drivers></A><FONT 
+      face="Thorndale, serif"><SPAN>支援的资料库</SPAN></FONT></H3></TD></TR>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><SPAN><B>名称</B></SPAN></P></TD>
+    <TD width=80>
+      <P><SPAN><B>测试状态</B></SPAN></P></TD>
+    <TD width=84>
+      <P><SPAN><B>资料库</B></SPAN></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN><B>RecordCount() 支援与否</B></SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><SPAN><B>需安装的驱动程式</B></SPAN></P></TD>
+    <TD width=84>
+      <P><SPAN><B>作业系统</B></SPAN></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>access</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>B</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Microsoft Access/Jet. 需要建立一个 
+      ODBC/DSN。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ODBC</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Windows only</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>ado</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>B</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>一般未经特别指定的资料库系统， 透过ADO，允许不设定 
+      DSN连结，使用OLEDB以提供较佳的效能。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>? 视资料库而定</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ADO or OLEDB provider</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Windows only</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>ado_access</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>B</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Microsoft Access/Jet 透过ADO，允许不设定 
+      DSN连结，使用OLEDB以提供较佳的效能。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ADO or OLEDB provider</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Windows only</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>ado_mssql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>B</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Microsoft SQL Server 透过ADO，允许不设定 
+      DSN连结，使用OLEDB以提供较佳的效能。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ADO or OLEDB provider</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Windows only</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103 height=54>
+      <P><FONT size=2><SPAN><B>db2</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>DB2. 可以透过ODBC获得可以信赖的运作效果。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>DB2 CLI/ODBC interface</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Unix and Windows. <A 
+      href="http://www.faqts.com/knowledge_base/view.phtml/aid/6283/fid/14">Unix 
+      install hints</A>.</SPAN></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>vfp</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Microsoft Visual 
+      FoxPro，需要建立一个ODBC/DSN</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ODBC</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Windows only</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>fbsql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>FrontBase.</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>?</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>ibase</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>B</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Interbase 
+      6或更早的版本。有些使用者报告必需使用如下的方式连结<BR>$db-&gt;PConnect('localhost:c:/ibase/employee.gdb', 
+      "sysdba", "masterkey")目前没有支援 Affected_Rows 方法</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Interbase client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><I><B>firebird</B></I></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>interbase的Firebird版本</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Interbase client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><I><B>borland_ibase</B></I></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Borland 的Interbase 6.5 或更新版</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Interbase client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>informix</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Informix</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Informix client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103 height=73>
+      <P><FONT size=2><SPAN><B>mssql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Microsoft SQL Server 7.也可以和Microsoft SQL Server 
+      2000运作的很好。但在日期格式上仍有一些问题。例如在日期时间的回传值上，就不会回传秒数数值。</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Mssql client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Unix and Windows.<A 
+      href="http://phpbuilder.com/columns/alberto20000919.php3"><BR>Unix install 
+      howto</A>.</SPAN></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>mysql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>MySQL 不支援交易处理</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>MySQL client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>mysqlt</B> 或 <B>maxsql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>MySQL 支援交易处理</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>MySQL client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>oci8</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Oracle 8/9. 支援比 <I>oracle</I> 驱动程式还多的功能 (例如： Affected_Rows). 
+      在连结之前，你可能需要先配好环境变数('ORACLE_HOME=...') </SPAN></P>
+      <P><SPAN>有两个方式进行连结，用伺服器的IP或服务名称：<BR><I>PConnect('serverip:1521','scott','tiger','service'</I>)<BR><I>PConnect('', 
+      'scott', 'tiger', 'tnsname')</I>.</SPAN></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Oracle client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>oci8po</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Oracle 8/9 可携式驱动程式 </SPAN></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Oracle client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>odbc</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>标准 ODBC </SPAN></P>
+      <P><SPAN>用 PConnect('DSN','user','pwd').连结。</SPAN></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>? depends on database</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ODBC</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Unix and Windows. <A 
+      href="http://phpbuilder.com/columns/alberto20000919.php3?page=4">Unix 
+      hints.</A></SPAN></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>odbc_mssql</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>用 ODBC 连接 MSSQL</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ODBC</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows.</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>odbc_oracle</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>用 ODBC 连接 ORACLE</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>ODBC</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows.</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>oracle</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>支援旧的 Oracle 7 client API. 不支援 
+      $ADODB_FETCH_MODE.</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Oracle client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>postgres</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>PostgreSQL 不支援 LIMIT 指令.</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>PostgreSQL client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows.</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>postgres7</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>A</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>PostgreSQL 支援 LIMIT 及其它版本 7 功能</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>PostgreSQL client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Unix and Windows.</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>sqlanywhere</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Sybase SQL Anywhere.&nbsp;</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>SQL Anywhere ODBC client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>?</SPAN></FONT></P></TD></TR></TBODY>
+  <TBODY>
+  <TR vAlign=top>
+    <TD width=103>
+      <P><FONT size=2><SPAN><B>sybase</B></SPAN></FONT></P></TD>
+    <TD width=80>
+      <P><FONT size=2><SPAN>C</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><FONT size=2><SPAN>Sybase.</SPAN></FONT></P></TD>
+    <TD width=112>
+      <P><FONT size=2><SPAN>Y/N</SPAN></FONT></P></TD>
+    <TD width=156>
+      <P><FONT size=2><SPAN>Sybase client</SPAN></FONT></P></TD>
+    <TD width=84>
+      <P><SPAN>Unix and Windows. <A 
+      href="http://www.finebyte.com/docs/sybase/ASA-PHP-Linux.html">Unix 
+      hints</A>.</SPAN></P></TD></TR>
+  <TR>
+    <TD width=3002 colSpan=8>
+      <H3><FONT face="Thorndale, serif"><SPAN>　</SPAN></FONT></H3>
+      <P><SPAN>测试状态栏的代码说明如下：</SPAN></P>
+      <P><SPAN>A=已经经过很多人验证及测试，可靠度最高。<BR>B=已经测试并使用了，但可能仍有一些功能没有达成。<BR>C=使用者自行配置或试用的驱动程式，可能没有完全支援ADODB的功能。</SPAN></P>
+      <P><SPAN>"RecordCount()支援与否"，指的是RecordCount()函数是否会回传用SELECT指令取得的记录笔数(不支援时传回-1)。如果这个栏位的值出现了 
+      Y/N ，那表示当全域变数 $ADODB_COUNTER=true 
+      时，会以模拟的方式取得，而这是预设值。要注意的是，如果你预测记录笔数会很大时，最好把这个值设为false，也就是关掉这个模拟功能，因为这会耗掉非常多的记忆体，以做为快取之用。由於这个变数在每次执行时都会检查，所以你可以选择性的使用或不使用。</SPAN></P>
+      <P><SPAN>所有支援$ADODB_FETCH_MODE的资料库都支援 ADODB_FETCH_NUM(以栏位顺序存取) 及 
+      ADODB_FETCH_ASSOC(以栏位名称存取)，两种模式。而将值设为 
+      ADODB_FETCH_DEFAULT(资料库预设模式存取)，则是由资料库的功能来决定的，所以不具备可携性，而 
+      ADODB_FETCH_BOTH(双模式存取) 也一样。</SPAN></P>
+      <HR>
+
+      <H1><A name=quickstart></A><FONT 
+      face="Thorndale, serif"><SPAN>学习手册</SPAN></FONT></H1>
+      <H3><A name=ex1></A><FONT face="Thorndale, serif"><SPAN>范例 1: Select 指令 
+      </SPAN></FONT></H3>
+      <P><SPAN>任务：连结到 Access 的 Northwind DSN，然後在每一列显示头2个栏位。(Northwind 
+      北风资料库，在ODBC设定的DSN，是Access的标准范例资料库)</SPAN></P>
+      <P><SPAN>在这个范例中，我们建立一个 ADOConnection 物件，它代表了和资料库的连结。连结是以 <A 
+      href="http://www.souzz.net/online/adobd.html#pconnect">PConnect</A> 
+      函数来初始化的，然後会持续的连结着。任何时候我们要查询资料库时，我们就呼叫 ADOConnection.<A 
+      href="http://www.souzz.net/online/adobd.html#execute">Execute</A>() 
+      函数，这将会回传一个 ADORecordSet物件。事实上它只是一个指向在fields[]阵列中，目前记录的指标，我们使用<A 
+      href="http://www.souzz.net/online/adobd.html#movenext">MoveNext</A>()来在记录间移动。</SPAN></P>
+      <P><SPAN>注意：另一个很有用的函数 <A 
+      href="http://www.souzz.net/online/adobd.html#selectlimit">SelectLimit</A> 
+      并没有在这个范例里使用，这个函数允许我们去限制显示的资料笔数。 </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php');       # 载入ADODB</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT> = &amp;ADONewConnection('access');    # 建立一个连结</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT>-&gt;PConnect('northwind');   # 连结到 MS-Access 北风资料库</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>recordSet</FONT> = &amp;$<FONT color=#660000>conn</FONT>-&gt;Execute('select * from products');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if (!$<FONT color=#660000>recordSet</FONT>) </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        print $<FONT color=#660000>conn</FONT>-&gt;ErrorMsg();</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>else</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>while</B> (!$<FONT color=#660000>recordSet</FONT>-&gt;EOF) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        <B>print</B> $<FONT color=#660000>recordSet</FONT>-&gt;fields[0].' '.$<FONT color=#660000>recordSet</FONT>-&gt;fields[1].'&lt;BR&gt;';</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $<FONT color=#660000>recordSet</FONT>-&gt;MoveNext();</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>recordSet</FONT>-&gt;Close(); # 选择性执行</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT>-&gt;Close(); # 选择性执行</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>在这个例子中，$recordSet回传了存在$recordSet-&gt;fields阵列里，目前所指向的记录。以栏位编号为索引，起始值为0。我们使用<A 
+      href="http://www.souzz.net/online/adobd.html#movenext">MoveNext</A>()函数来移动到下一笔记录，当到了最後一笔时，EOF属性会被设定为true。当Execute()函数执行有错误时，会回传一个false值，而不是一个recordset物件。</SPAN></P>
+      <P><SPAN>$recordSet-&gt;fields[]阵列是由PHP资料库扩充函数库所产生的。有一些资料库扩充函数库仅支援以编号来进行索引，而不支援以栏位名为索引。要强迫使用栏位名索引，也就是要使用关连式阵列，请使用 
+      $ADODB_FETCH_MODE 
+      全域变数来设定。当一个资料集被Execute()或是SelectLimit()函数建立时，都会储存而且使用储如此类的设定模式。 
+</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>       $ADODB_<B>FETCH_MODE</B> = ADODB_FETCH_NUM;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $rs1 = $db-&gt;Execute('select * from table');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $ADODB_<B>FETCH_MODE</B> = ADODB_FETCH_ASSOC;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $rs2 = $db-&gt;Execute('select * from table');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        print_r($rs1-&gt;fields); # shows <I>array([0]=&gt;'v0',[1] =&gt;'v1')</I></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        print_r($rs2-&gt;fields); # shows <I>array(['col1']=&gt;'v0',['col2'] =&gt;'v1')</I></SPAN></FONT></PRE>
+      <P><SPAN>上面的范例说明，如果要以顺序来存取栏位，就将 $ADODB_FETCH_MODE 的值设为 
+      ADODB_FETCH_NUM，要以关连式阵列(以栏位名)存取栏位，就要将值设为 ADODB_FETCH_ASSOC。</SPAN></P>
+      <P><SPAN>要取得在被选到的记录笔数，你可以使用$recordSet-&gt;<A 
+      href="http://www.souzz.net/online/adobd.html#recordcount">RecordCount</A>()方法。注意，如果不能确定得到的记录笔数，会回传 
+      -1 。</SPAN></P>
+      <H3><A name=ex2></A><FONT face="Thorndale, serif"><SPAN>范例 2: 进阶的 Select 
+      指令(使用 Field 物件)</SPAN></FONT></H3>
+      <P><SPAN>任务：选取一个资料表，显示最前面的二栏。如果第二栏是一个日期或时间型态栏位，将它格式化成US格式。</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php');       </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT> = &amp;ADONewConnection('access');    </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT>-&gt;PConnect('northwind');   </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>recordSet</FONT> = &amp;$<FONT color=#660000>conn</FONT>-&gt;Execute('select CustomerID,OrderDate from Orders');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if (!$<FONT color=#660000>recordSet</FONT>) </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        print $<FONT color=#660000>conn</FONT>-&gt;ErrorMsg();</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>else</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>while</B> (!$<FONT color=#660000>recordSet</FONT>-&gt;EOF) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $<FONT color=#660000>fld</FONT> = <FONT color=#336600><B>$</B><FONT color=#660000>recordSet</FONT><B>-&gt;FetchField</B></FONT><FONT color=#006600>(</FONT>1<FONT color=#006600>);</FONT></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $<FONT color=#660000>type</FONT> = <FONT color=#336600><B>$</B><FONT color=#660000>recordSet</FONT><B>-&gt;MetaType</B></FONT>($fld-&gt;type);</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>        <B>if</B> ( $<FONT color=#660000>type</FONT> == 'D' || $<FONT color=#660000>type</FONT> == 'T')</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>                <B>print</B> $<FONT color=#660000>recordSet</FONT>-&gt;fields[0].' '.</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>                        <B><FONT color=#336600>$</FONT></B><FONT color=#660000>recordSet</FONT><B><FONT color=#336600>-&gt;UserDate</FONT></B>($<FONT color=#660000>recordSet</FONT>-&gt;fields[1],'<B>m/d/Y</B>').'&lt;BR&gt;';</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        <B>else </B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>                <B>print</B> $<FONT color=#660000>recordSet</FONT>-&gt;fields[0].' '.$<FONT color=#660000>recordSet</FONT>-&gt;fields[1].'&lt;BR&gt;';</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>        $<FONT color=#660000>recordSet</FONT>-&gt;MoveNext();</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>recordSet</FONT>-&gt;Close(); # optional</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT>-&gt;Close(); # optional</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>在这个例子中，我们使用 <A 
+      href="http://www.souzz.net/online/adobd.html#fetchfield">FetchField</A>() 
+      函数来检查第二个栏位的资料型别。这将会回传一个至少有三个栏位的物件，栏位说明如下：</SPAN></P>
+      <UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>name</B>: 栏位名 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>type</B>: 栏位的资料原生型别native field 
+        type of column </SPAN></P>
+        <LI>
+        <P><SPAN><B>max_length</B>: 栏位的最大长度，部份资料库像MySQL，并不回传栏位的正确值，以这个例子而言，就会回传 
+        -1 。 </SPAN></P></LI></UL>
+      <P><SPAN>然後我们使用 <A 
+      href="http://www.souzz.net/online/adobd.html#metatype">MetaType</A>() 
+      去转换原生型别成通用型别，目前通用型别定义如下：</SPAN></P>
+      <UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>C</B>:&nbsp; character 栏位，应该使用 
+        &lt;input type="text"&gt; 标记来取值。 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>X</B>: 文字栏位(Text) , 长文字栏位，使用 
+        &lt;textarea&gt; 标记来显示资料。 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>B</B>: Blob 
+        栏位或者大型的二位元物件(像程式,图档等)。 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>D</B>: 日期栏位 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>T</B>: 时间栏位 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>L</B>: 逻辑栏位(真假值)或位元栏位 </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN><B>N</B>: 数字栏位，包含自动进位、编号、整数、浮点数、实数等。 
+        </SPAN></P>
+        <LI>
+        <P><SPAN><B>R</B>: 序列栏位，包含了序列、自动增进整数，只对被选择的资料库作用。 </SPAN></P></LI></UL>
+      <P><SPAN>如果对应型别是日期或时间，那你可以使用 <A 
+      href="http://www.souzz.net/online/adobd.html#userdate">UserDate</A>() 
+      函数来设定输出的日期格式。这个函数会转换 PHP SQL 日期字串格式为使用者定义的格式。 另一个使用<A 
+      href="http://www.souzz.net/online/adobd.html#metatype">MetaType</A>()的时机是在进行SQL新增或更新指令时，资料格式验证用。</SPAN></P>
+      <H3><A name=ex3></A><FONT face="Thorndale, serif"><SPAN>范例 3: 
+      新增</SPAN></FONT></H3>
+      <P><SPAN>新增一笔记录到订单资料表，里面包含了日期和字串，为了能被资料库正常存取，字串必需校正，以避免部份标记字元。例如：有单引号的字串，<I>John's。</I></SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php');       # load code common to ADOdb</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT> = &amp;ADONewConnection('access');    # create a connection</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>conn</FONT>-&gt;PConnect('northwind');   # connect to MS-Access, northwind dsn</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>shipto</FONT> = <B><FONT color=#006600>$conn-&gt;qstr</FONT></B>("<I>John's Old Shoppe</I>");</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>sql</FONT> = "insert into orders (customerID,EmployeeID,OrderDate,ShipName) ";</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#660000>sql</FONT> .= "values ('ANATR',2,".<B><FONT color=#006600>$conn-&gt;DBDate(</FONT>time()<FONT color=#006600>)</FONT></B><FONT color=#006600>.</FONT>",$<FONT color=#660000>shipto</FONT>)";</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN><B>if</B> ($<FONT color=#660000>conn</FONT>-&gt;Execute($<FONT color=#660000>sql</FONT>) <B><FONT color=#336600>=== false</FONT></B>) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        <B>print</B> 'error inserting: '.<B><FONT color=#336600>$conn-&gt;ErrorMsg()</FONT></B>.'&lt;BR&gt;';</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>在这个范例中，我们看见了ADODB更进一步的日期及标点符号的处理方式。Unix 日期时间标示(长整数)被<A 
+      href="http://www.souzz.net/online/adobd.html#dbdate">DBDate</A>()格式化成Access可以接受的格式，而带了缩写符号的 
+      John's Old Shoppe 则被 <A 
+      href="http://www.souzz.net/online/adobd.html#qstr">qstr</A>() 函数处理成 
+      John'<B>'</B>s Old Shoppe 字串，以被资料库合法存取。</SPAN></P>
+      <P><SPAN>观察 Execute 指令的错误处理。如果 <A 
+      href="http://www.souzz.net/online/adobd.html#execute">Execute</A>() 
+      执行有错误发生时，会传回 False 值。而最後的错误讯息可以由&nbsp; <A 
+      href="http://www.souzz.net/online/adobd.html#errormsg">ErrorMsg</A>() 
+      来显示。</SPAN></P>
+      <P><SPAN>附记：php_track_errors旗标可以被启动，以便将错误讯息储存起来。</SPAN></P>
+      <H3><A name=ex4></A><FONT face="Thorndale, serif"><SPAN>范例 4: 
+      除错</SPAN></FONT></H3><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php');       # load code common to ADOdb</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT> = &amp;ADONewConnection('access');    # create a connection</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT>-&gt;PConnect('northwind');   # connect to MS-Access, northwind dsn</SPAN></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>shipto</FONT> = <B>$conn-&gt;qstr</B>("John's Old Shoppe");</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>sql</FONT> = "insert into orders (customerID,EmployeeID,OrderDate,ShipName) ";</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>sql</FONT> .= "values ('ANATR',2,".$<FONT color=#663300>conn</FONT>-&gt;FormatDate(time()).",$shipto)";</SPAN></FONT></FONT>
+<FONT color=#336600><FONT face="Cumberland, monospace"><SPAN><B>$<FONT color=#663300>conn</FONT>-&gt;debug = true;</B></SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B>if</B> ($<FONT color=#663300>conn</FONT>-&gt;Execute($sql) <B>=== false</B>) <B>print</B> 'error inserting';</SPAN></FONT></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>在上面的例子中，我们藉由设定 debug=true 
+      来启动除错模式。这将会在执行指令时会先将SQL指令显示，并且会显示所有的错误讯息，而不需要去呼叫 <A 
+      href="http://www.souzz.net/online/adobd.html#errormsg">ErrorMsg</A>() 
+      。显示资料集的部份，可以叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#exrs2html">rs2html</A>() 
+      范例。</SPAN></P>
+      <P><SPAN>其它的请叁考<A 
+      href="http://www.souzz.net/online/adobd.html#errorhandling">自定错误处理</A>的说明。</SPAN></P>
+      <H3><A name=ex5></A><FONT face="Thorndale, serif"><SPAN>范例 5: 
+      MySQL及选单</SPAN></FONT></H3>
+      <P><SPAN>连结到MySQL资料库 agora ，并且从SQL命令中建立一个 &lt;select&gt; 
+      选单，&lt;option&gt;的标题是第一个栏位，回传值是第二个栏位。</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php'); # load code common to ADOdb</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT> = &amp;ADONewConnection('mysql');  # create a connection</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT>-&gt;PConnect('localhost','userid','','agora');# connect to MySQL, agora db</SPAN></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>sql</FONT> = 'select CustomerName, CustomerID from customers';</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>rs</FONT> = $<FONT color=#663300>conn</FONT>-&gt;Execute($sql);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B>print</B> <B><FONT color=#336600>$<FONT color=#663300>rs</FONT>-&gt;GetMenu('GetCust','Mary Rosli');</FONT></B></SPAN></FONT></FONT>
+<FONT color=#336600><FONT face="Cumberland, monospace"><SPAN><B>?&gt;</B></SPAN></FONT></FONT></PRE>
+      <P><SPAN>Here we define a menu named GetCust, with the menu option 'Mary 
+      Rosli' selected. See <A 
+      href="http://www.souzz.net/online/adobd.html#getmenu">GetMenu</A>(). We 
+      also have functions that return the recordset as an array: <A 
+      href="http://www.souzz.net/online/adobd.html#getarray">GetArray</A>(), and 
+      as an associative array with the key being the first column: <A 
+      href="http://www.souzz.net/online/adobd.html#getassoc">GetAssoc</A>().</SPAN></P>
+      <P><SPAN>这里，我们定义了一个名为GetCust的选单，预设值是'Mary Rosli'。相关说明请叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#getmenu">GetMenu</A>() 
+      。我们也将资料集以阵列回传的方式写在 <A 
+      href="http://www.souzz.net/online/adobd.html#getarray">GetArray</A>()方法里。而另外回传关联式阵列的方法则使用 
+      <A href="http://www.souzz.net/online/adobd.html#getassoc">GetAssoc</A>() 
+      ,其中第一个栏位是这个栏位的键值。</SPAN></P>
+      <P><SPAN>在 1.50 版以後的 ADODB 里，是使用公共变数 $ADODB_FETCH_MODE 
+      来设定回传的阵列是以编号或是关连式字串做索引。 </SPAN></P>
+      <H3><A name=ex6></A><FONT face="Thorndale, serif"><SPAN>范例 6: 
+      一次连结两个资料库</SPAN></FONT></H3><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php');     # 载入 ADOdb</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn1</FONT> = &amp;ADONewConnection('mysql');  # 建立一个 mysql 连结</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn2</FONT> = &amp;ADONewConnection('oracle');  # 建立一个 oracle 连结</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$conn1-&gt;PConnect($server, $userid, $password, $database);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$conn2-&gt;PConnect(false, $ora_userid, $ora_pwd, $tnsname);</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$conn1-&gt;Execute('insert ...');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$conn2-&gt;Execute('update ...');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <H3><A name=ex7></A><FONT face="Thorndale, serif"><SPAN>范例 7: 产生 Update 及 
+      Insert 的SQL指令</SPAN></FONT></H3>
+      <P><SPAN>ADODB 
+      1.31版起，新增了两个资料集函数：GetUpdateSQL()及GetInsertSQL()。这允许你在执行了像"SELECT * FROM 
+      table query WHERE..."这样的查询函数後，建立一个 
+      $rs-&gt;fields复本，改变这些栏位，然後自动产生出更新或是新增的SQL指令。</SPAN></P>
+      <P><SPAN>以下我们展示如何运用这些函数，我们将存取一个资料表，带有下列栏位：(ID,FirstName,LastName,Created)。在这些函数被执行前，你需要藉由一个对资料表的查询指令(select)来初始化一个资料集。</SPAN></P>
+      <P><SPAN>&lt;?<BR>#==============================================<BR>#&nbsp; 
+      GetUpdateSQL() 及 GetInsertSQL() 
+      范例码<BR>#==============================================<BR>include('ADOdb.inc.php');<BR>include('tohtml.inc.php');</SPAN></P>
+      <P><SPAN>#==========================<BR># 以下的程式码测试新增状态<BR><BR>$sql = 
+      "SELECT * FROM ADOXYZ WHERE id = -1";&nbsp;<BR># 
+      从资料库中查询出一个空的资料集<BR><BR>$conn = &amp;ADONewConnection("mysql");&nbsp; # 
+      建立一个连结<BR>$conn-&gt;debug=1;<BR>$conn-&gt;PConnect("localhost", "admin", 
+      "", "test"); # 连结到 MySQL, 资料库名称为 test<BR>$rs = $conn-&gt;Execute($sql); # 
+      执行查询，并取得一个空的资料集<BR><BR>$record = array(); # 初始化一个阵列，以便存放记录资料供新增用<BR><BR># 
+      设定记录中的栏位值<BR>$record["firstname"] = "Bob";<BR>$record["lastname"] = 
+      "Smith";<BR>$record["created"] = time();<BR><BR># 
+      传入空的资料集及栏位资料阵列到GetInsertSQL函数中，以执行功能<BR># 这个函数将会依传入的资料，回传一个全格式的 INSERT 
+      SQL指令<BR><BR>$insertSQL = $conn-&gt;GetInsertSQL($rs, 
+      $record);<BR><BR>$conn-&gt;Execute($insertSQL); # 
+      将记录挿入资料库中<BR><BR>#==========================<BR># 以下的程式码测试更新状态<BR><BR>$sql 
+      = "SELECT * FROM ADOXYZ WHERE id = 1";&nbsp;<BR># 选择一笔记录以便更新<BR><BR>$rs = 
+      $conn-&gt;Execute($sql); # 执行这个查询，并取得一个存在的记录来更新<BR><BR>$record = array(); 
+      # 初始化一个阵列，以存放要更新的资料<BR><BR># 设定栏位里的值<BR>$record["firstname"] = 
+      "Caroline";<BR>$record["lastname"] = "Smith"; # 更新 Caroline的姓由 Miranda 变成 
+      Smith<BR><BR># 传入这个只有单一记录的资料集以及含有资料的阵列到 GetUpdateSQL函数里<BR># 函数将会回传一个具有正确 
+      WHERE 条件的 UPDATE(更新) SQL 指令<BR>$updateSQL = $conn-&gt;GetUpdateSQL($rs, 
+      $record);<BR><BR>$conn-&gt;Execute($updateSQL); # 
+      更新资料库中的记录<BR>$conn-&gt;Close();<BR>?&gt;</SPAN></P>
+      <H3><A name=ex8></A><FONT face="Thorndale, serif"><SPAN>范例 8: 
+      使用上一笔及下一笔实作卷动</SPAN></FONT></H3>
+      <P><SPAN>我们使用HTTP取得 $next_page 变数，以追踪要跳去那一页并且储存目前页码在 session 变数 $curr_page 
+      里。</SPAN></P>
+      <P><SPAN>我们呼叫连结物件的 PageExecute()函收去取得我们要的资料集，然後我们使用资料集的 AtFirstPage() 及 
+      AtLastPage() 函数去决定是否显示下一页和上一页按钮。 </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include_once('ADOdb.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include_once('tohtml.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>session_register('curr_page');</B></SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$db = NewADOConnection('mysql');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$db-&gt;Connect('localhost','root','','xphplens');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>$num_of_rows_per_page = 10;</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>$sql = 'select * from products';</B></SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN><B>if (isset($HTTP_GET_VARS['next_page']))</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>        $curr_page = $HTTP_GET_VARS['next_page'];</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>if (empty($curr_page)) $curr_page = 1; ## at first page</B></SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN><B>$rs = $db-&gt;PageExecute($sql, $num_of_rows_per_page, $curr_page);</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if (!$rs) die('Query Failed');</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>if (!$rs-&gt;EOF &amp;&amp; (!$rs-&gt;<B>AtFirstPage</B>() || !$rs-&gt;<B>AtLastPage</B>())) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        if (!$rs-&gt;<B>AtFirstPage</B>()) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>&lt;a href="&lt;?php echo $PHPSELF,'?next_page=',$rs-&gt;<B>AbsolutePage</B>() - 1 ?&gt;"&gt;Previous page&lt;/a&gt;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        }</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        if (!$rs-&gt;<B>AtLastPage</B>()) {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>&lt;a href="&lt;?php echo $PHPSELF,'?next_page=',$rs-&gt;<B>AbsolutePage</B>() + 1 ?&gt;"&gt;Next page&lt;/a&gt;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        }</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        rs2html($rs);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>以上的程式码可以在 testpaging.php 范例里找到。</SPAN></P>
+      <H2><A name=errorhandling></A><FONT 
+      face="Thorndale, serif"><SPAN>使用自定错误处理及 PEAR_Error</SPAN></FONT></H2>
+      <P><SPAN>在之前的版本，你可以使用像 $con-&gt;debug=true ; 这样的设定来进行除错。但在 1.50 
+      版後，我们提供了另一种方法来处理错误状态。我们让工程师可以使用 ADODB 的自订错误处理程序功能。</SPAN></P>
+      <P><SPAN>ADODB 提供了两种自订处理方式，你可以配合你的的需要而修订。第一个方法放在 
+      ADOdb-errorhandler.inc.php 档案里。这让你可以使用标准的 PHP 函数 err_reporting 
+      去控制要显示怎样的错误讯息及 trigger_error 去呼叫 PHP 预设的错误处理程序。</SPAN></P>
+      <P><SPAN>引入了上述档案後(<B>ADOdb-errorhandler.inc.php</B>)，当发生了下列的错误後，将会使得 
+      trigger_error($errorstring,E_USER_ERROR)被呼叫。 </SPAN></P>
+      <OL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN>Connect() 或 PConnect() 执行失败时。 
+        </SPAN></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><SPAN>执行 SQL 指令的函数失败时，如 Execute() 或 
+        SelectLimin() 。 </SPAN></P>
+        <LI>
+        <P><SPAN>GenID() 进入了无限回圈时。 </SPAN></P></LI></OL>
+      <P><SPAN>这里的 $errorstring 变数是由 ADODB 所产生的。而且会包含了有用的除错讯息，类似於随後会建立的 
+      error.log 资料。所以，为了要能正确提供除错讯息，你要在建立 ADOConnection 物件前，就把 
+      ADOdb-errorhandler.inc.php 引入到程式码中。 </SPAN></P>
+      <P><SPAN>If you define error_reporting(0), no errors will be shown. If you 
+      set error_reporting(E_ALL), all errors will be displayed on the screen. 
+      </SPAN></P>
+      <P><SPAN>如果你设定了 error_reporting(0) 的话，将不会有任何错误被显示。如果你设定了 
+      error_reporting(E_ALL)，那将会显示所有的错误讯息。 </SPAN></P>
+      <P><SPAN>以下是一个简单的范例： </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>error_reporting(E_ALL); # 显示所有的错误讯息</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include('ADOdb-errorhandler.inc.php');</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('ADOdb.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('tohtml.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$c = NewADOConnection('mysql');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$c-&gt;PConnect('localhost','root','','northwind');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$rs=$c-&gt;Execute('select * from productsz'); #不正确的资料表 productsz');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if ($rs) $rs2html($rs);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>如果你要把错误讯息记录下来，你可以定义两个选择性常数 ADODB_ERROR_LOG_TYPE, 
+      ADODB_ERROR_LOG_DEST。有关於 ADODB_ERROR_LOG_TYPE 的值，你可以去叁考 PHP 使用手册中有关於 
+      error_log 的说明。在以下的范例中，我使将它设为 3，意思是指将讯息记录到常数 ADODB_ERROR_LOG_DEST 
+      所设定的档案中。</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>error_reporting(0); # 不显示任何的错误讯息</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>define('ADODB_ERROR_LOG_TYPE',3);</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>define('ADODB_ERROR_LOG_DEST','C:/errors.log');</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include('ADOdb-errorhandler.inc.php');</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('ADOdb.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('tohtml.inc.php');</SPAN></FONT>
+
+<FONT face="Cumberland, monospace"><SPAN>$c = NewADOConnection('mysql');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$c-&gt;PConnect('localhost','root','','northwind');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$rs=$c-&gt;Execute('select * from productsz'); ## 不正确的资料表 productsz</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if ($rs) $rs2html($rs);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>以下则是写在 error.log 档的错误讯息：</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>(2001-10-28 14:20:38) mysql error: [1146: Table 'northwind.productsz' doesn't exist] in</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN> EXECUTE("select * from productsz")</SPAN></FONT></PRE>
+      <P><SPAN>第二种错误处理方法是 <B>ADOdb-errorpear.inc.php</B> 。使用这种方式，在错误发生时会产生 
+      PEAR_Error 衍生物件，而最後产生的 PEAR_Error 物件可以被 ADODB_Pear_Errir() 
+函数取回。</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>&lt;?php</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>include('ADOdb-errorpear.inc.php');</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('ADOdb.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>include('tohtml.inc.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$c = NewADOConnection('mysql');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$c-&gt;PConnect('localhost','root','','northwind');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$rs=$c-&gt;Execute('select * from productsz'); #不正确的资料表 productsz');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>if ($rs) $rs2html($rs);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>else {</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        <B>$e = ADODB_Pear_Error();</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN><B>        echo '&lt;p&gt;',$e-&gt;message(),'&lt;/p&gt;';</B></SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>?&gt;</SPAN></FONT></PRE>
+      <P><SPAN>在引入 ADOdb-errorpear.inc.php 档之前，藉由定义 ADODB_PEAR_ERROR_CLASS 
+      常数，你可以使用一个 PEAR_Error 衍生类别。为了方便除错，你可以在 PHP 程式码的最前面定义预设的错误理方式为 
+      PEAR_ERROR_DIE，这将会使得程式一出错，马上就输出错误讯息，并且停止执行。</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>include('PEAR.php');</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>PEAR::setErrorHandling('PEAR_ERROR_DIE');</SPAN></FONT></PRE>
+      <P><SPAN>注意，当错误产生时，ADODB并没有明确的回传一个 PEAR_Error 物件给你。你必需要去呼叫 
+      ADODB_Pear_Error() 函数去取回最後的错误内容。或者，你可以使用 PEAR_ERROR_DIE 这个技巧。 </SPAN></P>
+      <H2><A name=caching></A><FONT 
+      face="Thorndale, serif"><SPAN>资料集快取</SPAN></FONT></H2>
+      <P><SPAN>现在，ADODB使用 
+      CacheExecute(),CachePageExecute()及CacheSelectLimit()函数来支援资料集快取。用法类似於没有快取的函数，除了要加上一个新的叁数 
+      $secs2cache。 </SPAN></P>
+      <P><SPAN>以下是一个范例 : </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php'); # 载入ADODB</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$ADODB_CACHE_DIR = '/usr/ADODB_cache';</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT> = &amp;ADONewConnection('mysql');  # 建立一个连结</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT>-&gt;PConnect('localhost','userid','','agora');# 连结到 MySQL, agora 资料库</SPAN></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>sql</FONT> = 'select CustomerName, CustomerID from customers';</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>rs</FONT> = $<FONT color=#663300>conn</FONT>-&gt;CacheExecute(15,$sql);</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>第一个叁数是设定查询的快取秒数。随後呼叫的查询将会使用存放在由&nbsp; 
+      $ADODB_CACHE_DIR 变数指定的快取资料。要强迫查讯执行，并且更新快取记录，使用 CacheExecute() 
+      函数，并且将第一个叁数设为 0 。或者，使用 CacheFlush($sql) 也行。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>基於安全的考量，如果你要使用 $ADODB_CACHE_DIR，我们建议你将在 
+      php.ini 里的 register_globals 设成 off。&nbsp;</SPAN></FONT></P>
+      <P><SPAN>在 ADODB 1.80版以後，在 CacheSelectLimit() 及 CacheExecute() 中，叁数 
+      secs2cache 是选择性的。如果你不填上去，系统将会使用 $connection-&gt;cacheSecs 属性的值，它的预设值是 60 
+      分钟。 </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>       $conn-&gt;Connect(...);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;cacheSecs = 3600*24; // 快取24小时</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>        $rs = $conn-&gt;CacheExecute('select * from table');</SPAN></FONT></PRE>
+      <HR>
+
+      <H1><A name=Ref></A><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>叁考手册</SPAN></FONT></FONT></H1>
+      <P><FONT color=#000000><SPAN>以[]包起来的叁数为选用叁数，可有可无。</SPAN></FONT></P>
+      <H2><FONT face="Thorndale, serif"><SPAN>共用变数</SPAN></FONT></H2>
+      <H3><FONT 
+face="Thorndale, serif"><SPAN>$ADODB_COUNTRECS</SPAN></FONT></H3>
+      <P><SPAN>当本变数(<B>$ADODB_COUNTRECS</B>)被设为 true 时，如果资料库驱动程式介面(API)不支援回传被 
+      SELECT 指令所选取的资料笔数，那麽 RecordCount() 函数将会自动模拟，并回传正确的资料笔数，预设值即为 
+      true。模拟方式是建立一个记忆体暂存区来放置这些资料，因此当取回的资料笔数很大时，会占用很大量的记忆体。当设定本变数值为 false 
+      时，会有最好的效能。本变数在每次执行查讯时都会自动检查，所以你可以依实际需要在每次查询前进行设定。</SPAN></P>
+      <H3><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>$ADODB_CACHE_DIR</SPAN></FONT></FONT></H3>
+      <P><FONT 
+      color=#000000><SPAN>如果你使用了资料集快取功能，那麽那些快取资料都会被置放到这个变数所指定的目录里。所以当你要使用诸如 
+      CacheExecute() 函数前，你应该要先设定好本变数。期於安全的考量，如果你要使用 $ADODB_CACHE_DIR，我们建议你将在 
+      php.ini 里的 register_globals 设成 off。&nbsp;</SPAN></FONT></P>
+      <H3><A name=adodb_fetch_mode></A><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>$ADODB_FETCH_MODE</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN>这个共用变数决定了资料集以那种方式将资料传给阵列。资料集在被建立时(如 
+      Execute()或SelectLimit())会把本变数($ADODB_FETCH_MODE)的值保存下来，而随後本变数($ADODB_FETCH_MODE)的任何改变都不会影响到现存的资料集，只有在以後资料集被建立起来时才会改变。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>以下为为已定义的常数：</SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>define('ADODB_FETCH_DEFAULT',0);<BR>define('ADODB_FETCH_NUM',1);<BR>define('ADODB_FETCH_ASSOC',2);<BR>define('ADODB_FETCH_BOTH',3);</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>以下为一个使用的例子： </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>       $ADODB_<B>FETCH_MODE</B> = ADODB_FETCH_NUM;</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $rs1 = $db-&gt;Execute('select * from table');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $ADODB_<B>FETCH_MODE</B> = ADODB_FETCH_ASSOC;</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $rs2 = $db-&gt;Execute('select * from table');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        print_r($rs1-&gt;fields); # 显示 <I>array([0]=&gt;'v0',[1] =&gt;'v1')</I></SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        print_r($rs2-&gt;fields); # 显示 <I>array(['col1']=&gt;'v0',['col2'] =&gt;'v1')</I></SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>在本范例中，如你所见两个资料集在被Execute()建立时，会依据 
+      $ADODB_FERCH_MODE 的值来决定储存及使用的存取模式。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果没有任何的模式被设定，预设值则是 
+      ADODB_FETCH_DEFAULT。呈现的模式则依据资料库驱动程式而有所不同。为了可携性，我们建议你固定为 ADODB_FETCH_NUM 及 
+      ADODB_FETCH_ASSOC，因为有许多驱动程式并不支援 ADODB_FETCH_BOTH 。</SPAN></FONT></P>
+      <HR>
+
+      <H2><A name=ADOConnection></A><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>ADOConnection</SPAN></FONT></FONT></H2><PRE style="MARGIN-BOTTOM: 0.5cm"><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>提供连结资料库，执行SQL指令以及一组准格式化的SQL相关函数等功能的物件。</SPAN></FONT></FONT></PRE>
+      <H3><FONT color=#000000><FONT face="Thorndale, serif"><SPAN>ADOConnection 
+      属性</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN><B>databaseType</B>: 要连结的资料库系统名称，如 
+      odbc,mssql,mysql┅等。详细内容请叁考上表。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>dataProvider</B>: 下层的资料库结结机制，除了使用 
+      <B>odbc</B> 或 <B>ado </B>外，一般正常会设为&nbsp; <B>native</B>。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>host: 
+      </B>资料库主机名称，可用IP或来源名称(DSN)进行连结。如203.74.225.22 , dbs1.nukepro.com , 
+      "localhost" , "odbc_dsn1"</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>database</B>: 资料库或连结名称，如果使用了 ado，则会控制 ado 
+      资料提供驱动程式(ado data provider)。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>user</B>: 登入时的 
+      ID，密码则基於安全考量没有保留。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>raiseErrorFn</B>: 允许你定义一个错误处理函数，请叁考 
+      ADOdb-errorhandler.inc.php 的范例.</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>debug</B>: 被设定为 true 
+      时，会显示除错讯息。</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000><B>concat_operator</B>: 连结运算元，一般会设为 '+' 或 
+      '||'。这个运算元是为了在 SQL 里连结字串的。会在 <A 
+      href="http://www.souzz.net/online/adobd.html#concat"><B>Concat</B></A> 
+      函数中被用到。</FONT></SPAN></P>
+      <P><FONT color=#000000><SPAN><B>fmtDate</B>: 
+      日期格式，在DBDate函数中会使用到，做为送日期资料到资料库的依据。在Access格式为'#Y-m-d#'，在MySQL格式为"\Y-m-d\"。</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000><B>fmtTimeStamp: </B>时间格式，在 <B><A 
+      href="http://www.souzz.net/online/adobd.html#dbtimestamp">DBTimeStamp</A> 
+      </B>函数中要送时间资料到资料库时会使用到。</FONT></SPAN></P>
+      <P><FONT color=#000000><SPAN><B>true</B>: 资料中真值的表现方式，如在Foxpro用'T'，MS 
+      SQL用'1'。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>false: </B>资料中假值的表现方式，如在Foxpro用'F'，MS 
+      SQL用'0'。</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000><B>replaceQuote</B>: 这个字串用来处理逸出符号。例如在 
+      Microsoft SQL 里的双引号，MySQL里的反斜线符号。主要使用於 <A 
+      href="http://www.souzz.net/online/adobd.html#qstr">qstr</A> 
+      。</FONT></SPAN></P>
+      <P><FONT color=#000000><SPAN><B>autoCommit</B>: 设定是否启动自动交易模式，预设值为 
+      true。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>charSet</B>: 设定使用的字元集，目前只有 interbase 
+      支援。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>metaTablesSQL</B>: 
+      使用SQL指令，以回传一份可用的资料表清单。例如在 MySQL 里的 SHOW TABLES。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>genID</B>: 
+      如果资料库有支援的话，这里会存放由GetID()所取得的最後值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>cacheSecs</B>: 快取资料集的秒数。用於当使用者利用 
+      CacheExecute() 或 CacheSeletLimit() 函数，又没有设定 $secs2cache 
+      叁数时的预设值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>sysDate</B>: 
+      利用资料库函数去取得目前的日期和时间。会使用到原生的日期时间标记格式。</SPAN></FONT></P>
+      <HR>
+
+      <H3><FONT color=#000000><FONT face="Thorndale, serif"><SPAN>ADOConnection 
+      主要函数</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN><B>ADOConnection( )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>建构函数，请不要直接呼叫，使用 ADONewConnection() 
+      来代替。</SPAN></FONT></P>
+      <P><A name=Connect></A><FONT 
+      color=#000000><SPAN><B>Connect($host,[$user],[$password],[$database])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>对伺服器或资料来源 $<B>host </B>非持续性连结，使用者认证代码为 
+      <B>$user</B> ，密码为 <B>$password</B> ,如果伺服器支援多资料库，则指定连结到资料库 
+      <B>$database</B>。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>连结成功回传 true ， 失败则回传 false 。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>注意：如果你使用的是 Microsoft ADO，而非 OLEDB，你可以设定 
+      <B>$database</B> 叁数为你正在使用的 OLEDB 资料供应器。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>PostgreSQL：另一种选择性的连结方法是将标准的PostgreSQL连结字串放在 
+      <B>$host </B>叁数里，那麽其它的叁数都会被呼略。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>对於 Oracle 及 Oci8，有两个方法可以连结。第一，使用你定义的区域 
+      tnsnames.ora 里的 TNS 名称，将这个名称放在 <B>$database</B> 叁数里，然後将 <B>$host</B> 设为 
+      false。另一种方法，设定 <B>$host</B> 为伺服器，而 <B>$database</B> 则设成资料库 SID ，这将会不透过 
+      tnsnames.ora 连结。 </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>范例： </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;Connect(false, 'scott', 'tiger', 'name_in_tnsnames'); # 使用 tnsnames.ora</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;Connect('server:1521', 'scott', 'tiger', 'OracleSID'); # 不使用 tnsnames.ora</SPAN></FONT></FONT></PRE>
+      <P><SPAN><FONT color=#000000>还有许多的资料库连结范例在网站 <A 
+      href="http://php.weblogs.com/adodb">php.weblogs.com/ADOdb</A> 以及在本版所附的 
+      testdatabase.inc.php 档案里。</FONT></SPAN></P>
+      <P><A name=PConnect></A><FONT 
+      color=#000000><SPAN><B>PConnect($host,[$user],[$password],[$database])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>对伺服器或资料来源 $<B>host </B>持续性连结，使用者认证代码为 
+      <B>$user</B> ，密码为 <B>$password</B> ,如果伺服器支援多资料库，则指定连结到资料库 
+      <B>$database</B>。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>连结成功回传 true ， 失败则回传 false 。其它资料请叁考 
+      Connect()。</SPAN></FONT></P>
+      <P><A name=Execute></A><FONT 
+      color=#000000><SPAN><B>Execute($sql,$inputarr=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>执行 SQL 指令 <B>$sql</B> ，如果成功，就回传一个对应的 
+      ADORecordSet 物件。要注意的是这个指令如果执行成功时，一定会回传一个资料集，即使是执行 insert 或 update 
+      指令也一样。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传对应的 ADORecordSet 物件。例如，如果连结的是 mysql ，那麽 
+      ADORecordSet_mysql 将会被回传。当SQL指令执行失败时会回传 false 值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>$inputarr 叁数则用来做为传入的结合变数。以下是 Oracle 
+      的范例：</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;Execute("SELECT * FROM TABLE WHERE COND=:val", array('val'=&gt; $val));</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> </SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>另一个例子，使用 ODBC ，以 '?' 
+符号做为协定。</SPAN></FONT></P><PRE style="MARGIN-BOTTOM: 0.5cm"><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  $conn-&gt;Execute("SELECT * FROM TABLE WHERE COND=?", array($val));</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN><I>结合变数(Binding 
+      variables)</I><BR>变数的结合可以加速SQL指令编译及快取的速度，产生较佳的效能。目前只有 Oracle 及 ODBC 
+      支援变数结合。 ODBC 类的 ? 结合在不支援的资料库里，是以模拟的方式来做到的。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>变数结合在 odbc 及 oci8po 驱动程式里的用法。 
+      </SPAN></FONT></P><PRE style="MARGIN-BOTTOM: 0.5cm"><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$rs = $db-&gt;Execute('select * from table where val=?', array('10'));</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>变数结合在 oci8 驱动程式里的用法。 </SPAN></FONT></P><PRE style="MARGIN-BOTTOM: 0.5cm"><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$rs = $db-&gt;Execute('select name from table where val=:key',array('key' =&gt; 10));</SPAN></FONT></FONT></PRE>
+      <P><A name=CacheExecute></A><FONT 
+      color=#000000><SPAN><B>CacheExecute($secs2cache,$sql,$inputarr=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>类似於 Execute 函数，除了将资料集暂存在 $ADODB_CACHE_DIR 
+      指定的目录里 $secs2cache 秒外。如果 CacheExecute() 
+      被相同的叁数、资料库、使用者ID及密码，而且快取也没有过期，那麽快取中的资料集将会被传回。 </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  include('ADOdb.inc.php'); </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  include('tohtml.inc.php');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  $ADODB_<B>CACHE_DIR</B> = '/usr/local/ADOdbcache';</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  $conn = &amp;ADONewConnection('mysql'); </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  $conn-&gt;PConnect('localhost','userid','password','database');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  $rs = $conn-&gt;<B>CacheExecute</B>(15, 'select * from table'); # 快取15秒</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>  rs2html($rs); /* recordset to html table */  </SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>另外，从ADODB 1.80 版起，$secs2cache 
+      叁数成为选择性(也就是可以不加)</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>       $conn-&gt;Connect(...);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;cacheSecs = 3600*24; // cache 24 hours</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $rs = $conn-&gt;CacheExecute('select * from table');</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>如果 CacheExecute() 
+      被多次呼叫，而且资料集也持续在快取中，$secs2cache 
+      叁数不会延长被快取的资料集保留时间(因为会被呼略掉)，CacheExecute()只能使用在 SELECT 
+      指令上。</SPAN></FONT></P>
+      <P><SPAN><B><FONT color=#000000>效能备注：</FONT></B>我<FONT 
+      color=#000000>曾经作了一些效能测试，并且发现这些快取的效益极为显着。尤其是在资料库伺服器运作效率慢於WEB伺服器或资料库的负荷非常重的时候。ADODB的快取好在它减少了资料库伺服器的负荷。当然，如果你的资料库伺服器负荷不大，而且运作速度也比WEB伺服器快，那快取反而会降低效能。</FONT></SPAN></P>
+      <P><A name=SelectLimit></A><FONT 
+      color=#000000><SPAN><B>SelectLimit($sql,$numrows=-1,$offset=-1,$inputarr=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>执行成功会回传一个资料集。完成一个SELECT指令，类似於 PostgreSQL中 
+      SELECT 指令里的LIMIT $numrows OFFSET $offset 宣告。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>在 PostgreSQL，SELECT * FROM TABLE LIMIT 3 
+      将会只传回从头开始的三笔记录。相同的，$connection-&gt;SelectLimit('SELECT * FROM 
+      TABLE',3)也有同样的意思。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>而 SELECT * FROM TABLE LIMIT 3 OFFSET 2 将会回传记录 
+      3,4及5三笔(也就是在记录2之後，回传三笔记录)。相同的，在ADODB里是以 
+      $connection-&gt;SelectLimit('SELECT * FROM TABLE',3,2) 
+      来做的。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>要注意，LIMIT宣告，在MySQL里是相反位置的。你可以设定 
+      $connection-&gt;SelectLimit('select * from table',-1,10) 
+      去取得从第11笔起到最後一笔的记录。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>最後一个叁数 $inputarr 是针对支援变数结合功能的资料库，像 Oracle 
+      oci8。这个大大的减少了 SQL 编译的负荷。底下是 Oracle 范例：</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;SelectLimit("SELECT * FROM TABLE WHERE COND=:val", 100,-1,array('val'=&gt; $val));</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> </SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>oci8po 驱动程式(oracle portable 
+      driver)使用更为标准的变数结合： </SPAN></FONT></P><PRE style="MARGIN-BOTTOM: 0.5cm"><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;SelectLimit("SELECT * FROM TABLE WHERE COND=?", 100,-1,array('val'=&gt; $val));</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>Ron Wilson 报告说 SelectLimit 在SQL指令有含 UNION 
+      时会无效，并且建议了针对 mssql 的对策： </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; 事实上，我发现一个可以立即最佳化的建构 Select Union 方法。这适用於 MS-SQL，至於</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>其它资料库是否适合，就不确定了。当更新求助档时，你可以叁考这个范例。注意，这个方</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>法不适用於 MySQL。</SPAN></FONT></FONT>
+<FONT face="Cumberland, monospace"><SPAN>&gt;</SPAN></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; 改变:</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;  Select column1 From table1</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;  Union</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;  Select column2 From table2</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; 成为:</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;  Select * From (</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;   Select column1 From table1</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;   Union</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;   Select column2 From table2</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;   )</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt;  As dummytable</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>&gt; Ron</SPAN></FONT></FONT></PRE>
+      <P><A name=CacheSelectLimit></A><FONT 
+      color=#000000><SPAN><B>CacheSelectLimit($secs2cache, $sql, 
+      $numrows=-1,$offset=-1,$inputarr=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>类似於 SelectLimit，除了将资料集暂存在 $ADODB_CACHE_DIR 
+      指定的目录里 $secs2cache 秒外。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>自 
+      1.80版起，$secs2cache成为了选择性叁数：</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN> $conn-&gt;Connect(...);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;cacheSecs = 3600*24; // 快取24小时</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $rs = $conn-&gt;CacheSelectLimit('select * from table',10);</SPAN></FONT></FONT></PRE>
+      <P><A name=CacheFlush></A><FONT 
+      color=#000000><SPAN><B>CacheFlush($sql)</B></SPAN></FONT></P>
+      <P><SPAN><CODE><FONT color=#000000>更新(删除)以 $sql 指令存放在 $ADODB_CACHE_DIR 
+      指定目录内的全部快取资料集。如果你企图更新所有的快取资料集，请执行如下的PHP指令码(仅针对 Unix 有效)：system("rm -f find 
+      ".ADODB_CACH_DIR." -name ADODB_*.cache") ;</FONT></CODE></SPAN></P>
+      <P><A name=ErrorMsg></A><FONT 
+      color=#000000><SPAN><B>ErrorMsg()</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>回传最後状态或是错误讯息。即使没有错误发生，本函数也会回传一个字串。一般情况下，你不需要呼叫这个函数，除非ADODB函数因为错误状态回传了false值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>注意：如果 <B>debug</B> 旗标被启动了，SQL 
+      错误讯息将会在<B>Execute</B>函数被呼叫时发生错误後出现。</SPAN></FONT></P>
+      <P><A name=errorno></A><FONT 
+      color=#000000><SPAN><B>ErrorNo()</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传最後的错误号码。注意一点，旧版本的 
+      PHP(4.0.6以前)，不支援ODBC的错误编号。一般情况下，你不需要呼叫这个函数，除非ADODB函数因为错误状态回传了false值。</SPAN></FONT></P>
+      <P><A name=genid></A><FONT color=#000000><SPAN><B>GenID($seqName = 
+      'ADOdbseq',$startID=1)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>产生一个顺序号码(在mssql是一个整数值)。对 
+      interbase,mysql,postgresql,oci8,oci8po,ODBC核心类驱动程式(如 access,vfp,db2等等) 
+      都支援。使用 $seqName做为顺序名。如果资料库没有值，那麽GenID()将会自动为你产生一个序号(产生使用者 id 
+      时允许如此)，换句话说，你必需自行建立序号。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果你的资料库驱动程式要模拟序号，资料表的名称就是序号名(sequence 
+      name)，而这个资料表必需有一个栏位"id"，而其资料型别为整数，或你需要更大些的 numeric(16)。 </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>对於没有支援序号原生功能的ODBC及资料库(如 
+      mssql,mysql)，我们对每一个序号建立一个资料表。如果序号没有被预先定义，那启如的号码值就设定成 
+      $startID。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>注意，mssql驱动程式的 
+      GenID()会产生一个16位元的GUID。自1.90版起，我们将回传整数。</SPAN></FONT></P>
+      <P><A name=updateblob></A><FONT 
+      color=#000000><SPAN><B>UpdateBlob($table,$column,$val,$where)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>允许你以 $where 条件储存一个BLOB(存在 $val里的)值到 $table 里的 
+      $column 栏位。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>例: </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>　 </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>       # for oracle</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;Execute('INSERT INTO blobtable (id, blobcol) VALUES (1, empty_blob())');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;UpdateBlob('blobtable','blobcol',$blobvalue,'id=1');</SPAN></FONT></FONT>
+
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        # non oracle databases</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;Execute('INSERT INTO blobtable (id, blobcol) VALUES (1, null)');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;UpdateBlob('blobtable','blobcol',$blobvalue,'id=1');</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>如果成功，会回传 true ，否则回传 false 值。目前有 MySQL, 
+      PostgreSQL, Oci8, Oci8po 及 Interbase 
+      支援。其它驱动程式可能有效，仍在持续开发中。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>要注意，在PHP 4.1.0 以前的版本，当 Interbase的 blob 值被 
+      SELECT 取回值时，它仍需要被解码，请使用 $connection-&gt;DecodeBlob($blob); 以还原它的内容。 
+      </SPAN></FONT></P>
+      <P><A name=updateclob></A><FONT 
+      color=#000000><SPAN><B>UpdateClob($table,$column,$val,$where)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>允许你以 $where 条件储存一个BLOB(存在 $val里的)值到 $table 里的 
+      $column 栏位。类似於 UpdateBlog，但主要针对文字大型档案物件。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>例: </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>　 </SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>       # for oracle</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;Execute('INSERT INTO clobtable (id, clobcol) VALUES (1, empty_clob())');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;UpdateBlob('clobtable','clobcol',$clobvalue,'id=1');</SPAN></FONT></FONT>
+
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        # non oracle databases</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;Execute('INSERT INTO clobtable (id, clobcol) VALUES (1, null)');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $conn-&gt;UpdateBlob('clobtable','clobcol',$clobvalue,'id=1');</SPAN></FONT></FONT></PRE>
+      <P><A name=updateblobfile></A><FONT 
+      color=#000000><SPAN><B>UpdateBlobFile($table,$column,$path,$where,$blobtype='BLOB')</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如同 UpdateBlob ，但我们将值改成一个档案路径，将整个档案存入。 
+      </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>成功回传 true 否则为 false。 </SPAN></FONT></P>
+      <P><A name=getupdatesql></A><FONT 
+      color=#000000><SPAN><B>GetUpdateSQL(&amp;$rs, $arrFields, 
+      $forceUpdate=false,$magicq=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>建立一个 SQL 以更新一个被给予的资料集 $rs ，被修改的栏位存放在阵列 
+      $arrFields中(这个阵列必需是具名阵列，栏位名为索引，值为修正值)，会与原来的资料集做一个比较，如果 $forceUpdate被设为 
+      true，那麽即使 $arrFields与 $rs-&gt;fields完全相同，也会产生出更新的SQL指令。资料集必需在连结状态。$magicq 
+      被用於指出魔术引号功能是否被启动。</SPAN></FONT></P>
+      <P><A name=getinsertsql></A><FONT 
+      color=#000000><SPAN><B>GetInsertSQL(&amp;$rs, 
+      $arrFields,$magicq=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>建立一个 SQL 以新增一笔记录到被给予的资料集 
+      $rs。这个查询必需是在连结状态。$magicq 被用於指出魔术引号功能是否被启动。</SPAN></FONT></P>
+      <P><A name=pageexecute></A><FONT color=#000000><SPAN><B>PageExecute($sql, 
+      $nrows, $page, $inputarr=false)</B> </SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>使用资料集的页码功能，叁数 $page 是以 1 为启使值，请叁考<A 
+      href="http://www.souzz.net/online/adobd.html#ex8">范例 
+      8</A>.</FONT></SPAN></P>
+      <P><A name=cachepageexecute></A><FONT 
+      color=#000000><SPAN><B>CachePageExecute($secs2cache, $sql, $nrows, $page, 
+      $inputarr=false)</B></SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>使用资料集的页码功能，叁数 $page 是以 1 为启使值，请叁考<A 
+      href="http://www.souzz.net/online/adobd.html#ex8">范例 8</A>.PageExecute 
+      的快取版。</FONT></SPAN></P>
+      <P><A name=Close></A><FONT color=#000000><SPAN><B>Close( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>关闭资料库的连结。PHP4 
+      以资料库连结结束时不需要特别去清除而享有盛名，因为其叁考计数机制会自动帮我们清除掉。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>BeginTrans( )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>启始一笔交易。会关闭自动结案功能。执行成功会回传 true 
+      。如果不支援交易功能，部份资料库会一直传回 false 值。Interbase,Oracle 及 MSSQL 支援交易机制。请注意，因为 PHP 
+      4.02 版的臭虫，交易支援在微软的 ADO 
+      上是无效的。你必需使用你关连式资料库的原生交易支援功能。当连结结束时，任何开启的交易都会被还原。</SPAN></FONT></P>
+      <P><A name=CommitTrans></A><FONT color=#000000><SPAN><B>CommitTrans( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>成功的结束一次交易。如果成功，回传 true。如果资料库并不支援交易功能，那麽就只会传回 
+      true ，以表示资料总是交易成功的。</SPAN></FONT></P>
+      <P><A name=RollbackTrans></A><FONT color=#000000><SPAN><B>RollbackTrans( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>结束一次交易，恢复所有改变。执行成功会回传 true 
+      。如果资料库并不支援交易功能，那麽就只会传回 false ，以表示资料总是不能恢复。</SPAN></FONT></P>
+      <P><A name=getone></A><FONT 
+      color=#000000><SPAN><B>GetOne($sql)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>Executes the SQL and returns the first field 
+      of the first row as an array. The recordset and remaining rows are 
+      discarded for you automatically. If an error occur, false is 
+      returned.</SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>执行SQL指令，并且以阵列的方式回传第一笔记录的第一个栏位。资料集及其馀的记录将会被自动清除，如果发生错误，就回传 
+      false 值。</SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>译者注：这个功能在验证某笔记录在不在特别有用，可以减少系统记忆体及资源的用量。</SPAN></FONT></P>
+      <P><A name=getrow></A><FONT 
+      color=#000000><SPAN><B>GetRow($sql)</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>执行SQL指令，并且以阵列的方式回传第一笔记录。资料集及其馀的记录将会被自动清除，如果发生错误，就回传 
+      false 值。</SPAN></FONT></P>
+      <P><A name=Prepare></A><FONT color=#000000><SPAN><B>Prepare($sql 
+      )</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>预先编译一个SQL查询，以便於重覆执行。如果有任何语法错误，Prepare()不会显示任合错误，但允许 
+      Execute() 去取得及显示错误。内部实作支援 interbase ,oci8 及选择性的 ODBC-based 
+      驱动程式。其馀的都是以模拟的方式支援。在模拟的情况下，使用 Prepare() 对效能的增进没有任何效果。</SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>回传一个包含了原始描述为第一个阵列元素的阵列，其馀的元素内容则视驱动程式而定。如果有错误或是模拟方式的 
+      Prepare()，会回传原来的 $sql 字串。那是因为所有的错误处理都被集中到 Execute() 里去了。</SPAN></FONT></P>
+      <P><SPAN>范例 :</SPAN></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$stmt = $DB-&gt;Prepare('insert into table (col1,col2) values (?,?)');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>for ($i=0; $i &lt; $max; $i++)</SPAN></FONT></FONT>
+<FONT face="Cumberland, monospace"><SPAN> $DB-&gt;<FONT color=#000000>Execute($stmt,array((string) rand(), $i));</FONT></SPAN></FONT></PRE>
+      <P><A name=preparesp></A><FONT 
+      color=#000000><SPAN><B>PrepareSP($sql)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>在 mssql 驱动程式里，预编译预储程式必需要透过一个特别的函数来呼叫 
+      mssql_init()，这个动作目前由本函数来处理了。PrepareSP() 可以在所有的驱动程式由被呼叫，而且以呼叫 Prepare() 
+      的方式来模拟。使用范例请叁考以下的 Parameter() 说明。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>和上面的 Prepare() 回传一样的阵列或 $sql 
+      字串。</SPAN></FONT></P>
+      <P><A name=parameter></A><FONT color=#000000><SPAN><B>Parameter($stmt, 
+      $var, $name, $isOutput=false, $maxLen = 4000, $type = false 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>在运作中增加一个结合叁数。目前相容於 Microsoft SQL 及 Oracle 
+      oci8。以下是叁数说明：</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000><BR>$<B><I>stmt</I></B>&nbsp; 由 Prepare() 或 
+      PrepareSP() 回传的指令。<BR>$<B><I>var</I></B> 要结合的 PHP 
+      变数。<BR>$<B><I>name</I></B> 要结合的预储程序的变数名。<BR>[$<B><I>isOutput</I></B>] 
+      设定叁数传导的方向，0/false = IN 1=OUT 2= IN/OUT 。 在 oci8 
+      中这个叁数会被忽略，因为驱动程式会自动侦测。&nbsp;<BR>[$<B>maxLen</B>] 
+      叁数变数的最大长度。<BR>[$<B>type</B>] 叁考 <A 
+      href="http://linux.tnc.edu.tw/techdoc/Download/PHP/class/adodb199/php.net/mssql_bind">mssql_bind</A> 
+      及 <A 
+      href="http://linux.tnc.edu.tw/techdoc/Download/PHP/class/adodb199/php.net/ocibindbyname">ocibindbyname</A> 
+      在 PHP.NET 的文件说明以取得更多正确值的资讯。</FONT></SPAN></P>
+      <P><SPAN><FONT color=#000000>在 mssql，$opt 可以被下列的元素所影响：<A 
+      href="http://linux.tnc.edu.tw/techdoc/Download/PHP/class/adodb199/php.net/mssql_bind">mssql_bind</A> 
+      and <A 
+      href="http://linux.tnc.edu.tw/techdoc/Download/PHP/class/adodb199/php.net/ocibindbyname">ocibindbyname</A> 
+      。 例如 ;</FONT></SPAN></P><PRE><FONT color=#008000><FONT face="Cumberland, monospace"><SPAN># @RETVAL = SP_RUNSOMETHING @myid,@group</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$stmt = $db-&gt;PrepareSP(<FONT color=#993333>'<FONT color=#993300>SP_RUNSOMETHING</FONT>'</FONT>); </SPAN></FONT></FONT>
+<FONT color=#008000><FONT face="Cumberland, monospace"><SPAN># note that the parameter name does not have @ in front!</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$id,'myid'); </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$group,'group',false,64);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><FONT color=#008000># return value in mssql - RETVAL is hard-coded name</FONT> </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$ret,'RETVAL',true); </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Execute($stmt); </SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>一个 oci8 的例子：</SPAN></FONT></P><PRE><FONT color=#008000><FONT face="Cumberland, monospace"><SPAN># 对於<FONT color=#000000> oracle, Prepare </FONT>及 PrepareSP 是相同的</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$stmt = $db-&gt;PrepareSP(</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        <FONT color=#993300>"declare ret integer;</FONT></SPAN></FONT></FONT>
+<FONT color=#993300><FONT face="Cumberland, monospace"><SPAN>     begin </SPAN></FONT></FONT>
+<FONT color=#993300><FONT face="Cumberland, monospace"><SPAN>                :RETVAL := SP_RUNSOMETHING(:myid,:group);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><FONT color=#993300>     end;"</FONT>);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$id,'myid');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$group,'group',false,64);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$ret,'RETVAL',true);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Execute($stmt);</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>请注意，在 oci8 及 mssql 间只有语法上的不同，那是各资料库实作 SQL 
+      语法问题，ADODB 对於这一部份无能为力。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果 $type 叁数被设定成 false 。在 mssql ，$type 将会动态的由 
+      PHP 变数传来的型别决定(string =&gt; SQLCHAR, boolean =&gt;SQLINT1, integer 
+      =&gt;SQLINT4 或&nbsp; float/double=&gt;SQLFLT8)，在 oci8，$type 可以被设成 
+      OCI_B_FILE (Binary-File), OCI_B_CFILE (Character-File), OCI_B_CLOB 
+      (Character-LOB), OCI_B_BLOB (Binary-LOB) 及 OCI_B_ROWID 
+      (ROWID)。如果要传入空值，使用&nbsp; $db-&gt;Parameter($stmt, $null=null, 
+      'param')。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>最後，在 oci8，结合叁数可以重覆被使用，而无需再一次呼叫 PrepareSP() 或 
+      Parameters。但这对 mssql 是不行的。一个 oci8 的范例如下：</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$id = 0; $i = 0;</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$stmt = $db-&gt;PrepareSP( <FONT color=#993300>"update table set val=:i where id=:id"</FONT>);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$id,'id');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$db-&gt;Parameter($stmt,$i, 'i');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>for ($cnt=0; $cnt &lt; 1000; $cnt++) {</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $id = $cnt;</SPAN></FONT></FONT>
+<FONT face="Cumberland, monospace"><SPAN><FONT color=#000000>        $i = $cnt * $cnt; </FONT><FONT color=#008000># oci8 下可以运作</FONT></SPAN></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        $db-&gt;Execute($stmt);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT></FONT></PRE>
+      <P><A name=Bind></A><FONT color=#000000><SPAN><B>Bind($stmt, $var, 
+      $size=4001, $type=false, $name=false)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>这是一个低阶函数，只有 oci8 驱动程式支援。只有你确定系统仅支援 Oracle 
+      否则请避免使用它。Parameter() 函数是使用结合变数的另一个建议方式。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>Bind() 允许你使用结合变数在你的 sql 
+      叙述中。这里结合一个PHP变数给一个在之前被 Prepare() 预先编译的 Oracle sql 叙述里定义的名称。Oracle 
+      以一个冒号为开头来命名一个变数，而且 ADODB 需要一个被命名的变数去对应 :0,:1,:2,:3,等等。第一次被 Bind() 取得的将会代入 
+      :0，而第二次将会代入 :1，依此类推。对 insert , select 及 update 指令，结合可以提供 100% 
+      的效能提升。</SPAN></FONT></P>
+      <P><SPAN>在其馀的叁数里，$size 设定资料储存的暂存区大小，$type 是 OCI_B_FILE (Binary-File), 
+      OCI_B_CFILE (Character-File), OCI_B_CLOB (Character-LOB), OCI_B_BLOB 
+      (Binary-LOB) 及 OCI_B_ROWID (ROWID) 的类别选项。最後，代替使用预设的 :0,:1 等等名称，你可以使用 $name 
+      来定义你自己的连结名称。</SPAN></P>
+      <P><FONT color=#000000><SPAN>接下来的例子展示3个连结变数，使用 p1,p2及p3来结合。这些变数将会配到 :0 , 
+      :1 及 :2 。</SPAN></FONT></P><PRE><FONT face="Cumberland, monospace"><SPAN>$stmt = $DB-&gt;Prepare("insert into table (col0, col1, col2) values (:0, :1, :2)");</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p1);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p2);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p3);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>for ($i = 0; $i &lt; $max; $i++) { </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>   $p1 = ?; $p2 = ?; $p3 = ?;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>   $DB-&gt;Execute($stmt);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT></PRE>
+      <P><SPAN>你也可以使用名称变数：</SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>$stmt = $DB-&gt;Prepare("insert into table (col0, col1, col2) values (:name0, :name1, :name2)");</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p1, "name0");</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p2, "name1");</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>$DB-&gt;Bind($stmt, $p3, "name2");</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>for ($i = 0; $i &lt; $max; $i++) { </SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>   $p1 = ?; $p2 = ?; $p3 = ?;</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>   $DB-&gt;Execute($stmt);</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT></PRE>
+      <HR>
+
+      <H3><FONT color=#000000><FONT face="Thorndale, serif"><SPAN>ADOConnection 
+      公用函数</SPAN></FONT></FONT></H3>
+      <P><A name=blankrecordset></A><FONT 
+      color=#000000><SPAN><B>BlankRecordSet([$queryid])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>不再使用，本版已移除。</SPAN></FONT></P>
+      <P><A name=Concat></A><FONT 
+      color=#000000><SPAN><B>Concat($s1,$s2,....)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>产生一个结合 $s1,$s2,..等 sql 字串的字串，使用了在 
+      concat_operator 栏位定义的结合运算符号。如果结合运算符号不被使用，那这个函数将无效，例如 MySQL 
+      。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>本函数回传含结合符号的字串。</SPAN></FONT></P>
+      <P><A name=DBDate></A><FONT 
+      color=#000000><SPAN><B>DBDate($date)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>格式化 <B>$date</B> 成资料库可以接收的格式，这可以是一个 Unix 
+      整数时间记录格式或是一个 ISO 格式的 Y-m-d。使用 fmtDate 栏位所定义的格式。如果传入的是 null 或是 false 或是 '' 
+      ，那将会转成一个 SQL 的 null。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传一个日期字串。</SPAN></FONT></P>
+      <P><A name=DBTimeStamp></A><FONT 
+      color=#000000><SPAN><B>DBTimeStamp($ts)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>格式化时间记录格式的 <B>$ts</B> 成资料库可接受的格式。这可以是一个 Unix 
+      整数时间记录格式或是一个 ISO 格式的 Y-m-d。使用 fmtDate 栏位所定义的格式。如果传入的是 null 或是 false 或是 '' 
+      ，那将会转成一个 SQL 的 null。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传一个时间字串。</SPAN></FONT></P>
+      <P><A name=qstr></A><FONT 
+      color=#000000><SPAN><B>qstr($s,[$magic_quotes_enabled</B>=false]<B>)</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>将一个字串放在引号内，以送到资料库中。$<B>magic_quotes_enabled</B> 
+      叁数可能看起来很有趣，但这个想法是假设你已经用一个引号来处理了从 POST/GET 变数取来的字串後，然後以 
+      get_magic_quotes_gpc() 做为第二个叁数。这会确定这个变数不会被引号处理二次，一次被 <I>qstr</I> 处理，一次被 
+      <I>magic_quotes_gqc</I>。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>例如：&nbsp; $s = 
+      $db-&gt;qstr(HTTP_GET_VARS['name'],get_magic_quotes_gpc());</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传值是一个被引号处理过的字串。</SPAN></FONT></P>
+      <P><A name=Affected_Rows></A><FONT color=#000000><SPAN><B>Affected_Rows( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传被SQL指令更新或被删除掉的资料笔数。如果资料库不支援，回传一个 false 
+      值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>目前 interbase/firebird 
+      不支援本函数。</SPAN></FONT></P>
+      <P><A name=Inserted_ID></A><FONT color=#000000><SPAN><B>Insert_ID( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传最後插入时的自动增进值 ID。如果系统不支援，回传 
+      false。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>只支援有提供自动增进或物件 ID 的资料库，目前像是 PostgreSQL, MySQL 
+      以及 MSSQL 都有。PostgreSQL 回传一个 
+      OID，可以在资料库重载入时改变。只有使用持续连结方式，当你完成一笔交易时，这个函数才会有精确的结果。这是因为被 Execute() 
+      宣告的连结可能和下一个 Execute() 时用的连结不同。</SPAN></FONT></P>
+      <P><A name=metadatabases></A><FONT 
+      color=#000000><SPAN><B>MetaDatabases()</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传一个在伺服器中的资料库清单於阵列里。首先你必需连结到伺服器。目前只支援 ODBC, 
+      MySQL 及 ADO。</SPAN></FONT></P>
+      <P><A name=metatables></A><FONT 
+      color=#000000><SPAN><B>MetaTables()</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>回传目前资料库中全部资料表名称於一个阵列中。如果可能，这个阵列将会排除系统目录资料表。</SPAN></FONT></P>
+      <P><A name=metacolumns></A><FONT 
+      color=#000000><SPAN><B>MetaColumns($table)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传一个 ADOFieldObject 的阵列，一个栏位物件对应到一个 $table 
+      的所有行。目前 Sybase 不能辨别资料型别，ADO 不能辨识正确的资料型别(所以我们预设为 
+      varchar)..</SPAN></FONT></P>
+      <P><A name=metacolumnames></A><FONT 
+      color=#000000><SPAN><B>MetaColumnNames($table)</B></SPAN></FONT></P>
+      <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN>回传 $table 
+      的行名於一个阵列中。 </SPAN></FONT></P>
+      <HR>
+
+      <H2><A name=ADORecordSet></A><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>ADORecordSet(资料集)</SPAN></FONT></FONT></H2>
+      <P><FONT color=#000000><SPAN>当一个SQL指令成功的被 
+      ADOConnection-&gt;Execute($sql)执行後，一个 ADORecordSet 
+      物件会被回传回来。这个物件提供了一个虚拟的指标，所以我们可以移动它，从一笔到一笔。也提供一些函数，以取得栏位资讯和栏位类别，并有协助函数去格式化结果，以展示给使用者看。</SPAN></FONT></P>
+      <H3><FONT color=#000000><FONT face="Thorndale, serif"><SPAN>ADORecordSet 
+      属性</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN><B>fields: </B>包含了目前记录的阵列。不是关连式阵列，但它的索引值是从 0 
+      到 栏位数 - 1。请叁考函数 Fields ，这个函数的动作就像是一个关连式阵列。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>dataProvider</B>: 连结资料库的底层机制，正常设定为 
+      <B>native</B> ，除非是使用 <B>odbc</B> 或 <B>ado</B> 。</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000><B>blobSize</B>: 一个 char , string 或者 varchar 
+      object 在被转成 Blob 前的最大长度(Blob 在显示时应该使用 textarea)。其它请叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#metatype">MetaType</A> 
+      函数。</FONT></SPAN></P>
+      <P><FONT color=#000000><SPAN><B>sql</B>: 储存了建立本资料集所使用的 sql 
+      指令。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>canSeek</B>: 如果 Move() 函数有作用，会被设成 true 
+      。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN><B>EOF</B>: 当指标被移动到最後一笔时，这个值会被设定成 true 
+      。</SPAN></FONT></P>
+      <H3><FONT color=#000000><FONT face="Thorndale, serif"><SPAN>ADORecordSet 
+      函数</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN><B>ADORecordSet( )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>建构函数。一般来说你不需要自己呼叫这个函数。</SPAN></FONT></P>
+      <P><A name=GetAssoc></A><FONT 
+      color=#000000><SPAN><B>GetAssoc([$force_array])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果栏位数大於 2 
+      ，那麽从资料集中产生一个关连式阵列。这个阵列是从目前的指标起一直到档尾(EOF)。这个资料集的第一个栏位会成为阵列的索引。如果栏位数刚好是2，当这阵列被每一个键值所建立时，那麽索引会直接对应到值，除非&nbsp; 
+      $force_array 被设成 true 。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>范例：</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>以下是我们资料集的资料：</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>列1: Apple, Fruit, Edible<BR>列2: Cactus, 
+      Plant, Inedible<BR>列3: Rose, Flower, Edible</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>GetAssociation 
+      将会产生一个如下的关联式阵列：</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>Apple =&gt; [Fruit, Edible]<BR>Cactus =&gt; 
+      [Plant, Inedible]<BR>Rose =&gt; [Flower,Edible]</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传值:</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>关连式阵列，错误则传回 false 。</SPAN></FONT></P>
+      <P><A name=GetArray></A><FONT 
+      color=#000000><SPAN><B>GetArray([$number_of_rows])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>从目前指标位置产生一个阵列，索引值从 0 到 $number_of_rows - 1 
+      。如果 $number_of_rows 没有被定义，那会到档尾(EOF)。</SPAN></FONT></P>
+      <P><A name=GetRows></A><FONT 
+      color=#000000><SPAN><B>GetRows([$number_of_rows])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>是 GetArray() 的同义函数，是为了与 Microsoft ADO 
+      相容才有的。</SPAN></FONT></P>
+      <P><A name=GetMenu></A><FONT color=#000000><SPAN><B>GetMenu($name, 
+      [$default_str=''], [$blank1stItem=true], [$multiple_select=false], 
+      [$size=0], [$moreAttr=''])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>建立一个 HTML 选单&nbsp; 
+      (&lt;select&gt;&lt;option&gt;&lt;option&gt;&lt;/select&gt;) 。资料集的第一栏 
+      (fields[0]) 将会作为 &lt;option&gt; 里的显示字串。如果资料集有超过一个以上的栏位，第二栏 (fields[1]) 
+      将设定成回传给WEB伺服器的值(即 value)。选单将被给予 $name 为名称。 </SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果 $default_str 被定义了，那麽如果 $default_str == 
+      fields[0] ， 那麽这个栏位将会被选取。 如果 $blank1stItem 为 true ，那第一个选项将会是空值。$Default_str 
+      在对於可多选清单盒时，可以是一个阵列。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>要产生一个选单区，设定 $size 为一个非 0 值(或者传入 $default_str 
+      为一个阵列)。如果 $multiple_select 为 true ，那麽一个选单区将会被产生成有 $size 个项目可见的选单(如果 $size 
+      ==&nbsp; 0 那预设为 5 个)，而且ADODB将会回传一个阵列给伺服器。最後，你可以使用 $moreAttr 去增加其它的属性，像是 
+      javascript 或样式表。</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>选单范例 1: 
+      <CODE>GetMenu('menu1','A',true)</CODE> 将会产生一个像这样的选单 : A B C 这里的资料 (A,1), 
+      (B,2), (C,3). 请叁考 <A href="http://www.souzz.net/online/adobd.html#ex5">范例 
+      5</A> 。</FONT></SPAN></P>
+      <P><SPAN><FONT color=#000000>选单范例 2: 相同的资料, 
+      <CODE>GetMenu('menu1',array('A','B'),false)</CODE> 将会产生一个 A 及 B 被选取的选单 : A 
+      B C </FONT></SPAN></P>
+      <P><A name=GetMenu2></A><FONT color=#000000><SPAN><B>GetMenu2($name, 
+      [$default_str=''], [$blank1stItem=true], [$multiple_select=false], 
+      [$size=0], [$moreAttr=''])</B></SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>近似於 GetMenu ，除了 $default_str 将会和 fields[1] 
+      做比对</FONT>，<FONT color=#000000>也就是选项值。</FONT></SPAN></P>
+      <P><SPAN><FONT color=#000000>选单范</FONT>例<FONT color=#000000> 3: 给予在范例 2 
+      里的资料 , <CODE>GetMenu2('menu1',array('1','2'),false)</CODE> 
+      将会产生一个选单，A及B将会被选取。然而，这一次的被选取的比对基准是第二个栏位，也就是存放要被回传给伺服器里的值。 
+      </FONT></SPAN></P>
+      <P><A name=UserDate></A><FONT color=#000000><SPAN><B>UserDate($str, 
+      [$fmt])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>转换日期字串 $str 为另一个格式，UserDate 呼叫 UnixDate 来解译 
+      $str ，而 $fmt 预设值是 Y-m-d 。</SPAN></FONT></P>
+      <P><A name=UserTimeStamp></A><FONT 
+      color=#000000><SPAN><B>UserTimeStamp($str, [$fmt])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>转换时间字串 $str 为另一个格式，时间字串格式是 Y-m-d H:i:s ， 像是 
+      "2002-02-28 23:00:12"。UserTimeStamp 呼叫 UnixTimeStamp 来解译 $str ，而 $fmt 预设值为 
+      Y-m-d H:i:s 。</SPAN></FONT></P>
+      <P><A name=unixdate></A><FONT 
+      color=#000000><SPAN><B>UnixDate($str)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>将日期字串 $str 解译，并且转换成 unix mktime 格式(从 
+      1970.01.01 00:00:00 起到现在的秒数)後传回。预设日期是以 Y-m-d H:i:s 格式来传入的。而对於 Sybase 及 
+      Microsoft SQL Server 而言 M d Y 也是可以接受的(三个字元的月份表示法是被一个全域阵列所控制的，这个部份可能需要在地化 
+      )。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>自 1.91 版起，这个函数存在於 ADORecordSet 及 
+      ADOConnection两个地方。</SPAN></FONT></P>
+      <P><A name=unixtimestamp></A><FONT 
+      color=#000000><SPAN><B>UnixTimeStamp($str)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>将时间字串 $str 解译，并且转换成 unix mktime 格式(从 
+      1970.01.01 00:00:00 起到现在的秒数)後传回。预设日期是以 Y-m-d H:i:s 格式来传入的。而对於 Sybase 及 
+      Microsoft SQL Server 而言 M d Y 也是可以接受的(三个字元的月份表示法是被一个全域阵列所控制的，这个部份可能需要在地化 
+      )。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>自 1.91 版起，这个函数存在於 ADORecordSet 及 
+      ADOConnection两个地方。</SPAN></FONT></P>
+      <P><A name=MoveNext></A><FONT color=#000000><SPAN><B>MoveNext( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>移动内部指标到下一笔，<B>fields </B>阵列将会自动的更新。如果不能移动，会回传 
+      false 值，其它情况则会回传 true 。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>范例 ：</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$rs = $db-&gt;Execute($sql);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>if ($rs) </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        while (!$rs-&gt;EOF) {</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>                ProcessArray($rs-&gt;fields);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>                $rs-&gt;MoveNext();</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        } </SPAN></FONT></FONT></PRE>
+      <P><A name=Move></A><FONT 
+      color=#000000><SPAN><B>Move($to)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>移动内部指标到指定的列 ($to) 。 列数是零基的，例如，0是第一列。fields 
+      阵列将会自动更新。对於不支援内部卷动的资料库，ADODB将会自动模拟卷动。部份资料库不支援向後卷动。对大多数的资料库言，如果 $to 的位置在 
+      EOF 之後，$to 将会被移动到资料集的最後一笔。有些无名的资料库使用 odbc 时，可能会没有动作。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>注意：这个函数使用了绝对定址，不像 Microsoft 的 
+      ADO。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传值是 true 或是 false。如果是 false 
+      ，这个内部指标在大多数的实际运作上并没有移动，所以 AbsolutePosition() 将会回传指标在执行 Move() 
+      之前最後的位置</SPAN></FONT></P>
+      <P><A name=MoveFirst></A><FONT 
+      color=#000000><SPAN><B>MoveFirst()</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>实际上是呼叫 Move(0) 
+      。注意，有一些资料库并不支援这个函数。</SPAN></FONT></P>
+      <P><A name=MoveLast></A><FONT 
+      color=#000000><SPAN><B>MoveLast()</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>实际上是呼叫 Move(RecordCount() - 
+      1)。注意，有一些资料库并不支援这个函数。</SPAN></FONT></P>
+      <P><A name=getrowassoc></A><FONT 
+      color=#000000><SPAN><B>GetRowAssoc</B>($toUpper=true)</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>这个函数并不能持续的以理想的方式维持关连阵列的内容(每换一笔记录，就要重新执行一次)。使用 
+      <A 
+      href="http://www.souzz.net/online/adobd.html#adodb_fetch_mode">$ADODB_FETCH_MODE</A> 
+      共用变数来替代它。</FONT></SPAN></P>
+      <P><FONT 
+      color=#000000><SPAN>回传一个包含了目前记录的关连式阵列，阵列的索引值就是栏位名。栏位名全都是大写的，以便存取。要取得下一笔记录，你要呼叫 
+      MoveNext() 。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>范例 :<BR>Array ( [ID] =&gt; 1 [FIRSTNAME] 
+      =&gt; Caroline [LASTNAME] =&gt; Miranda [CREATED] =&gt; 2001-07-05 
+      )</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>注意：不要同时使用 GetRowAssoc() 和 $ADODB_FETCH_MODE = 
+      ADODB_FETCH_ASSOC 。因为他们有相同的功能，会彼此交互干扰。</SPAN></FONT></P>
+      <P><A name=absolutepage></A><FONT 
+      color=#000000><SPAN><B>AbsolutePage($page=-1)</B></SPAN></FONT></P>
+      <P><SPAN>回传目前的页码，需要先呼叫 PageExecute() / CachePageExecute() 。叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#ex8">Example 8</A> 
+      。</SPAN></P>
+      <P><A name=AtFirstPage></A><FONT 
+      color=#000000><SPAN><B>AtFirstPage($status='')</B></SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>如果在第一页，回传 true (1基式)，需要先呼叫 PageExecute() / 
+      CachePageExecute() 。叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#ex8">Example 8</A> 
+      。</FONT></SPAN></P>
+      <P><A name=AtLastPage></A><FONT 
+      color=#000000><SPAN><B>AtLastPage($status='')</B></SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>如果在最後一页，回传 true (1基式)，需要先呼叫 PageExecute() / 
+      CachePageExecute() 。叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#ex8">Example 8</A> 
+      。</FONT></SPAN></P>
+      <P><A name=fields></A><FONT 
+      color=#000000><SPAN><B>Fields</B>(<B>$colname</B>)</SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>不鼓励使用，请改以 <A 
+      href="http://www.souzz.net/online/adobd.html#adodb_fetch_mode">$ADODB_FETCH_MODE</A> 
+      取代。</FONT></SPAN></P>
+      <P><FONT color=#000000><SPAN>当使用原生函数库时，有些资料库函数回传具名及索引双阵列(如 
+      MySQL)。GetRowAssoc() 并不回传结合了具名及索引的阵列元素。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>本函数回传由 $colname 
+      所指栏名，在目前记录里的的栏位值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>栏位名区分大小写。</SPAN></FONT></P>
+      <P><A name=fetchrow></A><FONT 
+      color=#000000><SPAN><B>FetchRow</B>()</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传目前记录内容的阵列，如果是档尾(EOF)，回传 false 。注意：不要把 
+      FetchRow 和 MoveNext() 混用。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>用法 :</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$rs = $db-&gt;Execute($sql);</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>if ($rs)</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        while ($arr = $rs-&gt;FetchRow()) {</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>           # process $arr</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        }</SPAN></FONT></FONT></PRE>
+      <P><A name=fetchinto></A><FONT 
+      color=#000000><SPAN><B>FetchInto</B>(<B>&amp;$array</B>)</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>设定 $array 到目前的记录里。如果在档尾(EOF)，回传 PEAR_Error 
+      物件。如果成功，回传 1 (DB_OK 常数)。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>如果 PEAR 未定义，当 EOF 时回传 false 。FetchRow() 
+      很容易使用，请叁考之前的例子。</SPAN></FONT></P>
+      <P><A name=FetchField></A><FONT 
+      color=#000000><SPAN><B>FetchField($column_number)</B></SPAN></FONT></P>
+      <P><SPAN><FONT color=#000000>回传一个物件，包含了所指栏位的名称，类别及最大长度。如果最大长度不能被明确决定，将会回传 
+      -1 。 行号是以 0 基为计算起点的，请叁考 <A 
+      href="http://www.souzz.net/online/adobd.html#ex2">范例 2</A> 
+      。</FONT></SPAN></P>
+      <P><A name=FieldCount></A><FONT color=#000000><SPAN><B>FieldCount( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传资料集里栏位数。</SPAN></FONT></P>
+      <P><A name=RecordCount></A><FONT color=#000000><SPAN><B>RecordCount( 
+      )</B></SPAN></FONT></P>
+      <P><FONT 
+      color=#000000><SPAN>回传资料集里的记录笔数。如果无法从资料库驱动程式API里取得正确的数字，ADODB将会把所有的记录内容，存放在记忆体里，等全部取完後，再回传记录总笔数。这个记忆体可以藉由设定全域变数 
+      $ADODB_COUNTERECS = false 而被取消(基於执行效能的理由)。当取消後，对某些资料库，RecordCount() 将会回传 
+      -1 。相关支援状况，请叁考前面的资料库支援表有详细的说明。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>RowCount 和 RecordCount 
+      是同义函数。</SPAN></FONT></P>
+      <P><A name=po_recordcount></A><FONT 
+      color=#000000><SPAN><B>PO_RecordCount($table, 
+$where)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传在资料集里的记录笔数。如果资料库不支援，那麽将回传对 $table 资料表下达以 
+      $where 为条件的 SELECT COUNT(*) 指令後回传的值。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>$numrows = 
+      $rs-&gt;PO_RecordCount("articles_table", 
+"group=$group");</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>会回传资料库执行 SELECT COUNT(*) FROM articles_table 
+      WHERE group=$group 的结果。</SPAN></FONT></P>
+      <P><A name=FetchObject></A><FONT 
+      color=#000000><SPAN><B>FetchObject($toupper=true)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传目前的记录为一个物件。如果 $toupper 为 true 
+      ，那麽物件栏位名将会设为大写。注意：较新的 FetchNextObject() 
+      是取得记录物件较被建议的方式，请叁看後续说明。</SPAN></FONT></P>
+      <P><A name=FetchNextObject></A><FONT 
+      color=#000000><SPAN><B>FetchNextObject($toupper=true)</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>取得目前的记录成一个物件，并且自动移动到下一个记录。如果在档尾，回传 false 。如果 
+      $toupper 为 true ，那麽物件栏位名将会设为大写。</SPAN></FONT></P><PRE><FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$rs = $db-&gt;Execute('select firstname,lastname from table');</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>if ($rs) {</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        while ($o = $rs-&gt;FetchNextObject()) {</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>                print "$o-&gt;FIRSTNAME, $o-&gt;LASTNAME&lt;BR&gt;";</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>        }</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>}</SPAN></FONT></FONT></PRE>
+      <P><FONT color=#000000><SPAN>在使用 FetchNextObject() 时会影响效能，如果效能很重要，你应该使用 
+      fields[] 阵列来存取。 </SPAN></FONT></P>
+      <P><A name=CurrentRow></A><FONT color=#000000><SPAN><B>CurrentRow( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>目传目前资料集的记录编号，0 表示是第一笔。</SPAN></FONT></P>
+      <P><A name=abspos></A><FONT color=#000000><SPAN><B>AbsolutePosition( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>和 CurrentRow 是相同的函数，是为了和 ADO 
+      相容而存在的。</SPAN></FONT></P>
+      <P><A name=MetaType></A><FONT 
+      color=#000000><SPAN><B>MetaType($nativeDBType[,$field_max_length],[$fieldobj])</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>设定资生资料库里的原生型别 $<B>nativeDBType 
+      </B>为那一种通用资料型别，以及它的最大长度。请注意，如果长度未知，可以设为 -1 。栏位物件可以使用 <B>$fieldobj</B> 
+      传入。这对於像是 mysql 这一类栏位物件有较多属性的资料库来说，是很有用的。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>使用栏位 <B>blobsize</B> 及比较 
+      <B>$field_max_length</B> 去决定目前的栏位是否为 blob 。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>回传值:</SPAN></FONT></P>
+      <UL>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>C</B>:&nbsp; 
+        character 栏位，应该使用 &lt;input type="text"&gt; 标记来取值。 </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>X</B>: 
+        文字栏位(Text) , 长文字栏位，使用 &lt;textarea&gt; 标记来显示资料。 </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>B</B>: Blob 
+        栏位或者大型的二位元物件(像程式,图档等)。 </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>D</B>: 日期栏位 
+        </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>T</B>: 时间栏位 
+        </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>L</B>: 
+        逻辑栏位(真假值)或位元栏位 </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>N</B>: 
+        数字栏位，包含自动进位、编号、整数、浮点数、实数等。 </SPAN></FONT></P>
+        <LI>
+        <P style="MARGIN-BOTTOM: 0cm"><FONT color=#000000><SPAN><B>I</B>: 整数栏位 
+        </SPAN></FONT></P>
+        <LI>
+        <P><FONT color=#000000><SPAN><B>R</B>: 序列栏位，包含了序列、自动增进整数，只对被选择的资料库作用。 
+        </SPAN></FONT></P></LI></UL>
+      <P><A name=rsclose></A><FONT color=#000000><SPAN><B>Close( 
+      )</B></SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>关闭目前的资料集。</SPAN></FONT></P>
+      <HR>
+
+      <H3><A name=rs2html></A><FONT color=#000000><FONT 
+      face="Thorndale, serif"><SPAN>function 
+      rs2html($adorecordset,[$tableheader_attributes], 
+      [$col_titles])</SPAN></FONT></FONT></H3>
+      <P><FONT color=#000000><SPAN>这是一个独立的函数 (rs2heml = recordset to html) ，相当於 
+      PHP 中的 odbc_result_all 函数。本函数会输出一整个 ADORecordSet，$<B>adorecordset</B> 如同一个 
+      HTML表格。$<B>tableheader_attributes</B> 允许你控制表格里的叁数如 cellpadding，cellspacing 
+      及 border 等的属性。最後，你可以透过 $<B>col_titles</B> 
+      阵列，更换资料库栏位名称，使用你自己的栏位抬头。这是设计用来快速除错的机制，不是一个好的表格记录浏览器。</SPAN></FONT></P>
+      <P><FONT color=#000000><SPAN>要使用这个函数，你必需引入 tohtml.inc.php 
+      。</SPAN></FONT></P>
+      <P><A name=exrs2html></A><FONT color=#000000><SPAN>rs2html 
+      范例:</SPAN></FONT></P><PRE><FONT color=#336600><FONT face="Cumberland, monospace"><SPAN><B>&lt;?</B></SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B><FONT color=#336600>include('tohtml.inc.php')</FONT></B>; # load code common to ADOdb </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B>include</B>('ADOdb.inc.php'); # load code common to ADOdb </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT> = &amp;ADONewConnection('mysql');   # create a connection </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>conn</FONT>-&gt;PConnect('localhost','userid','','agora');# connect to MySQL, agora db</SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>sql</FONT> = 'select CustomerName, CustomerID from customers'; </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN>$<FONT color=#663300>rs</FONT>   = $<FONT color=#663300>conn</FONT>-&gt;Execute($sql); </SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B><FONT color=#336600>rs2html</FONT>($<FONT color=#663300>rs</FONT>,'<I>border=2 cellpadding=3</I>',array('<I>Customer Name','Customer ID</I>'));</B></SPAN></FONT></FONT>
+<FONT color=#000000><FONT face="Cumberland, monospace"><SPAN><B>?&gt;</B></SPAN></FONT></FONT></PRE></TD></TR>
+  <TR>
+    <TD colSpan=10>
+      <HR color=#ffcccc SIZE=2>
+
+      <P><A name=02></A><SPAN>感谢<BR>------------------ </SPAN></P><PRE><FONT face="Cumberland, monospace"><SPAN>PHP ADODB 1.99版手册中文翻译</SPAN></FONT>
+<FONT face="Cumberland, monospace"><SPAN>Tripc &lt;tripc.tw@yahoo.com.tw&gt;</SPAN></FONT>
+</PRE>
+      <P><BR></P></TD></TR></TBODY></TABLE></CENTER>
+<P><BR><BR></P></BODY></HTML>

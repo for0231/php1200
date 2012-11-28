@@ -1,0 +1,111 @@
+TD {
+	FONT-SIZE: 9pt; COLOR: #000000
+}
+A:hover {
+	FONT-SIZE: 9pt; COLOR: #ff6600
+}
+A {
+	FONT-SIZE: 9pt; COLOR: #676767; TEXT-DECORATION: none
+}
+
+
+.a2:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:hover {
+	COLOR: red;
+}
+
+
+.a3:link {
+	COLOR: #FF6600; TEXT-DECORATION: none
+}
+.a3:visited {
+	COLOR: #FF6600; TEXT-DECORATION: none
+}
+.a3:active {
+	COLOR: #FF6600; TEXT-DECORATION: none
+}
+.a3:hover {
+	COLOR: red;
+}
+
+
+
+
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.img1 {
+	BORDER-RIGHT: 1px; BORDER-TOP: 1px; BORDER-LEFT: 1px; BORDER-BOTTOM: 1px
+}
+.blue {
+	FONT-SIZE: 9pt; COLOR: #034683
+}
+.bgcolor {
+	FONT-SIZE: 9pt; COLOR: #1980db
+}
+.btn_grey {
+	BORDER-RIGHT: #666666 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 9pt; PADDING-BOTTOM: 1px; BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: #333333; PADDING-TOP: 1px; BORDER-BOTTOM: #666666 1px solid; FONT-FAMILY: "ËÎÌו"; HEIGHT: 19px; BACKGROUND-COLOR: #eeeeee
+}
+.txt_grey {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #999999 1px solid; COLOR: #333333; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: "ËÎÌו"
+}
+.word_grey {
+	COLOR: #cfeafd
+}
+.word_deepgrey {
+	COLOR: #999999
+}
+.word_orange {
+	COLOR: #ff6600
+}
+.word_blue {
+	COLOR: #123f73
+}
+.word_white {
+	COLOR: #ffffff
+}
+.word_gray {
+	COLOR: #dddddd
+}
+BODY {
+	COLOR: #D9D8D8
+}
+.textarea {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #999999 1px solid; COLOR: #333333; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: "ËÎÌו"
+}
+.shadow {
+	FONT-SIZE: 13pt; FILTER: DropShadow(Color=#111111,offX=1,offY=0,positive=1); COLOR: #ff9900; HEIGHT: 10px
+}
+.shadow_1 {
+	FONT-SIZE: 11pt; FILTER: DropShadow(Color=#111111,offX=1,offY=2,positive=1); COLOR: #ffc000; HEIGHT: 10px
+}
+.shadow_2 {
+	FONT-SIZE: 9pt; FILTER: DropShadow(Color=#DDDDDD,offX=1,offY=1,positive=1); COLOR: #ff8700; HEIGHT: 10px
+}
+.shadow_3 {
+	FONT-SIZE: 13px; FILTER: DropShadow(Color=#aaaaaa,offX=1,offY=1,positive=1); COLOR: #ff9900; HEIGHT: 10px
+}
+.tableBorder {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BORDER-LEFT: #aaaaaa 1px solid; BORDER-BOTTOM: #aaaaaa 1px solid
+}
+.hidden_a_line {
+	
+}
+.a4 {
+	color: #327389;
+	font-size: 13px;
+	font-weight: bold;
+}
+.a5 {
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+}

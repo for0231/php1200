@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php 
+            echo $this->headMeta()->setHttpEquiv('content-type', 'text/html; charset=utf-8')
+                                  ->setHttpEquiv('keywords', $this->escape($this->keywords))
+                                  ->setHttpEquiv('description', $this->escape($this->description));
+        ?>
+        <?php echo $this->headTitle($this->escape($this->title))?>
+        <?php echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'))?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('/js/jquery.js'));?>           
+        <style type="text/css">
+            .body                        {width:100%; height:100%; margin:0px; padding:0px; background-color:#E7F6FB; }              
+            .dh                          {width:128px; border:1px solid #FFFFFF; background-color:#F7FBFE; clear:both;} 
+            .dh .btn                     {width:128px; height:30px; line-height:30px; font-size:12px; color:#FFFFFF; text-align:left; cursor:pointer; font-weight:bold; background:url(<?php echo $this->baseUrl('/img/admin/btn_bg1.jpg')?>); clear:both;}
+            .dh .list                    {width:100%;  clear:both;}
+            
+        </style>
+        
+    </head>
+    <body class="body">
+        <div class="cell_h"></div>
+        <div class="dh">
+            <div id="btn_2" class="btn">
+　　用户信息管理
+            </div>
+            <div id="list_2" class="list">
+                <ul>
+                    <li style="width:100%; height:20px; line-height:20px; color:#0257AE; text-align:left; clear:both;">　|-&nbsp;&nbsp;<a href="<?php echo $this->baseUrl('/admin/user/list/lt/0/page/1')?>" target="mainFrame" class="a3">用户信息管理</a></li>
+                    <li style="width:100%; height:20px; line-height:20px; color:#0257AE; text-align:left; clear:both;">　|-&nbsp;&nbsp;<a href="<?php echo $this->baseUrl('/admin/user/search')?>" target="mainFrame" class="a3">用户信息查询</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        
+
+        
+    </body>    
+</html>
+
+

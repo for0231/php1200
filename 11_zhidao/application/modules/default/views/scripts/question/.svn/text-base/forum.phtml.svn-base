@@ -1,0 +1,166 @@
+<style type="text/css">
+    .bbs_forum_nav                                                {width:96%; height:30px; line-height:30px; text-align:left; color:#006699; clear:both;}
+    .bbs_forum_title                                              {width:96%; height:22px; clear:both;}
+    .bbs_forum_description                                        {width:96%; height:22px; clear:both;}  
+    .bbs_forum_description .left                                  {width:500px; height:22px; line-height:22px; text-align:left; color:#939393; float:left;}  
+    .bbs_forum_description .right                                 {height:22px; line-height:22px; text-align:left; color:#939393; float:right;} 
+    
+    .bbs_forum_admin                                              {width:96%; height:22px; line-height:22px; text-align:left; clear:both;}    
+   
+    .bbs_forum_pagenav                                            {width:96%; height:29px; clear:both;}
+    .bbs_forum_pagenav .left                                      {width:600px; height:29px; float:left;}
+    .bbs_forum_pagenav .right                                     {width:330px; height:25px; !height:29px; padding-top:4px; float:right;}
+    .bbs_forum_pagenav .right .nav                                {float:right;}
+
+   
+    .bbs_forum_main                                               {width:96%; border-top:1px solid #9DB3C5; border-left:1px solid #9DB3C5; border-right:1px solid #9DB3C5; background-color:#F5FAFE; clear:both;}
+    .bbs_forum_main .title                                        {margin:1px; height:30px; line-height:30px; font-weight:bold; text-align:left; color:#FFFFFF; background:url(<?php echo $this->baseUrl('/img/bbs_title_bg1.gif')?>); clear:both; }
+    
+    .bbs_forum_main .table                                        {width:100%; border-collapse:collapse; clear:both;}     
+    .bbs_forum_main .table .titlePart1                            {width:6%; height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart2                            {width:57%; height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart3                            {width:6%; height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart4                            {width:10%; height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart5                            {width:10%; height:16px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart6                            {width:10%; height:16px; text-align:right; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .titlePart7                            {width:1%; height:16px; border-bottom:1px solid #9DB3C5;}
+    
+    .bbs_forum_main .table .contentPart1                          {width:6%; height:35px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart2                          {width:57%; height:35px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart3                          {width:6%; height:35px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart4                          {width:10%; height:35px; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart5                          {width:10%; height:35px; font-size:15px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart6                          {width:10%; height:35px; text-align:right; border-bottom:1px solid #9DB3C5;}
+    .bbs_forum_main .table .contentPart7                          {width:1%; height:35px; border-bottom:1px solid #9DB3C5;}
+   
+    .bbs_forum_titlemark                                          {width:400px; height:35px; line-height:35px;  background-color:#F5FAFE; border:1px solid #9DB3C5; clear:both;}
+       
+    .bbs_forum_title .li1                                         {width:650px; height:22px; line-height:22px; text-align:left; float:left;}
+    .bbs_forum_title .li2                                         {width:200px; height:22px; line-height:22px; float:right;}
+    
+    .bbs_forum_pagenav .left .li1                                 {width:73px; height:29px; line-height:29px; font-weight:bold; cursor:pointer; background:url(<?php echo $this->baseUrl('/img/bbs_btn_bg1.gif') ?>); float:left;}
+    .bbs_forum_pagenav .left .li2                                 {width:500px; height:29px; line-height:29px; font-size:13px; text-align:left; float:right;}
+
+    .bbs_forum_pagenav .right .li1                                {width:158px; !width:160px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; border:1px solid #006699;}
+    .bbs_forum_pagenav .right .li2                                {width:20px; !width:22px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; border:1px solid #006699; cursor:pointer;}
+    .bbs_forum_pagenav .right .li2_current                        {width:20px; !width:22px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; border:1px solid #006699; background-color:#006699; cursor:pointer;}
+    .bbs_forum_pagenav .right .li3                                {width:33px; !width:35px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; border:1px solid #006699; cursor:pointer;}
+    .bbs_forum_pagenav .right .li_cell                            {width:3px; !width:5px; height:20px; !height:22px; float:left;}
+
+      
+</style>
+<div class="bbs_forum_nav">
+    <a href="<?php echo $this->baseUrl('/')?>" target="_blank" class="a14"><strong><?php echo $this->escape($this->config['default']['title']) ?></strong></a>　»　<a href="<?php echo $this->baseUrl('/question/forum-' . $this->type['tid'])?>" target="_blank" class="a3"><?php echo $this->escape($this->type['typename'])?></a>
+</div>
+<div class="bbs_forum_title">
+    <ul>
+        <li class="li1">
+            <a href="<?php echo $this->baseUrl('/question/forum-' . $this->type['tid'])?>" target="_blank" class="a1"><strong><?php echo $this->escape($this->type['typename'])?></strong></a>　[&nbsp;问题：<font style="color:#FF0000; font-weight:bold;"><?php echo $this->type['totaltitle']?></font>&nbsp;/&nbsp;回答：<?php echo $this->type['totalreply']?>&nbsp;]　<img src="<?php echo $this->baseUrl('/img/mark_jh.gif')?>" align="absmiddle" />&nbsp;<a href="<?php echo $this->baseUrl('/question/forum-'.$this->type['tid'].'-1-5')?>" class="a8">精华</a>
+        </li>
+        <li class="li2"></li>
+    </ul>
+</div>
+<div class="bbs_forum_description">
+    <div class="left">
+版块介绍：<?php echo $this->escape($this->type['description'])?>
+    </div>
+    <div class="right">
+       查看：<?php echo $this->formSelect('viewtype', $this->listType, array('onchange'=>'changeViewtype()'), array('1'=>'最新在前', '2'=>'热门在前', '3'=>'回答次数', '4'=>'最新回答', '5'=>'精华问题', '6'=>'热门问题', '7'=>'置顶问题'))?>&nbsp; 导航：<?php echo $this->formSelect('typenav', $this->type['tid'], array('onchange'=>'changeForum()'), $this->arrayTypes)?>
+    </div>
+</div>
+<div class="bbs_forum_admin">
+版主：
+</div>
+<div class="cell_h"></div>
+<div class="bbs_forum_pagenav">
+    <div class="left">
+        <ul>
+            <li class="li1"><a href="<?php if($this->isLogin==true):?><?php echo $this->baseUrl('/question/pubtitle/bbstypeid/' . $this->type['tid'])?><?php else:?><?php echo $this->baseUrl('/user/unlogin/tourl/question-pubtitle-bbstypeid-' . $this->type['tid'])?><?php endif;?>" class="a2">提　问</a></li>
+            <li class="li2">您可以<a href="<?php echo $this->baseUrl('/user/register')?>" target="_blank" class="a14">注册</a>一个账户，并以此<a href="<?php echo $this->baseUrl('/user/login')?>" target="_blank" class="a14">登录</a>，以便参与本站更多活动，以大家交流。</li>
+        </ul>
+    </div>
+    <div class="right">
+        <div class="nav">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding' ,'forumPaginationControl.phtml', array('typeid'=>$this->type['tid'], 'listType' => $this->listType))?>
+        </div>   
+    </div>    
+</div>
+<div class="cell_h"></div>
+<div class="bbs_forum_main">
+    <div class="title">
+    　　<?php echo $this->escape($this->type['typename'])?>
+    </div>
+    <table class="table">
+        <tr>
+            <td class="titlePart1"></td>
+            <td class="titlePart2">标题</td>
+            <td class="titlePart3"></td>
+            <td class="titlePart4">作者</td>
+            <td class="titlePart5">回答/查看</td>
+            <td class="titlePart6">最后回答</td>
+            <td class="titlePart7"></td>
+         </tr> 
+        <?php foreach ($this->paginator as $title):?>
+        <tr id="title_row_<?php echo $title['tid']?>" onmouseover="changeRowColor('title_row_<?php echo $title['tid']?>', 0)" onmouseout="changeRowColor('title_row_<?php echo $title['tid']?>', 1)">
+            <td class="contentPart1"><?php echo $this->titleMark(array('istop'=>$title['istop'], 'addtime'=>$title['addtime'], 'browse'=>$title['browse']), $this->baseUrl())?></td>
+            <td class="contentPart2"><a href="<?php echo $this->baseUrl('/question/thread-'.$title['tid'])?>" target="_blank" class="a1"><?php echo $this->escape($title['title'])?></a><?php if(trim($title['filename'])!=''):?>&nbsp;&nbsp;<img src="<?php echo $this->baseUrl('/img/mark_extendsfile.gif')?>" align="absmiddle" title="附件"/><?php endif;?>&nbsp;&nbsp;<?php echo $this->replyPaginator($title['replytimes'], $this->config['bbs']['threadPageSize'], $title['tid'], $this->baseUrl())?></td>
+            <td class="contentPart3"><?php if($title['isjh']==true):?><img src="<?php echo $this->baseUrl('/img/mark_jh.gif')?>" title="精华问题"/><?php endif;?></td>
+            <td class="contentPart4"><a href="" class="a1"><?php echo $this->escape($title['writerNetname'])?></a><br /><font style="font-size:10px; color:#999999;"><?php echo substr($title['addtime'], 2, 14)?></font></td>
+            <td class="contentPart5"><font style="color:#3899D5;"><?php echo $title['replytimes']?></font>/<?php echo $title['browse']?></td>
+            <td class="contentPart6"><?php if($title['lastreplyuserNetname']==null):?>暂无回答<?php else:?><a href="" class="a1"><?php echo $this->escape($title['lastreplyuserNetname'])?></a><br /><font style="font-size:10px; color:#999999;"><?php echo substr($title['lastreplytime'], 2, 14)?></font><?php endif;?></td>
+            <td class="contentPart7"></td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+<div class="cell_h"></div>
+<div class="bbs_forum_pagenav">
+    <div class="left">
+        <ul>
+            <li class="li1"><a href="<?php if($this->isLogin==true):?><?php echo $this->baseUrl('/question/pubtitle/bbstypeid/' . $this->type['tid'])?><?php else:?><?php echo $this->baseUrl('/user/unlogin/tourl/question-pubtitle-bbstypeid-' . $this->type['tid'])?><?php endif;?>" class="a2">提　问</a></li>
+            <li class="li2">您可以<a href="<?php echo $this->baseUrl('/user/register')?>" target="_blank" class="a14">注册</a>一个账户，并以此<a href="<?php echo $this->baseUrl('/user/login')?>" target="_blank" class="a14">登录</a>，以便参与本站更多活动，以大家交流。</li>
+        </ul>
+    </div>
+    <div class="right">
+        <div class="nav">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding' ,'forumPaginationControl.phtml', array('typeid'=>$this->type['tid'], 'listType' => $this->listType))?>
+        </div>
+    </div>    
+</div>
+<div class="cell_h"></div>
+<div class="bbs_forum_titlemark">
+    <img src="<?php echo $this->baseUrl('/img/mark_title_simple.gif')?>" style="vertical-align:middle; " />&nbsp;普通问题　　<img src="<?php echo $this->baseUrl('/img/mark_title_new.gif')?>" style="vertical-align:middle;" />&nbsp;最新问题　　<img src="<?php echo $this->baseUrl('/img/mark_title_hot.gif')?>" style="vertical-align:middle;" />&nbsp;热门问题　　<img src="<?php echo $this->baseUrl('/img/mark_title_top.gif')?>" style="vertical-align:middle;" />&nbsp;置顶问题
+</div>
+
+
+
+
+
+
+
+<script language="javascript">
+    //
+    function changeRowColor(x, y)
+    {
+        if(y==0){
+            $("#"+x).css("background-color", "#FFFFFF");
+        }else{
+        	$("#"+x).css("background-color", "#F5FAFE");
+        }
+    }
+
+    //
+    function changeViewtype()
+    {
+        window.location.href="<?php echo $this->baseUrl('/question/forum-'.$this->type['tid'].'-1-"+$("#viewtype").val()+"')?>"; 
+    }
+    //
+    function changeForum()
+    {
+        if(parseInt($("#typenav").val()) < 0){
+            alert('请直接选择子类别！');
+        }else{
+        	window.location.href="<?php echo $this->baseUrl('/question/forum-"+$("#typenav").val()+"-1-1')?>"; 
+        }
+    }   
+</script>

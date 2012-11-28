@@ -1,0 +1,53 @@
+<style type="text/css">
+
+    .login_top                                                                   {width:769px; height:26px; background:url(<?php echo $this->baseUrl('/img/login_top_bg.gif')?>); clear:both;}
+    .login_center                                                                {width:769px; height:250px; background:url(<?php echo $this->baseUrl('/img/login_center_bg.gif')?>); clear:both;}
+    .login_error                                                                 {width:769px; background:url(<?php echo $this->baseUrl('/img/login_center_bg.gif')?>); clear:both;}
+    .login_error .msg                                                            {width:80%; text-align:left; line-height:20px; font-size:14px; color:#067F06; border:1px solid #FF6600; background-color:#FDF5EF; clear:both; }
+    .login_center .left                                                          {width:380px; height:250px; float:left;}
+    　
+    .login_center .center                                                        {width:8px; height:250px; background:url(<?php echo $this->baseUrl('/img/login_line_v.gif')?>); float:left;}
+    .login_center .right                                                         {width:370px; height:250px; float:right;}
+    
+    
+    
+    .login_bottom                                                                {width:769px; height:35px; background:url(<?php echo $this->baseUrl('/img/login_bottom_bg.gif')?>); clear:both;}
+
+    .login_center .right .zend_form                                              {width:250px; margin:0px; padding:0px; text-align:left; clear:both}
+    .login_center .right  .required                                              {color:#006600; font-size:13px; clear:both;}    
+    .login_center .right zend_form dt                                            {width:250px; height:20px; line-height:20px; text-align:left; clear:both;}                                        
+    .login_center .right .zend_form dd                                           {width:250px; height:40px; position:relative; text-align:left; clear:both;}
+    .login_center .right .zend_form dd .errors                                   {position:absolute; left:35px; top:25px; color:#FF0000; clear:both;}
+ 
+</style>
+<div class="cell_h"></div>
+<div class="login_top"></div>
+<?php if(trim($this->message)!=''):?>
+<div class="login_error">
+    <div class="msg">
+        <?php echo $this->message?>
+    </div>
+    <div class="cell_h"></div>
+</div>
+<?php endif;?>
+<div class="login_center">
+    <div class="left">
+        <img src="<?php echo $this->baseUrl('/img/login_center_mark.gif')?>" />
+    </div>
+    <div class="center"></div>
+    <div class="right">
+        <?php echo $this->loginForm?><br /><a href="<?php echo $this->baseUrl('/user/register')?>" class="a5">没有注册，立即注册!</a>
+    </div>
+</div>
+<div class="login_bottom"></div>
+
+
+
+<script language="javascript">
+
+function changeValidateCode(){
+    $("#vcodeImg").attr("src", "<?php echo $this->baseUrl('/common/vcode/rand/"+Math.random()+"')?>");
+}
+
+
+</script>

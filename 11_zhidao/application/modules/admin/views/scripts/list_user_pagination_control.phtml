@@ -1,0 +1,20 @@
+<div style="width:280px; height:20px; line-height:20px; color:#0257AE; font-weight:bold; text-align:center; border:1px solid #92C7ED; background-color:#FAFEFF; margin-right:8px; float:left;">
+每页&nbsp;<font style="color:#999999; font-family:Arial; font-size:12px;"><?php echo $this->itemCountPerPage?></font>&nbsp;条/共&nbsp;<font style="color:#999999; font-family:Arial; font-size:12px;"><?php echo $this->totalItemCount?></font>&nbsp;条　第&nbsp;<font style="color:#999999; font-family:Arial; font-size:12px;"><?php echo $this->current?></font>&nbsp;页/共&nbsp;<font style="color:#999999; font-family:Arial; font-size:12px;"><?php echo $this->pageCount?></font>&nbsp;页
+</div>
+<?php if($this->totalItemCount > 0):?>
+    <?php if($this->current > 1):?>
+    <div style="width:40px; height:20px; line-height:20px; border:1px solid #92C7ED; background-color:<?php if($this->current==1):?>#1A75D2;<?php else:?>#FAFEFF;<?php endif;?> font-weight:bold; float:left; margin-right:8px;">
+        <a href="<?php echo $this->baseUrl('/admin/user/list/lt/'.$this->lt.'/page/1')?>" class="<?php if($this->current==1):?>a4<?php else:?>a3<?php endif;?>">首页</a>
+    </div>
+    <?php endif;?>
+    <?php foreach ($this->pagesInRange as $page):?>
+    <div style="width:20px; height:20px; line-height:20px; border:1px solid #92C7ED; background-color:<?php if($this->current==$page):?>#1A75D2;<?php else:?>#FAFEFF;<?php endif;?> font-family:Arial; font-style:italic; font-weight:bold; float:left; margin-right:8px;">
+        <a href="<?php echo $this->baseUrl('/admin/user/list/lt/'.$this->lt.'/page/'.$page)?>" class="<?php if($this->current==$page):?>a4<?php else:?>a3<?php endif;?>"><?php echo $page?></a>
+    </div>
+    <?php endforeach;?>
+    <?php if($this->pageCount > $this->pageRange && $this->pageCount!=$this->current):?>
+    <div style="width:40px; height:20px; line-height:20px; border:1px solid #92C7ED; background-color:<?php if($this->current==$this->last):?>#1A75D2;<?php else:?>#FAFEFF;<?php endif;?> font-weight:bold; float:left; margin-right:8px;">
+        <a href="<?php echo $this->baseUrl('/admin/user/list/lt/'.$this->lt.'/page/'.$this->last)?>" class="<?php if($this->current==$this->last):?>a4<?php else:?>a3<?php endif;?>">尾页</a>
+    </div>
+    <?php endif;?>
+<?php endif;?>    

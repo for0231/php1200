@@ -1,0 +1,28 @@
+ #searchtxt {
+	background-color: #FFFFCC;
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+	width: 175px;
+	border: 1px solid #FFFFCC;
+}
+ #s_search {
+	background-attachment: fixed;
+	background: url(../images/default_04.gif);
+	background-repeat: no-repeat;
+	margin: 0px;
+	padding: 0px;
+	height: 23px;
+	width: 74px;
+	border: 1px dashed #000000;
+}
+ #h_search {
+	background-attachment: fixed;
+	background: url(../images/default_06.gif);
+	background-repeat: no-repeat;
+	margin: 0px;
+	padding: 0px;
+	height: 23px;
+	width: 73px;
+	border: 1px dashed #000000;
+}

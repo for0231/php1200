@@ -1,0 +1,30 @@
+
+<style type="text/css">
+
+    .unlogin_top                                                                   {width:769px; height:26px; background:url(<?php echo $this->baseUrl('/img/login_top_bg.gif')?>); clear:both;}
+    .unlogin_center                                                                {width:769px; height:110px; background:url(<?php echo $this->baseUrl('/img/login_center_bg.gif')?>); clear:both;}
+    
+    .unlogin_center .left                                                          {width:280px; height:110px; float:left;}
+    　
+    .unlogin_center .center                                                        {width:8px; height:110px; border:1px solid #FFFFFF; font-size:12px; background:url(<?php echo $this->baseUrl('/img/login_line_v1.gif')?>); float:left;}
+    .unlogin_center .right                                                         {width:460px; height:110px; font-size:14px; float:right;}
+    
+    
+    
+    .unlogin_bottom                                                                {width:769px; height:35px; background:url(<?php echo $this->baseUrl('/img/login_bottom_bg.gif')?>); clear:both;}
+
+ 
+</style>
+<div class="cell_h"></div>
+<div class="unlogin_top"></div>
+<div class="unlogin_center">
+    <div class="left">
+        <img src="<?php echo $this->baseUrl('/img/mark_unlogin.gif')?>" />
+    </div>
+    <div class="center"></div>
+    <div class="right">
+        <img src="<?php echo $this->baseUrl('/img/mark_ts.gif')?>" /><br /><br />
+        提示：您需要<a href="<?php echo $this->baseUrl('/user/login')?>" class="a14">登录</a>才可以参与本站活动。没有帐号？<a href="<?php echo $this->baseUrl('/user/register')?>" class="a14">注册</a>
+    </div>
+</div>
+<div class="unlogin_bottom"></div>

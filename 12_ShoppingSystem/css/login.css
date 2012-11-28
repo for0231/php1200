@@ -1,0 +1,53 @@
+ #name  {
+	padding: 0px;
+	height: 16px;
+	width: 80px;
+	border: 1px outset #1356A4;
+	font-size: 12px;
+	background-color: #e8f4ff;
+}
+ #enter {
+	background-attachment: fixed;
+	background: url(../images/login_05.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin: 0px;
+	padding: 0px;
+	height: 37px;
+	width: 37px;
+	border: 1px solid #006699;
+}
+
+#password {
+	margin: 0px;
+	padding: 0px;
+	height: 16px;
+	width: 80px;
+	border: 1px outset #1356A4;
+	font-size: 12px;
+	background-color: #e8f4ff;
+}
+#check {
+	margin: 0px;
+	padding: 0px;
+	height: 16px;
+	width: 44px;
+	border: 1px outset #1356A4;
+	font-size: 12px;
+	background-color: #e8f4ff;
+}
+#login:link {
+	color: #6FA9EB;
+	text-decoration: none;
+}
+#login:visited {
+	text-decoration: none;
+	color: #6FA9EB;
+}
+#login:hover {
+	text-decoration: none;
+	color: #1356A4;
+}
+#login:active {
+	text-decoration: none;
+}

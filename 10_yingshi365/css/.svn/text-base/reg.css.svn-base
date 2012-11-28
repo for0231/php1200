@@ -1,0 +1,110 @@
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th {
+	font-size: 12px;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+.b:active {
+	text-decoration: none;
+	color: #CC0000;
+}
+#login #dw {
+	text-indent: 32px;
+}
+
+.b:link {
+	text-decoration: none;
+	color: #FF0000;
+}
+.b:visited {
+	text-decoration: none;
+	color: #990000;
+}
+.b:hover {
+	text-decoration: none;
+	color: #CC0000;
+}
+.b:active {
+	text-decoration: none;
+	color: #FF0000;
+}
+#Layer1 {
+	position:absolute;
+	left:1px;
+	top:93px;
+	width:882px;
+	height:8px;
+	z-index:1;
+}
+#Layer2 {
+	position:absolute;
+	left:-1px;
+	top:199px;
+	width:884px;
+	height:12px;
+	z-index:2;
+}
+.STYLE1 {color: #FF0000}
+.usual {
+	height: 17px;
+	width: 150px;
+	border: 1px solid #000000;
+}
+.left_td {
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-style: dashed;
+	border-left-style: solid;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+}
+.right_td {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: dashed;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+}
+.top_td {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: dashed;
+	border-left-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+}
+.bottom_td {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #000000;
+	border-left-color: #000000;
+}
+#regi {
+	height: 20px;
+	width: 30px;
+	border: 1px solid #000000;
+}
+#reset {
+	height: 20px;
+	width: 30px;
+	border: 1px solid #000000;
+}

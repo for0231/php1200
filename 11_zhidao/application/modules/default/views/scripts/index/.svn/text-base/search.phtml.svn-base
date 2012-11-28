@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?php 
+            echo $this->headMeta()->appendHttpEquiv('content-type', 'text/html; charset=utf-8')
+                                  ->appendHttpEquiv('keywords', $this->escape($this->keywords))
+                                  ->appendHttpEquiv('description', $this->escape($this->description));
+        ?>
+        <?php echo $this->headTitle($this->escape($this->title))?>
+        <?php echo $this->headLink()->setStylesheet($this->baseUrl('/css/style.css'))?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('/js/jquery.js'))?>
+        <style type="text/css">
+            .part1                                          {width:94%; clear:both;}
+            .part1 .nav                                     {width:52%; float:left;}
+    
+            .part1 .nav .li1                                {width:200px; !width:202px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; font-size:13px; border:1px solid #006699;}
+            .part1 .nav .li2                                {width:20px; !width:22px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; font-family:Arial; font-weight:bold; border:1px solid #006699; cursor:pointer;}
+            .part1 .nav .li2_current                        {width:20px; !width:22px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; font-family:Arial; font-weight:bold; border:1px solid #006699; background-color:#006699; cursor:pointer;}
+            .part1 .nav .li3                                {width:33px; !width:35px; height:20px; !height:22px; line-height:20px; !line-height:22px; float:left; font-family:Arial; font-weight:bold; border:1px solid #006699; cursor:pointer;}
+            .part1 .nav .li_cell                            {width:3px; !width:5px; height:20px; !height:22px; float:left;}
+
+
+            .part2                                          {width:94%; text-align:left; clear:both;}
+            .part2 .t                                       {width:100%; height:25px; line-height:25px; text-align:left; clear:both;}
+            .part2 .c                                       {width:100%; line-height:20px; text-align:left; clear:both;}
+            .part2 .i                                       {width:100%; height:13px; line-height:13px; font-size:13px; text-align:left; clear:both;}
+        </style>
+    </head>
+    <body>
+        <div class="cell_h"></div>
+        <?php if(count($this->paginator)>0):?>
+        <div class="part1">
+            <div class="nav">
+                <?php echo $this->paginationControl($this->paginator, 'Jumping' ,'searchPaginationControl.phtml', array('keywords' => urlencode($this->keywordsStr)))?>
+            </div>
+        </div>
+        <?php foreach ($this->paginator as $search):?>
+        <div class="part2">
+            <div class="t">
+                <a href="<?php echo $this->baseUrl('/question/thread-'.$search['id'])?>" target="_blank" class="a16"><?php echo $this->setRed($this->keywordsStrArray, $this->escape($search['title']))?></a>
+            </div>
+            <div class="c">
+                <?php echo $this->setRed($this->keywordsStrArray, htmlspecialchars($this->substr($search['unhtmlcontent'], 500)))?>
+            </div>
+            <div class="i">
+                <font color="#339900"><?php echo $this->config['default']['host']?>/question/thread-<?php echo $search['id']?></font>　<?php echo substr($search['addtime'], 2, 14)?>　<a href="<?php echo $this->baseUrl("/")?>" class="a17">明日知道</a>
+            </div>
+        </div>
+        <br/>
+        <?php endforeach;?>
+        <div class="cell_h"></div>
+        <div class="part1">
+            <div class="nav">
+                <?php echo $this->paginationControl($this->paginator, 'Sliding' ,'searchPaginationControl.phtml', array('keywords' => urlencode($this->keywordsStr)))?>
+            </div>
+        </div>
+        <?php else: ?>
+        <div style="width:800px; height:60px;  ">
+            <div style="width:290px; height:60px; float:left;">
+                   <img src="<?php echo $this->baseUrl('/img/mark_unsearch.gif')?>" />    
+            </div>
+            <div style="width:500px; float:right; line-height:30px; text-align:left; font-size:15px; color:#0000FF;">
+              没有查找到您要找的内容！<br/>
+        <font style="font-size:12px; color:#FF0000;">温馨提示：</font><br/><font style="font-size: 12px;">　(1)&nbsp;&nbsp;多个关键字之间请用空格分开<br/>　(2)&nbsp;&nbsp;请确定所要查找内容的类别与您所选择的类别相一致</font>
+      
+            </div>
+        
+        
+         </div>
+        <?php endif;?>
+    
+
+    </body>
+</html>

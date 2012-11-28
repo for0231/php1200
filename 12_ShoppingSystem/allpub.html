@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$title}</title>
+<link rel="stylesheet" href="css/table.css" />
+<script language="javascript" src="js/links.js"></script>
+</head>
+<body>
+<table width="600" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" height="25" align="center" valign="middle" class="first">全部公告</td>
+  </tr>
+{section name=id loop=$allpub}
+  <tr>
+    <td width="57%" height="25" align="left" valign="middle" class="left">&nbsp;&nbsp;&nbsp;&nbsp;标题：<a href="#" onclick="return showme({$allpub[id].id},'showpub.php')">{$allpub[id].title}</a></td>
+    <td width="43%" height="25" align="center" valign="middle" class="right">&nbsp;{$allpub[id].addtime}</td>
+  </tr>
+{/section}
+</table>
+</body>
+</html>
+

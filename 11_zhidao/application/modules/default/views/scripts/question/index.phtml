@@ -1,0 +1,160 @@
+<style type="text/css">
+    .bbs_index_nav                                                {width:96%; height:35px; line-height:25px; clear:both;}
+    .bbs_index_titleAlert                                          {width:96%; height:29px; clear:both;}
+    .bbs_index_titleAlert .left                                    {width:600px; height:29px; float:left;}
+    .bbs_index_titleAlert .right                                   {width:300px; height:29px; float:right;}
+    .bbs_index_main                                               {width:96%; clear:both;}
+    .bbs_index_main .table                                        {width:100%; border-collapse:collapse; clear:both;} 
+    .bbs_index_main .table .left                                  {width:100%;}
+ 
+    .bbs_index_main .table .left .type                            {margin:0px; background-color:#F5FAFE; border-left:1px solid #9DB3C5; border-top:1px solid #9DB3C5; border-right:1px solid #9DB3C5; clear:both;}
+    .bbs_index_main .table .left .type .table                     {width:100%; border-collapse:collapse; display:block; clear:both;}
+       
+    .bbs_index_main .table .left .type  .title                    {margin:0px; height:30px; background:url(<?php echo $this->baseUrl('/img/bbs_title_bg1.gif')?>); border:1px solid #FFFFFF; clear:both;}
+    .bbs_index_main .table .left .type  .title .left              {width:95%; height:30px; line-height:30px; text-align:left; color:#FFFFFF; float:left;}
+    .bbs_index_main .table .left .type  .title .right             {width:3%; height:30px; line-height:30px; text-align:left; font-size:16px; font-weight:bold; cursor:pointer; color:#FFFFFF; float:right;}
+       
+    .bbs_index_main .table .left .type .table .titlePart1         {width:10%; height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .titlePart2         {width:50%; height:16px; color:#006699; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .titlePart3         {width:13%; height:16px; color:#006699; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .titlePart4         {width:27%; height:16px; color:#006699; text-align:center; border-bottom:1px solid #9DB3C5;}
+    
+    .bbs_index_main .table .left .type .table .contentPart1       {width:10%; height:60px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .contentPart2       {width:50%; height:60px; line-height:16px; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .contentPart3       {width:13%; height:60px; text-align:center; border-bottom:1px solid #9DB3C5;}
+    .bbs_index_main .table .left .type .table .contentPart4       {width:27%; height:60px; line-height:20px; border-bottom:1px solid #9DB3C5;}
+    
+    .bbs_index_nav .li1                                           {width:500px; height:35px; line-height:35px; text-align:left; font-weight:bold; float:left;}
+    .bbs_index_nav .li2                                           {width:200px; height:35px; float:right;}
+    .bbs_index_titleAlert .left .li1                               {width:73px; height:29px; line-height:29px; font-weight:bold; cursor:pointer; background:url(<?php echo $this->baseUrl('/img/bbs_btn_bg1.gif') ?>); float:left;}
+    .bbs_index_titleAlert .left .li2                               {width:500px; height:29px; line-height:29px; font-size:13px; text-align:left; float:right;}
+
+    .bbs_index_titleAlert .right .li1                              {width:210px; height:29px; line-height:29px;  float:left;}
+    .bbs_index_titleAlert .right .li2                              {width:72px; height:29px; line-height:29px; font-size:13px; text-align:left; float:left;}
+    .bbs_index_titleAlert .right .li3                              {width:18px; height:29px; line-height:29px; float:right; position:relative;}
+
+   
+</style>
+
+<div class="bbs_index_nav">
+    <ul>
+        <li class="li1"><a href="<?php echo $this->baseUrl('/')?>"  class="a14"><?php echo $this->escape($this->config['default']['title']) ?></a>&nbsp;>>&nbsp;<a href="<?php echo $this->baseUrl('/question')?>"  class="a3">问题分类</a></li>
+        <li class="li2"></li>
+    </ul>
+</div>
+<div class="cell_h"></div>
+<div class="bbs_index_titleAlert">
+    <div class="left">
+        <ul>
+            <li class="li1"><a href="<?php if($this->isLogin==true):?><?php echo $this->baseUrl('/question/pubtitle/bbstypeid/0')?><?php else:?><?php echo $this->baseUrl('/user/unlogin/tourl/question-pubtitle-bbstypeid-0')?><?php endif;?>" class="a2">提　问</a></li>
+            <li class="li2">您可以<a href="<?php echo $this->baseUrl('/user/register')?>" target="_blank" class="a14">注册</a>一个账户，并以此<a href="<?php echo $this->baseUrl('/user/login')?>" target="_blank" class="a14">登录</a>，以便参与本站更多活动，与大家交流。</li>
+        </ul>
+    </div>
+    <div class="right">
+
+    </div>    
+</div>
+<div class="cell_h"></div>
+<div class="bbs_index_main">
+    <table class="table">
+        <tr>
+            <td class="left" valign="top">
+                <div class="type">
+                    <div class="title">
+                        <div class="left">
+                                                            　    <strong></strong>
+                        </div>
+                        <div class="right" >
+                        </div>
+                    </div>
+                    <table class="table" >
+                        <tr class="titlePart">
+                            <td class="titlePart1"></td>
+                            <td class="titlePart2">分类</td>
+                            <td class="titlePart3">问题/回复</td>
+                            <td class="titlePart4">最后更新</td>
+                        </tr> 
+                        <?php foreach ($this->bbstypes as $bbstypeChild):?>
+                        <tr id="title_row_<?php echo $bbstypeChild['tid']?>" onmouseover="changeRowColor('title_row_<?php echo $bbstypeChild['tid']?>', 0)" onmouseout="changeRowColor('title_row_<?php echo $bbstypeChild['tid']?>', 1)">
+                            <td class="contentPart1"><img src="<?php echo $this->baseUrl('/img/topic_permit.gif')?>" /></td>
+                            <td class="contentPart2">
+                                <strong><a href="<?php echo $this->baseUrl('/question/forum-'.$bbstypeChild['tid'].'-1-1')?>" target="_blank" class="a3"><?php echo $this->escape($bbstypeChild['typename'])?></a></strong>　<?php if($bbstypeChild['totaltodaytitle']>0):?>(今日：<font style="color:#FF0000"><?php echo $bbstypeChild['totaltodaytitle']?></font>)<?php endif;?><br />
+                                <?php echo $this->escape($bbstypeChild['description'])?>
+                            </td>
+                            <td class="contentPart3"><font style="color:#0099CC"><?php echo $bbstypeChild['totaltitle']?></font>/<?php echo $bbstypeChild['totalreply']?></td>
+                            <td class="contentPart4">
+                                <?php if($bbstypeChild['lasttitletitle']==null):?>
+                                暂无主题
+                                <?php else:?>
+                                <a href="<?php echo $this->baseUrl('/question/thread-'.$bbstypeChild['lasttitleid'])?>" target="_blank" class="a3"><?php echo $this->escape($this->substr($bbstypeChild['lasttitletitle'], 50))?></a><br />
+                                <a href="" class="a3"><?php echo $this->escape($bbstypeChild['lasttitlenetname'])?></a>&nbsp;-&nbsp;<font style="color:#0099CC"><?php echo $bbstypeChild['lasttitletime']?></font>
+                                <?php endif;?>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+                    </table>
+                </div>
+            </td>
+       </tr>    
+    </table>
+</div>
+
+
+<script language="javascript">
+    //打开关闭右侧导航
+    function openCloseRightNav()
+    {
+        if($("#rightNav").css("display")=="none"){
+            $("#openCloseRightNavBtn").attr("src", "<?php echo $this->baseUrl('/img/wait_close.gif')?>");
+        	$("#openCloseRightNavAlert").html("关闭右导航");
+        	$("#rightNav").slideDown("normal", function(){
+        		$("#openCloseRightNavBtn").attr("src", "<?php echo $this->baseUrl('/img/bbs_btn_close1.gif')?>");
+            });
+        }else{
+        	$("#openCloseRightNavBtn").attr("src", "<?php echo $this->baseUrl('/img/wait_open.gif')?>");
+        	$("#openCloseRightNavAlert").html("展开右导航");
+        	$("#rightNav").slideUp("normal", function(){
+        		$("#openCloseRightNavBtn").attr("src", "<?php echo $this->baseUrl('/img/bbs_btn_open1.gif')?>");
+            });
+        }
+    }
+    //更改行背景色
+    function changeRowColor(x, y)
+    {
+        if(y==0){
+            $("#"+x).css("background-color", "#FFFFFF");
+        }else{
+        	$("#"+x).css("background-color", "#F5FAFE");
+        }
+    }
+    //更改验证码的值
+    function changeValidateCode()
+    {
+        $("#vcodeImg").attr("src", "<?php echo $this->baseUrl('/common/vcode/w/60/h/22/f/1/rand/"+Math.random()+"')?>");
+    }
+    //更改主题选项卡
+    function changeTitleTab(x, y, z)
+    {
+        $("#"+x).css("border-bottom", "1px solid #FFFFFF");
+        $("#"+x).css("background-color", "#FFFFFF");
+        $("#"+x+"_content").css("display", "block");
+        
+        $("#"+y).css("border-bottom", "1px solid #9DB3C5");
+        $("#"+y).css("background-color", "#F5FAFE");
+        $("#"+y+"_content").css("display", "none");
+        
+        $("#"+z).css("border-bottom", "1px solid #9DB3C5");
+        $("#"+z).css("background-color", "#F5FAFE");
+        $("#"+z+"_content").css("display", "none");
+    }
+    //显示或隐藏子类
+    function showHidden(x)
+    {
+        $("#"+x).slideToggle("fast");
+        if($.trim($("#btn_"+x).html())=="-"){
+            $("#btn_"+x).html("+");
+        }else{
+        	$("#btn_"+x).html("-");
+        }
+    }
+</script>

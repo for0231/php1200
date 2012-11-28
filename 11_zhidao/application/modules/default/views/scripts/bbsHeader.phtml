@@ -1,0 +1,170 @@
+﻿<style type="text/css">
+    .bbsHeader_main                              {width:100%; clear:both;}
+    .bbsHeader_main .nav                         {width:100%; height:26px; line-height:26px; text-align:left; background:url(<?php echo $this->baseUrl('/img/bbs_header_nav.gif')?>); clear:both;}
+    .bbsHeader_main .logo_banner                 {width:96%; height:75px; clear:both;}
+    .bbsHeader_main .logo_banner .left           {width:200px; height:68px; float:left;}
+    .bbsHeader_main .logo_banner .right          {width:500px; height:68px; float:left;}
+    .bbsHeader_main .logo_banner .right .part5                        {width:780px;   clear:both;}
+    .bbsHeader_main .logo_banner .right .part5 .search                {width:550px; margin-left:160px; clear:both;}
+    .bbsHeader_main .logo_banner .right .part4                        {width:650px; height:20px; clear:both;}
+    
+    
+    .bbsHeader_main .menu                        {width:96%; height:31px; background:url(<?php echo $this->baseUrl('/img/bbs_header_menu.gif')?>); border:1px solid #CAD9EA; clear:both;}
+    .bbsHeader_main .menu .left                  {width:200px; height:31px; line-height:31px; text-align:left; float:left;}
+    .bbsHeader_main .menu .right                 {width:400px; height:31px; line-height:31px; float:right;}
+    .bbsHeader_main .menu .right .li1            {width:3px; height:31px; float:left; background:url(<?php echo $this->baseUrl('/img/bbs_header_menu_sep.gif')?>); }
+    .bbsHeader_main .menu .right .li2            {width:70px; height:31px; line-height:31px; float:left; }
+    
+    
+    
+</style>
+
+<div class="bbsHeader_main">
+    <div class="nav">
+        　　明日软件　|　明日图书　|　编程词典　|　明日书店
+    </div>
+    <div class="logo_banner">
+        <div class="left">
+            <img src="<?php echo $this->baseUrl('/img/logo.jpg')?>" />
+        </div>
+        
+        <div class="right">
+           <div class="cell_h"></div>
+           <div class="part4">
+                <ul>
+                    <li style="width:160px; height:20px; line-height:20px; float:left"></li>
+                    <li id='st_0' style=" height:20px; line-height:20px; float:left; padding-left:5px; padding-right:5px; font-weight:bold;<?php if($this->typeid==0):?>background-color:#75CDFF; color:#FFFFFF;<?php endif;?> cursor:pointer;" onclick="changeSearchType('st_0', '0')">全部</li>
+                    <?php foreach ($this->types as $type):?>
+                    <li id="st_<?php echo $type['tid']?>" style=" height:20px; line-height:20px; float:left; padding-left:5px; padding-right:5px;  color:#333333; font-size:12px; font-weight:bold; font-family:Arial; <?php if($this->typeid==$type['tid']):?>background-color:#75CDFF; color:#FFFFFF;<?php endif;?> cursor:pointer;" onclick="changeSearchType('st_<?php echo $type['tid']?>', '<?php echo $type['tid']?>')"><?php echo $this->escape($type['typename'])?></li>
+                    <?php endforeach;?>
+                </ul>
+            </div>
+            <div class="part5">
+
+                <?php echo $this->form('search_form', array('method'=>'post','style' => 'padding:0px; margin:0px;', 'onsubmit'=>'return chkinput(this)', 'action'=>$this->baseUrl('/index/search')), false)?>
+                <div class="search">
+                    <div style="position:relative; width:359px; height:35px; background:url(<?php echo $this->baseUrl('/img/search_bg.gif')?>); float:left;">
+                        <?php echo $this->formHidden('typeid', '0')?>
+                        <?php echo $this->formText('keywords', $this->keywordsStr, array('style'=>'width:350px; height:26px; line-height:26px; font-size:15px; color:#333333; border:0px;', 'onkeyup'=>'showKeywordsList()', 'onkeydown'=>'selectList()', 'autocomplete'=>'off'))?>
+                        <div id="searchLayer" style="position: absolute; width: 357px; left:0px; top:33px;  z-index: 1; border:1px solid #898989; background-color:#FBFCFC; clear:both; display:none" onmouseleave="document.getElementById('searchLayer').style.display='none'"></div>
+                    </div>
+                    <div style="width:109px; height:35px; font-size:0px; float:left;">
+                        <input type="image" src="<?php echo $this->baseUrl('/img/search_btn.gif')?>" style="margin-left:6px;"/>
+                    </div>
+                    <div style="width:70px; height:34px; line-height:17px; float:right">
+                        <a href="<?php if($this->isLogin==true):?><?php echo $this->baseUrl('/question/pubtitle/bbstypeid/0')?><?php else:?><?php echo $this->baseUrl('/user/unlogin/tourl/question-pubtitle-bbstypeid-0')?><?php endif;?>" class="a1">我要提问</a><br/><a href="<?php echo $this->baseUrl('/question')?>" class="a1">我要回答</a>
+                    </div>
+                </div>
+                <?php echo '</form>'?>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    <div class="menu">
+        <div class="left">
+        　　<a href="<?php echo $this->baseUrl('/user/register')?>" class="a1">注册</a>　<a href="<?php echo $this->baseUrl('/user/login')?>" class="a1">登录</a>
+        </div>
+        <div class="right">
+            <ul>
+                <li class="li1"></li>
+                <li class="li2"><a href="http://www.mingrisoft.com" class="a1">软件</a></li>
+                <li class="li1"></li>
+                <li class="li2"><a href="http://www.mingribook.com" class="a1">图书</a></li>
+                <li class="li1"></li>
+                <li class="li2"><a href="http://www.mrbccd.com" class="a1">词典</a></li>
+                <li class="li1"></li>
+                <li class="li2"><a href="http://www.cccxy.com" class="a1">学院</a></li>
+                <li class="li1"></li>
+                <li class="li2"><a href="http://www.mrbooks.cn" class="a1">书店</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <script language="javascript">
+
+        var index = 0;
+        var count = 0;
+        function showKeywordsList(){
+            var keycode = event.keyCode;
+            if(keycode != 40 && keycode != 38){
+                index = 0;
+                if($("#keywords").val() == "" || $.trim($("#keywords").val()) == ""){
+                    $("#searchLayer").css("display", "none");
+                }else{
+                    setTimeout("reSearch()", 150);
+                } 
+            }
+        }
+
+        function reSearch(){
+            if($("#keywords").val() != ""){
+                $.get("<?php echo $this->baseUrl('/index/keywords-list/keyword/"+encodeURI($("#keywords").val())+"')?>", null, function(data){
+                    if($.trim(data) == ""){
+                        $("#searchLayer").css("display", "none");
+                    }else{
+                        $("#searchLayer").html(data);
+                        $("#searchLayer").css("display", "block");
+                    	count = parseInt($("#totalList").val());
+                    }
+                });
+            }
+        }  
+       
+        function selectList(){
+            var keycode = event.keyCode;
+            if(keycode == 40){
+            	$("#listItem_"+index).css("background-color", "#158CD0");
+            	$("#listItem_"+index).css("color", "#FFFFFF");
+            	$("#keywords").val($.trim($("#listItem_li_"+index).html()));
+            	if(index > 0){
+            	    $("#listItem_"+parseInt(index-1)).css("background-color", "#FFFFFF"); 
+            	    $("#listItem_"+parseInt(index-1)).css("color", "#333333"); 
+                }
+                if(index < count-1){
+            	    index++;
+                }
+            }else if(keycode == 38){
+            	if(index > 0){
+                	$("#listItem_"+parseInt(index-1)).css("background-color", "#158CD0");
+                	$("#listItem_"+parseInt(index-1)).css("color", "#FFFFFF");
+                	$("#keywords").val($.trim($("#listItem_li_"+parseInt(index-1)).html()));
+            	}
+        	    $("#listItem_"+index).css("background-color", "#FFFFFF"); 
+        	    $("#listItem_"+index).css("color", "#333333"); 
+                if(index > 1){
+            	    index--;
+                }
+            }
+        }
+        
+        function setText(x){
+             $("#keywords").val(x);
+             $("#searchLayer").css("display", "none");
+        }
+
+        function changeSearchType(x, y){
+        	$("#st_0").css("background-color", "");
+        	$("#st_0").css("color", "#333333");
+        	<?php foreach ($this->types as $type):?>
+        	     $("#st_<?php echo $type['tid']?>").css("background-color", "");
+        	     $("#st_<?php echo $type['tid']?>").css("color", "#333333");
+        	<?php endforeach;?>
+        	$("#"+x).css("background-color", "#75CDFF");
+        	$("#"+x).css("color", "#FFFFFF");
+        	$("#typeid").val(y);
+      
+        }
+
+       function chkinput(form){
+           if($.trim(form.keywords.value)==""){
+               alert("请输入查询关键字！");
+               form.keywords.focus();
+               return false;
+           } 
+           return true;
+       }
+        
+    </script> 

@@ -1,0 +1,58 @@
+/* CSS Document */
+#mem:link {
+	text-decoration: none;
+	color: #6699cc;
+}
+#mem:visited {
+	text-decoration: none;
+	color: #6699cc;
+}
+#mem:hover {
+	text-decoration: none;
+}
+#mem:active {
+	text-decoration: none;
+	color: #CCCCFF;
+}
+#member #first {
+	background-color: #6699CC;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #6699CC;
+}
+#member #left {
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-color: #6699CC;
+	border-right-color: #6699CC;
+	border-bottom-color: #6699CC;
+}
+#member #right {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #6699CC;
+	border-bottom-color: #6699CC;
+}
+#member #member #right #realname,#card,#tel,#phone,#email,#qq,#code,#address,#old,#new1,#new2 {
+	margin: 0px;
+	padding: 0px;
+	height: 18px;
+	width: 150px;
+	border: 1px solid #6699CC;
+}
+#member #member #enter,#reset {
+	font-size: 12px;
+	color: #6699CC;
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	height: 15px;
+	width: 50px;
+	border: 1px solid #000000;
+}
